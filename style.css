@@ -73,6 +73,7 @@ nav .container {
 nav.scroll {
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 nav .nav-menu ul {
@@ -154,7 +155,7 @@ nav .nav-menu ul li a:hover,
     width: 0;
   }
   to {
-    width: 215px; 
+    width: 215px;
   }
 }
 
@@ -241,12 +242,12 @@ nav .nav-menu ul li a:hover,
   justify-content: center;
 }
 
+/* Em telas grandes, 3 cards por linha; em dispositivos menores, os cards ocuparão 100% da largura */
 #projects .project-card {
   background: hsl(0, 0%, 15%);
   padding: 2.8rem;
   border-radius: 0.6rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-  width: 450px;
   transition: background 0.4s;
   text-align: center;
   display: flex;
@@ -316,7 +317,7 @@ nav .nav-menu ul li a:hover,
   margin-bottom: 3rem;
 }
 
-.cards {
+#knowledge .cards {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
@@ -406,22 +407,76 @@ footer {
   color: var(--paragraph);
   padding: 6rem 0;
   text-align: center;
-  line-height: 1.5; /* Ajuste conforme necessário */
+  line-height: 1.5;
 }
-
 /*===== RESPONSIVE =====================================*/
 @media (max-width: 768px) {
+
+  /* ---Nav--- */
+  nav {
+    height: auto;
+    padding: 1rem 0;
+  }
   nav .container {
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.5rem; 
   }
+  nav .nav-menu {
+    margin-top: 0.25rem; 
+  }
+  nav .nav-menu ul {
+    flex-direction: row;
+    gap: 1.5rem; 
+    text-align: center;
+  }
+  nav .nav-menu ul li a,
+  .logo {
+    font-size: 1.4rem;
+  }
+
+  /* ---Home--- */
   #home .container {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  #about, #knowledge, #contact {
-    padding: 6rem 0;
+  #home .left-column {
+    text-align: center;
+    margin-bottom: 2rem;
   }
+  #home .right-column {
+    margin-top: 2rem;
+  }
+  
+  /* ---Projects--- */
+  #projects .project-card {
+    flex: 0 0 100%;
+  }
+
+  /* ---Knowledge--- */
+  #knowledge .cards .skill-card {
+    flex: 0 0 100%;
+  }
+
+  /* ---Contact--- */
   #contact .container {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  #contact .left-column {
+    text-align: center;
+  }
+}
+
+  /* ---Small screens--- */
+  @media (max-width: 480px) {
+  #home .left-column header h1 {
+    font-size: 3rem;
+  }
+  .button {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.2rem;
   }
 }
