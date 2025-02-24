@@ -3,59 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Gemunu+Libre:wght@200&display=swap" rel="stylesheet"/>
-
     <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
-
     <title>Henrique - Portifólio</title>
   </head>
   <body>
-    <nav id="navigation">
-      <div class="wrapper">
-        <a class="logo" href="#home"> Henrique Azevedo </a>
 
-        <div class="menu">
+    <!--===== NAV BAR =====================================-->
+    <nav id="navbar">
+      <div class="container">
+        <a class="logo" href="#home">Henrique Azevedo</a>
+        <div class="nav-menu">
           <ul>
             <li>
-              <a id="aboutNav" class="close" href="#about">Sobre mim</a>
+              <a id="aboutNav" href="#about">Sobre mim</a>
             </li>
             <li>
-              <a id="knowledgeNav" class="close" href="#knowledge">Conhecimentos</a>
+              <a id="projectsNav" href="#projects">Projetos</a>
             </li>
             <li>
-              <a id="contactNav" class="close" href="#contact">Fale comigo</a>
+              <a id="knowledgeNav" href="#knowledge">Conhecimentos</a>
+            </li>
+            <li>
+              <a id="contactNav" href="#contact">Fale comigo</a>
             </li>
           </ul>
-
         </div>
-
       </div>
     </nav>
 
+    <!--===== HOME =====================================-->
     <section id="home">
-      <div class="wrapper">
-        <div class="col-a">
+      <div class="container">
+        <div class="left-column">
           <header>
             <h4>Olá Mundo! 👋🏾</h4>
             <h1>Me chamo Henrique</h1>
           </header>
           <div class="content">
-            <p class="line typing">Desenvolvedor Back-End</p>
+            <p class="typing">Desenvolvedor Back-End</p>
             <a class="button" href="#contact">Fale comigo</a>
           </div>
         </div>
-        <div class="col-b">
-          <img src="assets/images/Henrique foto.jpg" alt="Henrique - Foto" id="foto_perfil">
+        <div class="right-column">
+          <img src="assets/images/Henrique foto.jpg" alt="Henrique - Foto" id="profile-photo">
         </div>
       </div>
     </section>
 
+    <!--===== ABOUT ME =====================================-->
     <section id="about">
-      <div class="wrapper">
-        <div class="col-a">
+      <div class="container">
+        <div class="left-column">
           <header>
             <h2>Sobre mim</h2>
           </header>
@@ -69,79 +70,122 @@
       </div>
     </section>
 
+    <!--===== PROJECTS =====================================-->
+    <section id="projects">
+      <div class="container">
+        <header>
+          <h2>Projetos</h2>
+        </header>
+        <div class="content">
+          <div class="cards">
+            <div class="project-card">
+              <img src="assets/images/volumtarium.png" alt="Volumtarium">
+              <h3>Volumtarium</h3>
+              <p>
+                Volumtarium é uma aplicação Java que conecta ONGs e voluntários de forma eficiente. 
+                ONGs podem se cadastrar, divulgar suas áreas de atuação e publicar oportunidades, enquanto voluntários encontram vagas alinhadas ao seu perfil e localização.
+              </p>
+              <a href="https://github.com/henriiqueaze/Volumtarium" target="_blank" class="button">Ver mais</a>
+            </div>
+    
+            <div class="project-card">
+              <img src="assets/images/gerenciamento de tarefas.png" alt="Gerenciamento de tarefas">
+              <h3>Gerenciamento de Tarefas</h3>
+              <p>
+                O Sistema de Gerenciamento de Tarefas, desenvolvido com Python e Tkinter, permite organizar tarefas diárias de forma prática. 
+                Usuários podem adicionar tarefas com nome e descrição, marcá-las como concluídas e mantê-las destacadas na lista.
+              </p>
+              <a href="https://github.com/henriiqueaze/Sistema-de-Gerenciamento-de-Tarefas" target="_blank" class="button">Ver mais</a>
+            </div>
+    
+            <div class="project-card">
+              <img src="assets/images/gerenciamento de tarefas.png" alt="Imagem do Projeto 3">
+              <h3>API Biblioteca</h3>
+              <p>
+                A API de Biblioteca é uma solução completa para o gerenciamento de acervos literários e recursos associados, ideal para bibliotecas digitais ou físicas.
+                Ela permite operações CRUD – criar, ler, atualizar e excluir – para diversos recursos, garantindo uma gestão eficiente e automatizada.
+              </p>
+              <a href="link-do-projeto3.com" target="_blank" class="button">Ver mais</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!--===== KNOWLEDGE =====================================-->
     <section id="knowledge">
-      <div class="wrapper">
+      <div class="container">
         <header>
           <h2>Conhecimentos</h2>
         </header>
         <div class="content">
           <div class="cards">
-            <div class="card">
-              <img src="assets/images/java.png" alt="Ícone do Java.">
+            <div class="skill-card">
+              <img src="assets/images/java.png" alt="Java Icon">
               <h3>Java</h3>
               <p>
                 Java é uma linguagem de programação versátil, usada para criar aplicações robustas e portáveis em diferentes plataformas.
               </p>
             </div>
 
-            <div class="card">
-              <img src="assets/images/spring.png" alt="Ícone do Spring Boot.">
+            <div class="skill-card">
+              <img src="assets/images/spring.png" alt="Spring Boot Icon">
               <h3>Spring Boot</h3>
               <p>
                 Spring Boot é um framework Java que simplifica o desenvolvimento de aplicações web e microservices.
               </p>
             </div>
 
-            <div class="card">
-              <img src="assets/images/banco de dados.png" alt="Ícone do SQL.">
+            <div class="skill-card">
+              <img src="assets/images/banco de dados.png" alt="SQL Icon">
               <h3>SQL</h3>
               <p>
                 SQL é uma linguagem de consulta usada para gerenciar e manipular bancos de dados relacionais.
               </p>
             </div>
 
-            <div class="card">
-              <img src="assets/images/python.png" alt="Ícone do Python.">
+            <div class="skill-card">
+              <img src="assets/images/python.png" alt="Python Icon">
               <h3>Python</h3>
               <p>
                 Python é uma linguagem de programação popular, conhecida pela sua simplicidade e versatilidade em várias áreas, como automação e análise de dados.
               </p>
             </div>
 
-            <div class="card">
-              <img src="assets/images/git.png" alt="Ícone do Git.">
+            <div class="skill-card">
+              <img src="assets/images/git.png" alt="Git Icon">
               <h3>Git</h3>
               <p>
                 Git é um sistema de controle de versão distribuído que permite rastrear e gerenciar mudanças no código-fonte ao longo do tempo.
               </p>
             </div>
 
-            <div class="card">
-              <img src="assets/images/github.png" alt="Ícone do Github.">
-              <h3>Git</h3>
+            <div class="skill-card">
+              <img src="assets/images/github.png" alt="Github Icon">
+              <h3>GitHub</h3>
               <p>
                 GitHub é uma plataforma de hospedagem para projetos que utilizam Git, oferecendo colaboração, compartilhamento de código e integração com outras ferramentas.
               </p>
             </div>
 
-            <div class="card">
-              <img src="assets/images/html.png" alt="Ícone do HTML5.">
+            <div class="skill-card">
+              <img src="assets/images/html.png" alt="HTML5 Icon">
               <h3>HTML5</h3>
               <p>
                 HTML5 é utilizado para estruturar e organizar o conteúdo da web.
               </p>
             </div>
 
-            <div class="card">
-              <img src="assets/images/css.png" alt="Ícone do CSS3.">
+            <div class="skill-card">
+              <img src="assets/images/css.png" alt="CSS3 Icon">
               <h3>CSS3</h3>
               <p>
                 CSS3 define o estilo e a apresentação visual dos elementos em uma página.
               </p>
             </div>
 
-            <div class="card">
-              <img src="assets/images/js.png" alt="Ícone do JavaScript.">
+            <div class="skill-card">
+              <img src="assets/images/js.png" alt="JavaScript Icon">
               <h3>JavaScript</h3>
               <p>
                 JavaScript é a linguagem que permite adicionar interatividade e dinamismo às páginas web.
@@ -152,51 +196,60 @@
       </div>
     </section>
 
+    <!--===== CONTACT =====================================-->
     <section id="contact">
-      <div class="wrapper">
-        <div class="col-a">
+      <div class="container">
+        <div class="left-column">
           <header>
             <h2>Entre em contato!</h2>
           </header>
           <div class="content">
             <ul>
               <li>
-                <a href="mailto:henriquee.aze.dev@gmail.com" title="Enviar e-mail">
-                  <img src="assets/images/gmail.png" alt="Ícone de e-mail" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;">
+                <a href="mailto:henriquee.aze.dev@gmail.com" title="send email" target="_blank">
+                  <img src="assets/images/gmail.png" alt="Email icon" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;">
                   henriquee.aze.dev@gmail.com
                 </a>
               </li>
-
               <li>
-                <a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" title="ícone do email">
-                  <img src="assets/images/linkedin.png" alt="Ícone do Linkedin" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;">
+                <a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" title="LinkedIn profile" target="_blank">
+                  <img src="assets/images/linkedin.png" alt="LinkedIn icon" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;">
                   https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/
                 </a>
               </li>
-
               <li>
-                <a href="https://github.com/henriiqueaze" title="Ícone do github">
-                  <img src="assets/images/github.png" alt="Ícone do github" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;">
+                <a href="https://github.com/henriiqueaze" title="GitHub page" target="_blank">
+                  <img src="assets/images/github.png" alt="GitHub icon" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;">
                   https://github.com/henriiqueaze
                 </a>
               </li>
-
             </ul>
           </div>
         </div>
-        <div class="col-b">
+        <div class="right-column">
           <p>Adoro novas ideias! Vou responder assim que possível e juntos vamos criar algo extraordinário!</p>
         </div>
       </div>
     </section>
 
+    <!--===== FOOTER =====================================-->
     <footer>
-      <div class="wrapper">
-        <div class="col-a">
+      <div class="container">
+        <div class="left-column">
           <a class="logo" href="#home">Henrique Azevedo</a>
           <p>©2025 por Henrique Azevedo.<br>Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
+
+    <!-- VLibras Plugin for accessibility -->
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget();</script>
   </body>
 </html>
