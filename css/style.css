@@ -1,4 +1,6 @@
-/*===== GENERAL ===============================================*/
+/*==========================
+  GENERAL STYLES & VARIABLES
+==========================*/
 * {
   margin: 0;
   padding: 0;
@@ -52,7 +54,9 @@ img {
   max-width: 100%;
 }
 
-/*===== NAVIGATION ===================================*/
+/*==========================
+         NAVIGATION
+==========================*/
 nav {
   width: 100vw;
   height: var(--nav-height);
@@ -91,8 +95,6 @@ nav .nav-menu ul li a,
 }
 
 .logo {
-  color: var(--primary-color);
-  font-weight: 900;
   font-size: 2rem;
 }
 
@@ -102,7 +104,9 @@ nav .nav-menu ul li a:hover,
   border-bottom: 2px solid var(--primary-color);
 }
 
-/*===== HOME ===================================*/
+/*==========================
+           HOME
+==========================*/
 #home {
   display: flex;
   align-items: center;
@@ -142,27 +146,22 @@ nav .nav-menu ul li a:hover,
   margin-bottom: 2rem;
 }
 
+/* Efeito de digitar */
 .typing {
   font-size: 24px;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid rgb(255, 255, 255);
+  border-right: 3px solid #fff;
   animation: typing 2s steps(20) forwards, blink 0.7s infinite;
 }
 
 @keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 215px;
-  }
+  from { width: 0; }
+  to { width: 215px; }
 }
 
 @keyframes blink {
-  50% {
-    border-color: transparent;
-  }
+  50% { border-color: transparent; }
 }
 
 .button {
@@ -194,7 +193,9 @@ nav .nav-menu ul li a:hover,
   border-radius: 1rem;
 }
 
-/*===== ABOUT =======================================*/
+/*==========================
+           ABOUT
+==========================*/
 #about {
   padding: 10rem 0;
   background-color: var(--bg-color);
@@ -218,7 +219,9 @@ nav .nav-menu ul li a:hover,
   line-height: 1.5;
 }
 
-/*===== PROJECTS =====================================*/
+/*==========================
+         PROJECTS
+==========================*/
 #projects {
   padding: 10rem 0;
   background-color: var(--secundary-color);
@@ -242,7 +245,6 @@ nav .nav-menu ul li a:hover,
   justify-content: center;
 }
 
-/* Em telas grandes, 3 cards por linha; em dispositivos menores, os cards ocuparão 100% da largura */
 #projects .project-card {
   background: hsl(0, 0%, 15%);
   padding: 2.8rem;
@@ -300,7 +302,9 @@ nav .nav-menu ul li a:hover,
   cursor: pointer;
 }
 
-/*===== KNOWLEDGE =====================================*/
+/*==========================
+         KNOWLEDGE
+==========================*/
 #knowledge {
   padding: 10rem 0;
   background-color: var(--bg-color);
@@ -354,7 +358,9 @@ nav .nav-menu ul li a:hover,
   line-height: 1.5;
 }
 
-/*===== CONTACT =====================================*/
+/*==========================
+         CONTACT
+==========================*/
 #contact {
   padding: 10rem 0;
   background-color: var(--secundary-color);
@@ -401,82 +407,13 @@ nav .nav-menu ul li a:hover,
   max-width: 300px;
 }
 
-/*===== FOOTER =====================================*/
+/*==========================
+         FOOTER
+==========================*/
 footer {
   background-color: var(--bg-color);
   color: var(--paragraph);
   padding: 6rem 0;
   text-align: center;
   line-height: 1.5;
-}
-/*===== RESPONSIVE =====================================*/
-@media (max-width: 768px) {
-
-  /* ---Nav--- */
-  nav {
-    height: auto;
-    padding: 1rem 0;
-  }
-  nav .container {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem; 
-  }
-  nav .nav-menu {
-    margin-top: 0.25rem; 
-  }
-  nav .nav-menu ul {
-    flex-direction: row;
-    gap: 1.5rem; 
-    text-align: center;
-  }
-  nav .nav-menu ul li a,
-  .logo {
-    font-size: 1.4rem;
-  }
-
-  /* ---Home--- */
-  #home .container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  #home .left-column {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  #home .right-column {
-    margin-top: 2rem;
-  }
-  
-  /* ---Projects--- */
-  #projects .project-card {
-    flex: 0 0 100%;
-  }
-
-  /* ---Knowledge--- */
-  #knowledge .cards .skill-card {
-    flex: 0 0 100%;
-  }
-
-  /* ---Contact--- */
-  #contact .container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  #contact .left-column {
-    text-align: center;
-  }
-}
-
-  /* ---Small screens--- */
-  @media (max-width: 480px) {
-  #home .left-column header h1 {
-    font-size: 3rem;
-  }
-  .button {
-    padding: 1.2rem 2.5rem;
-    font-size: 1.2rem;
-  }
 }
