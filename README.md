@@ -19,9 +19,9 @@
 <ul>
   <li>HTML5</li>
   <li>CSS3</li>
+  <li>JavaScript</li>
 </ul>
 
 <h2>Contato</h2>
-
 <p>Linkedin: https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/</p>
 <p>GitHub: https://github.com/henriiqueaze</p>
