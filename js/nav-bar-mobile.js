@@ -1,12 +1,12 @@
 window.addEventListener("load", () => {
-    //Verifica se o dispositivo tem largura de até 768px. 
-    if (window.innerWidth > 768) return;
+  //===== CHECK SCREEN SIZE =====================================
+  if (window.innerWidth > 768) return;
     const navbar = document.getElementById("navbar");
     navbar.style.height = "7.6rem";
     const logo = navbar.querySelector(".logo");
     if (logo) logo.style.fontSize = "1.7rem";
-    
-    //Cria o botão de menu
+
+  //===== CREATE MENU BUTTON =====================================
     const mobileMenuBtn = document.createElement("div");
     mobileMenuBtn.className = "mobile-menu";
     Object.assign(mobileMenuBtn.style, {
@@ -24,8 +24,8 @@ window.addEventListener("load", () => {
     
     const navMenu = document.querySelector(".nav-menu");
     navMenu.style.display = "none";
-    
-    // Mostra o menu
+
+  //===== SHOW MENU BUTTON =====================================
     mobileMenuBtn.addEventListener("click", e => {
       e.stopPropagation();
       mobileMenuBtn.style.display = "none";
@@ -47,8 +47,8 @@ window.addEventListener("load", () => {
       }
       navbar.style.height = "auto";
     });
-    
-    // Fecha o menu
+
+  //===== CLOSE MENU BUTTON =====================================
     document.addEventListener("click", e => {
       if (
         navMenu.style.display === "flex" &&
@@ -63,4 +63,3 @@ window.addEventListener("load", () => {
     
     navMenu.addEventListener("click", e => e.stopPropagation());
   });
-  
