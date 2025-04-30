@@ -1,0 +1,100 @@
+@media (max-width: 768px) {
+
+/*==========================
+         NAVIGATION
+==========================*/    
+    nav {
+      height: auto;
+      padding: 1rem 0;
+    }
+    nav .container {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    nav .nav-menu {
+      margin-top: 0.25rem;
+    }
+    nav .nav-menu ul {
+      flex-direction: row;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    nav .nav-menu ul li a,
+    .logo {
+      font-size: 1.4rem;
+    }
+  
+/*==========================
+           HOME
+==========================*/
+    #home .container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    #home .left-column {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    #home .right-column {
+      margin-top: 2rem;
+    }
+    
+/*==========================
+         PROJECTS
+==========================*/
+    #projects .project-card {
+      flex: 0 0 100%;
+    }
+  
+/*==========================
+         KNOWLEDGE
+==========================*/
+    #knowledge .cards .skill-card {
+      flex: 0 0 100%;
+    }
+  
+/*==========================
+         CONTACT
+==========================*/
+    #contact .container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    #contact .left-column {
+      text-align: center;
+    }
+    #contact ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #contact ul li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  }
+  
+  /* Para telas até 480px */
+  @media (max-width: 480px) {
+    #home .left-column header h1 {
+      font-size: 3rem;
+    }
+    .button {
+      padding: 1.2rem 2.5rem;
+      font-size: 1.2rem;
+    }
+    .typing {
+      margin: 0 auto;
+      text-align: center;
+      width: auto;
+      border-right: none;
+      animation: none;
+    }
+  }
+  
