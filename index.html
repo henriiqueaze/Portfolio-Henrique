@@ -7,6 +7,9 @@
     <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mobile.css" />
+    <script src="js/nav-bar-mobile.js" defer></script>
+    <script src="js/knowledge-toggle.js" defer></script>
+    <script src="js/theme-toggle.js" defer></script>
     <title>Henrique - Portifólio</title>
   </head>
   <body>
@@ -26,7 +29,7 @@
               <a id="knowledgeNav" href="#knowledge">Conhecimentos</a>
             </li>
             <li>
-              <a id="contactNav" href="#contact">Fale comigo</a>
+              <a id="contactNav" href="#contact">Contato</a>
             </li>
           </ul>
         </div>
@@ -47,7 +50,7 @@
           </div>
         </div>
         <div class="right-column">
-          <img src="assets/images/Henrique - Picture.jpg" alt="Henrique - Foto" id="profile-photo">
+          <img src="assets/images/henrique-picture.jpg" alt="Henrique - Foto" id="profile-photo">
         </div>
       </div>
     </section>
@@ -78,7 +81,7 @@
         <div class="content">
           <div class="cards">
             <div class="project-card">
-              <img src="assets/images/Pojects/StudentProgress - Logo.png" alt="Gerenciamento de tarefas">
+              <img src="assets/images/projects/student-progress-logo.png" alt="Gerenciamento de tarefas">
               <h3>StudentProgress </h3>
               <p>
                 StudentProgress é uma API feita em Spring Boot para gerenciar dados de alunos, incluindo notas e status acadêmico. 
@@ -88,7 +91,7 @@
             </div>
 
             <div class="project-card">
-              <img src="assets/images/Pojects/Volumtarium - Logo.png" alt="Volumtarium">
+              <img src="assets/images/projects/volumtarium-logo.png" alt="Volumtarium">
               <h3>Volumtarium</h3>
               <p>
                 Volumtarium é uma aplicação Java que conecta ONGs e voluntários de forma eficiente. 
@@ -98,7 +101,7 @@
             </div>
 
             <div class="project-card">
-              <img src="assets/images/Pojects/Library - API - Logo.png" alt="API Livros">
+              <img src="assets/images/projects/library-api-logo.png" alt="API Livros">
               <h3>Library API</h3>
               <p>
                 A API de Biblioteca é uma solução completa para o gerenciamento de acervos literários e recursos associados, ideal para bibliotecas digitais ou físicas.
@@ -108,7 +111,7 @@
             </div>
     
             <div class="project-card">
-              <img src="assets/images/Pojects/Gerenciamento de Tarefas - Layout.png" alt="Gerenciamento de tarefas">
+              <img src="assets/images/projects/gerenciamento-de-tarefas-layout.png" alt="Gerenciamento de tarefas">
               <h3>Gerenciamento de Tarefas</h3>
               <p>
                 O Sistema de Gerenciamento de Tarefas, desenvolvido com Python e Tkinter, permite organizar tarefas diárias de forma prática. 
@@ -130,62 +133,62 @@
         <div class="content">
           <div class="icon-grid">
             <button class="icon-item" data-title="Java" data-desc="Java é uma linguagem de programação orientada a objetos, amplamente utilizada no desenvolvimento de aplicações corporativas. Funciona na máquina virtual Java (JVM), o que permite portabilidade entre sistemas. É conhecida por sua robustez, segurança e grande ecossistema de bibliotecas.">
-              <img src="assets/images/icons/Java.png" alt="Java">
+              <img src="assets/images/icons/dark-theme/java-dark.png" alt="Java">
               <span>Java</span>
             </button>
 
             <button class="icon-item" data-title="Spring Boot" data-desc="Spring Boot é um framework Java que simplifica a criação de aplicações Spring. Ele facilita a configuração e o deployment, eliminando a necessidade de configuração manual extensa. Ideal para construir microsserviços e aplicações web rapidamente.">
-              <img src="assets/images/icons/SpringBoot.png" alt="Spring Boot">
+              <img src="assets/images/icons/dark-theme/spring-boot-dark.png" alt="Spring Boot">
               <span>Spring Boot</span>
             </button>
 
             <button class="icon-item" data-title="SQL" data-desc="Structured Query Language (SQL) é uma linguagem usada para gerenciar bancos de dados relacionais. Permite consultar, inserir, atualizar e deletar dados de forma estruturada. É padrão em sistemas como MySQL, PostgreSQL, Oracle e SQL Server.">
-              <img src="assets/images/icons/BancoDeDados.png" alt="SQL">
+              <img src="assets/images/icons/dark-theme/banco-de-dados-dark.png" alt="SQL">
               <span>SQL</span>
             </button>
 
             <button class="icon-item" data-title="Python" data-desc="Python é uma linguagem de programação de alto nível, conhecida por sua sintaxe simples e legível. É usada em diversas áreas, como desenvolvimento web, ciência de dados, automação e IA. Possui vasta comunidade e bibliotecas como Django, Flask, NumPy e Pandas.">
-              <img src="assets/images/icons/Python.png" alt="Python">
+              <img src="assets/images/icons/dark-theme/python-dark.png" alt="Python">
               <span>Python</span>
             </button>
 
             <button class="icon-item" data-title="Django" data-desc="Django é um framework web de alto nível para Python, focado em rapidez e segurança. Segue o princípio &#39;DRY&#39; (Don’t Repeat Yourself) e facilita o desenvolvimento com menos código. Inclui admin automático, ORM e diversas ferramentas integradas.">
-              <img src="assets/images/icons/Django.png" alt="Django">
+              <img src="assets/images/icons/dark-theme/django-dark.png" alt="Django">
               <span>Django</span>
             </button>
 
             <button class="icon-item" data-title="HTML5" data-desc="HTML5 é a versão mais recente da linguagem de marcação usada para estruturar páginas web. Introduz novos elementos semânticos, suporte a multimídia e APIs modernas. É base para o desenvolvimento web, junto com CSS e JavaScript.">
-              <img src="assets/images/icons/HTML5.png" alt="HTML5">
+              <img src="assets/images/icons/dark-theme/html5-dark.png" alt="HTML5">
               <span>HTML5</span>
             </button>
 
             <button class="icon-item" data-title="CSS3" data-desc="CSS3 é a última evolução das folhas de estilo em cascata, usadas para estilizar páginas HTML. Inclui recursos como animações, transições, media queries e layouts avançados. Permite adaptar o design para diferentes dispositivos e tamanhos de tela.">
-              <img src="assets/images/icons/CSS3.png" alt="CSS3">
+              <img src="assets/images/icons/dark-theme/css3-dark.png" alt="CSS3">
               <span>CSS3</span>
             </button>
 
             <button class="icon-item" data-title="Bootstrap" data-desc="Bootstrap é um framework front-end baseado em HTML, CSS e JavaScript. Fornece componentes prontos, como botões, menus e grids responsivos. É amplamente usado para criar interfaces modernas e responsivas rapidamente.">
-              <img src="assets/images/icons/Bootstrap.png" alt="Bootstrap">
+              <img src="assets/images/icons/dark-theme/bootstrap-dark.png" alt="Bootstrap">
               <span>Bootstrap</span>
             </button>
 
             <button class="icon-item" data-title="JavaScript" data-desc="JavaScript é uma linguagem de programação usada para tornar páginas web interativas. É executada no navegador, controlando eventos, DOM e chamadas assíncronas. Também é usada no back-end com Node.js e possui vasta comunidade.">
-              <img src="assets/images/icons/JavaScript.png" alt="JavaScript">
+              <img src="assets/images/icons/dark-theme/javascript-dark.png" alt="JavaScript">
               <span>JavaScript</span>
             </button>
 
             <button class="icon-item" data-title="Docker" data-desc="Docker é uma plataforma para criar, empacotar e executar aplicações em containers. Os containers garantem que o software funcione de forma consistente em qualquer ambiente. Facilita o desenvolvimento, testes e deploy contínuo de aplicações.">
-              <img src="assets/images/icons/Docker.png" alt="Docker">
+              <img src="assets/images/icons/dark-theme/docker-dark.png" alt="Docker">
               <span>Docker</span>
             </button>
 
             <button class="icon-item" data-title="Git" data-desc="Git é um sistema de controle de versão distribuído, usado para gerenciar código-fonte. Permite rastrear mudanças, colaborar com equipes e reverter versões anteriores. É essencial para workflows modernos de desenvolvimento de software.">
-              <img src="assets/images/icons/Git.png" alt="Git">
+              <img src="assets/images/icons/dark-theme/git-dark.png" alt="Git">
               <span>Git</span>
             </button>
 
             <button class="icon-item" data-title="GitHub" data-desc="GitHub é uma plataforma de hospedagem de repositórios Git baseada na nuvem. Oferece ferramentas para colaboração, revisão de código e integração contínua. É amplamente usado por desenvolvedores para compartilhar e versionar projetos.">
-              <img src="assets/images/icons/Github.png" alt="GitHub">
+              <img src="assets/images/icons/dark-theme/github-dark.png" alt="GitHub">
               <span>GitHub</span>
             </button>
           </div>          
@@ -214,15 +217,15 @@
             <ul>
               <li>
                 <a href="mailto:henriquee.aze.dev@gmail.com" title="Send email" target="_blank">
-                  <img src="assets/images/icons/Gmail.png" alt="Email icon">henriquee.aze.dev@gmail.com</a>
+                  <img src="assets/images/icons/dark-theme/gmail-dark.png" alt="Email icon">henriquee.aze.dev@gmail.com</a>
               </li>
               <li>
                 <a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" title="LinkedIn profile" target="_blank">
-                  <img src="assets/images/icons/Linkedin.png" alt="LinkedIn icon">https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/</a>
+                  <img src="assets/images/icons/dark-theme/linkedin-dark.png" alt="LinkedIn icon">https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/</a>
               </li>
               <li>
                 <a href="https://github.com/henriiqueaze" title="GitHub page" target="_blank">
-                  <img src="assets/images/icons/Github.png" alt="GitHub icon">https://github.com/henriiqueaze</a>
+                  <img src="assets/images/icons/dark-theme/github-dark.png" alt="GitHub icon">https://github.com/henriiqueaze</a>
               </li>
             </ul>
           </div>
@@ -242,7 +245,21 @@
         </div>
       </div>
     </footer>
-    <script src="js/nav-bar-mobile.js"></script>
-    <script src="js/knowledge-toggle.js"></script>
   </body>
+
+  <div id="toggle">
+    <input type="checkbox" id="sw-checkbox" />
+    <label for="sw-checkbox" title="Mudar tema">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+        <path fill="none" d="M0 0h24v24H0z" />
+        <path d="M11.38 2.019a7.5 7.5 0 1 0 10.6 10.6C21.662 17.854 17.316 22 12.001 22 6.477 22 2 17.523 2 12c0-5.315 4.146-9.661 9.38-9.981z"/>
+      </svg>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+        <path fill="none" d="M0 0h24v24H0z" />
+        <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z" fill="rgba(255,255,255,1)"/>
+      </svg>
+    </label>
+  </div>
+
 </html>

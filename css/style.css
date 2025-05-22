@@ -8,18 +8,40 @@
   font-family: "DM Sans", sans-serif;
 }
 
-:root {
+
+:root[data-theme="dark"] {
   --hue: 200;
   --primary-color: hsl(var(--hue), 80%, 50%);
   --primary-hover: hsl(var(--hue), 80%, 40%);
-  --secundary-color: hsl(0, 0%, 5%);
+  --secondary-color: hsl(0, 0%, 5%);
   --third-color: hsla(0, 0%, 100%, 0.1);
   --bg-color: hsl(0, 0%, 0%);
   
   --headline: hsl(0, 0%, 100%);
   --paragraph: hsla(0, 0%, 100%, 0.658);
   
+  --typing: #fff;
   --nav-height: 7.2rem;
+  --rover: hsl(0, 0%, 20%);
+  --shadow: rgb(0, 0, 0);
+  font-size: 62.5%;
+}
+
+:root[data-theme="light"] {
+  --hue: 200;
+  --primary-color: hsl(var(--hue), 80%, 50%);
+  --primary-hover: hsl(var(--hue), 80%, 60%);
+  --secondary-color: hsl(0, 0%, 90%);
+  --third-color: hsl(0, 2%, 80%);
+  --bg-color: hsl(0, 0%, 100%);
+
+  --headline: hsl(0, 0%, 0%);
+  --paragraph: hsla(0, 0%, 0%, 0.66);
+
+  --typing: #0f0e0e;
+  --nav-height: 7.2rem;
+  --rover: hsl(0, 0%, 100%);
+  --shadow: rgba(0, 0, 0, 0.3);
   font-size: 62.5%;
 }
 
@@ -52,6 +74,50 @@ a {
 
 img {
   max-width: 100%;
+}
+
+/*==========================
+         THEME TOGGLE 
+==========================*/
+#toggle {
+  display: flex;
+  position: fixed;
+  bottom: 2rem;
+  left: 2.5rem;
+}
+
+#toggle input {
+  position: absolute;
+  visibility: hidden;
+}
+
+#toggle label {
+  width: 8rem;
+  height: 4rem;
+  background-color: var(--secondary-color);
+  border: 0.1rem solid var(--primary-color);
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  cursor: pointer;
+}
+
+#toggle label::before {
+  content: "";
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.6rem;
+  transition: 0.5s;
+}
+
+#toggle input:checked + label::before {
+  transform: translateX(3.8rem);
 }
 
 /*==========================
@@ -113,7 +179,7 @@ nav .nav-menu ul li a:hover,
   justify-content: center;
   height: 100vh;
   padding-top: var(--nav-height);
-  background-color: var(--secundary-color);
+  background-color: var(--secondary-color);
 }
 
 #home .container {
@@ -150,7 +216,7 @@ nav .nav-menu ul li a:hover,
   font-size: 24px;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid #fff;
+  border-right: 3px solid var(--typing);
   animation: typing 2s steps(20) forwards, blink 0.7s infinite;
 }
 
@@ -190,6 +256,7 @@ nav .nav-menu ul li a:hover,
   width: 100%;
   max-width: 400px;
   border-radius: 1rem;
+  box-shadow: 0 0 1rem var(--shadow);
 }
 
 /*==========================
@@ -223,7 +290,7 @@ nav .nav-menu ul li a:hover,
 ==========================*/
 #projects {
   padding: 10rem 0;
-  background-color: var(--secundary-color);
+  background-color: var(--secondary-color);
   color: var(--paragraph);
 }
 
@@ -245,10 +312,10 @@ nav .nav-menu ul li a:hover,
 }
 
 #projects .project-card {
-  background: hsl(0, 0%, 15%);
+  background: var(--third-color);
   padding: 2.8rem;
   border-radius: 0.6rem;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 1rem var(--shadow);
   transition: background 0.4s;
   text-align: center;
   display: flex;
@@ -259,7 +326,7 @@ nav .nav-menu ul li a:hover,
 }
 
 #projects .project-card:hover {
-  background: hsl(0, 0%, 20%);
+  background: var(--rover);
 }
 
 #projects .project-card img {
@@ -328,7 +395,7 @@ nav .nav-menu ul li a:hover,
 }
 
 .skill-card {
-  background: var(--secundary-color);
+  background: var(--secondary-color);
   padding: 2.8rem;
   border-radius: 0.6rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
@@ -415,7 +482,7 @@ nav .nav-menu ul li a:hover,
   }
   
   .modal-content {
-    background: var(--secundary-color);
+    background: var(--secondary-color);
     padding: 4rem 2rem; 
     border-radius: 0.6rem;
     max-width: 400px;
@@ -510,7 +577,7 @@ nav .nav-menu ul li a:hover,
 ==========================*/
 #contact {
   padding: 10rem 0;
-  background-color: var(--secundary-color);
+  background-color: var(--secondary-color);
   color: var(--paragraph);
   text-align: left;
 }
