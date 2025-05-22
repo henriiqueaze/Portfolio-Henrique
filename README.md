@@ -22,6 +22,9 @@
   <li>JavaScript</li>
 </ul>
 
+<h2>Layout do Projeto</h2>
+<img src="assets/images/layout.png"> 
+
 <h2>Contato</h2>
 <p>Linkedin: https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/</p>
 <p>GitHub: https://github.com/henriiqueaze</p>
