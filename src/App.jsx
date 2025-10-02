@@ -6,7 +6,7 @@ import Projects from "./components/Projects/index";
 import Knowledge from "./components/Knowledge/index";
 import Contact from "./components/Contact/index";
 import Footer from "./components/Footer/index";
-import ThemeToggle from "./components/Theme-Toggle/index";
+import ThemeToggle from "./components/ThemeToggle/index";
 
 export default function App() {
   useEffect(() => {

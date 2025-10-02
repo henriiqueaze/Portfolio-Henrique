@@ -15,7 +15,7 @@ import {
 } from "react-icons/fa";
 import DjangoIcon from "../../assets/images/icons/django-icon.svg?react";
 import SpringBootIcon from "../../assets/images/icons/spring-boot-icon.svg?react";
-import KnowledgeModal from "./KnowledgeModal";
+import KnowledgeModal from "./Modal";
 
 const skills = [
   {
