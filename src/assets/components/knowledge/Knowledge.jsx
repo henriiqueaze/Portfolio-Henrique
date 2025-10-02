@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import DjangoIcon from "../../images/icons/django-icon.svg?react";
 import SpringBootIcon from "../../images/icons/spring-boot-icon.svg?react";
+import KnowledgeModal from "./KnowledgeModal";
 
 const skills = [
   {
@@ -37,7 +38,7 @@ const skills = [
     desc: "Python é uma linguagem de programação de alto nível, conhecida por sua sintaxe simples e legível. É usada em diversas áreas, como desenvolvimento web, ciência de dados, automação e IA. Possui vasta comunidade e bibliotecas como Django, Flask, NumPy e Pandas.",
   },
   {
-    icon: <DjangoIcon/>,
+    icon: <DjangoIcon />,
     title: "Django",
     desc: "Django é um framework web de alto nível para Python, focado em rapidez e segurança. Segue o princípio (Don’t Repeat Yourself) e facilita o desenvolvimento com menos código. Inclui admin automático, ORM e diversas ferramentas integradas.",
   },
@@ -83,7 +84,7 @@ const skills = [
   },
 ];
 
-export default function Knowledge() {
+const Knowledge = () => {
   const [selected, setSelected] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -120,22 +121,13 @@ export default function Knowledge() {
         </div>
       </div>
 
-      <div
-        id="knowledge-modal"
-        className={`modal ${showModal ? "show" : "hide"}`}
-        onClick={(e) => {
-          if (e.target.id === "knowledge-modal") closeModal();
-        }}
-      >
-        <div className="modal-content">
-          <span className="close" onClick={closeModal}>
-            &times;
-          </span>
-          {selected && <div id="modal-icon">{selected.icon}</div>}
-          <h3 id="modal-title">{selected ? selected.title : ""}</h3>
-          <p id="modal-desc">{selected ? selected.desc : ""}</p>
-        </div>
-      </div>
+      <KnowledgeModal
+        selected={selected}
+        show={showModal}
+        onClose={closeModal}
+      />
     </section>
   );
-}
+};
+
+export default Knowledge;

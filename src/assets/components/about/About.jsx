@@ -1,7 +1,7 @@
 import React from "react";
 import Curriculo from "../../files/Henrique Azevedo Dutra.pdf"
 
-export default function About() {
+const About = () => {
   return (
     <section id="about">
       <div className="container">
@@ -32,3 +32,5 @@ export default function About() {
     </section>
   );
 }
+
+export default About;

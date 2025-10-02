@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function Header() {
+const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [openMobile, setOpenMobile] = useState(false);
 
@@ -45,3 +45,5 @@ export default function Header() {
     </nav>
   );
 }
+
+export default Header;

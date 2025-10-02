@@ -32,7 +32,7 @@ const projectData = [
   },
 ];
 
-export default function Projects() {
+const Projects = () => {
   return (
     <section id="projects">
       <div className="container">
@@ -63,3 +63,5 @@ export default function Projects() {
     </section>
   );
 }
+
+export default Projects;

@@ -1,7 +1,7 @@
 import React from "react";
 import henriquePicture from "../../images/henrique-picture.jpg";
 
-export default function Home() {
+const Home = () => {
   return (
     <section id="home">
       <div className="container">
@@ -29,3 +29,5 @@ export default function Home() {
     </section>
   );
 }
+
+export default Home;
