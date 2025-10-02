@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import Header from "./assets/components/header/Header";
-import Home from "./assets/components/home/Home";
-import About from "./assets/components/about/About";
-import Projects from "./assets/components/projects/Projects";
-import Knowledge from "./assets/components/knowledge/Knowledge";
-import Contact from "./assets/components/contact/Contact";
-import Footer from "./assets/components/footer/Footer";
-import ThemeToggle from "./assets/components/theme/ThemeToggle";
+import Header from "./components/Header/index";
+import Home from "./components/Home/index";
+import About from "./components/About/index";
+import Projects from "./components/Projects/index";
+import Knowledge from "./components/Knowledge/index";
+import Contact from "./components/Contact/index";
+import Footer from "./components/Footer/index";
+import ThemeToggle from "./components/Theme-Toggle/index";
 
 export default function App() {
   useEffect(() => {
@@ -16,17 +16,33 @@ export default function App() {
   }, []);
 
   return (
-    <div>
+    <>
+      <Header />
+
+      {/* Semantic HTML */}
       <main>
-        <Header />
-        <Home />
-        <About />
-        <Projects />
-        <Knowledge />
-        <Contact />
+        <section>
+          <Home />
+        </section>
+        <section>
+          <About />
+        </section>
+        <section>
+          <Projects />
+        </section>
+        <section>
+          <Knowledge />
+        </section>
+        <section>
+          <Contact />
+        </section>
       </main>
+
       <Footer />
-      <ThemeToggle />
-    </div>
+
+      <aside>
+        <ThemeToggle />
+      </aside>
+    </>
   );
 }

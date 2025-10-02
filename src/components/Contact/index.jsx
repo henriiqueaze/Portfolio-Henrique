@@ -1,7 +1,8 @@
 import React from "react";
+import "./style.css"
 import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 
-const Contact = () => {
+const ContactComponent = () => {
   return (
     <section id="contact">
       <div className="container">
@@ -69,4 +70,4 @@ const Contact = () => {
   );
 }
 
-export default Contact;
+export default ContactComponent;

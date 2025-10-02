@@ -1,7 +1,8 @@
 import React from "react";
-import Curriculo from "../../files/Henrique Azevedo Dutra.pdf"
+import "./style.css";
+import Curriculo from "../../../public/docs/Henrique Azevedo Dutra.pdf";
 
-const About = () => {
+const AboutComponent = () => {
   return (
     <section id="about">
       <div className="container">
@@ -33,4 +34,4 @@ const About = () => {
   );
 }
 
-export default About;
+export default AboutComponent;

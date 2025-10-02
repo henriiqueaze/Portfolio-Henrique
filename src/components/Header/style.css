@@ -1,0 +1,40 @@
+nav {
+  width: 100vw;
+  height: var(--nav-height);
+  display: flex;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  transition: background 0.3s;
+  background-color: var(--bg-color);
+}
+
+nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav .nav-menu ul {
+  display: flex;
+  gap: 3.2rem;
+}
+
+nav .nav-menu ul li a,
+.logo {
+  color: var(--primary-color);
+  font-size: 1.6rem;
+  transition: color 0.3s;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+nav .nav-menu ul li a:hover,
+.logo:hover {
+  color: var(--headline);
+  border-bottom: 2px solid var(--primary-color);
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./style.css";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
 
 const ThemeToggle = () => {

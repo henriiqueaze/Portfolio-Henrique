@@ -1,8 +1,9 @@
 import React from "react";
-import Sociau from "../../images/projects/sociau-logo.jpg";
-import StudentProgress from "../../images/projects/student-progress-logo.png";
-import Volumtarium from "../../images/projects/volumtarium-logo.png";
-import GerenciamentoTarefas from "../../images/projects/gerenciamento-de-tarefas-layout.png"
+import "./style.css";
+import Sociau from "../../assets/images/projects/sociau-logo.jpg";
+import StudentProgress from "../../assets/images/projects/student-progress-logo.png";
+import Volumtarium from "../../assets/images/projects/volumtarium-logo.png";
+import GerenciamentoTarefas from "../../assets/images/projects/gerenciamento-de-tarefas-layout.png";
 
 
 const projectData = [

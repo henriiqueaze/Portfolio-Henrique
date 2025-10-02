@@ -1,5 +1,6 @@
 import React from "react";
-import henriquePicture from "../../images/henrique-picture.jpg";
+import "./style.css";
+import henriquePicture from "../../assets/images/henrique-picture.jpg";
 
 const Home = () => {
   return (

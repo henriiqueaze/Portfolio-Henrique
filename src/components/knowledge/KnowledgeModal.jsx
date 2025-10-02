@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./knowledge-modal.css";
 
 const KnowledgeModal = ({ selected, show, onClose }) => {
   useEffect(() => {

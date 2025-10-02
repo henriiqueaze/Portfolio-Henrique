@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./style.css"
 import {
   FaJava,
   FaPython,
@@ -12,8 +13,8 @@ import {
   FaGitAlt,
   FaGithub,
 } from "react-icons/fa";
-import DjangoIcon from "../../images/icons/django-icon.svg?react";
-import SpringBootIcon from "../../images/icons/spring-boot-icon.svg?react";
+import DjangoIcon from "../../assets/images/icons/django-icon.svg?react";
+import SpringBootIcon from "../../assets/images/icons/spring-boot-icon.svg?react";
 import KnowledgeModal from "./KnowledgeModal";
 
 const skills = [
