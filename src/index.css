@@ -1,14 +1,15 @@
 /*==========================
   GENERAL STYLES & VARIABLES
 ==========================*/
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
 }
-
 
 :root[data-theme="dark"] {
   --hue: 200;
@@ -17,10 +18,8 @@
   --secondary-color: hsl(0, 0%, 5%);
   --third-color: hsla(0, 0%, 100%, 0.1);
   --bg-color: hsl(0, 0%, 0%);
-  
   --headline: hsl(0, 0%, 100%);
   --paragraph: hsla(0, 0%, 100%, 0.658);
-  
   --typing: #fff;
   --nav-height: 7.2rem;
   --rover: hsl(0, 0%, 20%);
@@ -35,10 +34,8 @@
   --secondary-color: hsl(0, 0%, 90%);
   --third-color: hsl(0, 2%, 80%);
   --bg-color: hsl(0, 0%, 100%);
-
   --headline: hsl(0, 0%, 0%);
   --paragraph: hsla(0, 0%, 0%, 0.66);
-
   --typing: #0f0e0e;
   --nav-height: 7.2rem;
   --rover: hsl(0, 0%, 100%);
@@ -78,13 +75,14 @@ img {
 }
 
 /*==========================
-         THEME TOGGLE 
+         THEME TOGGLE
 ==========================*/
 #toggle {
   display: flex;
   position: fixed;
   bottom: 2rem;
   left: 2.5rem;
+  z-index: 101;
 }
 
 #toggle input {
@@ -100,7 +98,8 @@ img {
   border-radius: 5rem;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 1rem;
   position: relative;
   cursor: pointer;
 }
@@ -112,17 +111,35 @@ img {
   background-color: var(--primary-color);
   border-radius: 50%;
   position: absolute;
-  bottom: 0.5rem;
-  left: 0.6rem;
+  top: 0.4rem;
+  left: 0.5rem;
   transition: 0.5s;
+  z-index: 2;
 }
 
 #toggle input:checked + label::before {
   transform: translateX(3.8rem);
 }
 
+#toggle svg {
+  position: relative;
+  z-index: 1;
+  width: 2rem;
+  height: 2rem;
+}
+
+#toggle .sun {
+  order: 1;
+  fill: var(--headline);
+}
+
+#toggle .moon {
+  order: 0;
+  fill: var(--headline);
+}
+
 /*==========================
-         NAVIGATION
+        NAVIGATION
 ==========================*/
 nav {
   width: 100vw;
@@ -139,12 +156,6 @@ nav .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-nav.scroll {
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 nav .nav-menu ul {
@@ -172,7 +183,7 @@ nav .nav-menu ul li a:hover,
 }
 
 /*==========================
-           HOME
+          HOME
 ==========================*/
 #home {
   display: flex;
@@ -222,12 +233,18 @@ nav .nav-menu ul li a:hover,
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 223px; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 223px;
+  }
 }
 
 @keyframes blink {
-  50% { border-color: transparent; }
+  50% {
+    border-color: transparent;
+  }
 }
 
 .button {
@@ -261,7 +278,7 @@ nav .nav-menu ul li a:hover,
 }
 
 /*==========================
-           ABOUT
+          ABOUT
 ==========================*/
 #about {
   padding: 4rem 0;
@@ -289,11 +306,11 @@ nav .nav-menu ul li a:hover,
 
 #resume {
   margin: 50px;
-  margin-bottom: 20px;   
+  margin-bottom: 20px;
 }
 
 /*==========================
-         PROJECTS
+        PROJECTS
 ==========================*/
 #projects {
   padding: 10rem 0;
@@ -356,27 +373,10 @@ nav .nav-menu ul li a:hover,
 
 #projects .project-card .button {
   margin-top: 1rem;
-  background: none;
-  border: 0.2rem solid var(--primary-color);
-  color: var(--primary-color);
-  padding: 1.4rem 3rem;
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: 0.4s;
-  display: inline-block;
-  align-self: center;
-}
-
-#projects .project-card .button:hover {
-  background-color: var(--primary-hover);
-  border-color: var(--primary-hover);
-  color: #fff;
-  cursor: pointer;
 }
 
 /*==========================
-         KNOWLEDGE
+        KNOWLEDGE
 ==========================*/
 #knowledge {
   padding: 10rem 0;
@@ -434,11 +434,10 @@ nav .nav-menu ul li a:hover,
 }
 
 .icon {
-  color: #fff;
-  font-size: 4.5rem; 
+  color: var(--headline);
+  font-size: 4.5rem;
   margin-bottom: 0.5rem;
 }
-
 
 .icon-item {
   text-align: center;
@@ -446,39 +445,61 @@ nav .nav-menu ul li a:hover,
   border-radius: 1.2rem;
   padding: 9px;
   width: 100px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .icon-item span {
   white-space: nowrap;
-}
-
-
-.icon-item:hover {
-  background-color: var(--primary-hover); 
-  border-color: var(--primary-hover);     
-  color: #fff;                           
-}
-
-.icon-item img {
-  width: 60px;
-  display: block;
-  margin: 0 auto 0.5rem;
-}
-
-.icon-item span {
+  margin-top: 0.5rem;
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--headline);
 }
 
-.icon svg[width],
-.icon svg[height],
-#modal-icon svg[width],
-#modal-icon svg[height] {
-  width: 4.5rem !important;
-  height: 4.5rem !important;
+.icon-item:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: #fff;
 }
 
+/* SVG sizing & color handling */
+.icon svg {
+  width: 6.4rem !important;
+  height: 6.4rem !important;
+  display: block;
+  fill: currentColor;
+  margin: 0 auto;
+}
+
+#modal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.6rem;
+  width: 100%;
+}
+
+#modal-icon svg {
+  width: 8rem !important;
+  height: 8rem !important;
+  display: block;
+  margin: 0 auto;
+  fill: currentColor;
+}
+
+.icon svg path,
+#modal-icon svg path {
+  fill: currentColor !important;
+}
+
+/*==========================
+        DETAILS
+==========================*/
 .details {
   display: none;
   max-width: 800px;
@@ -488,66 +509,70 @@ nav .nav-menu ul li a:hover,
 }
 
 /*==========================
-      KNOWLEDGE MODAL
+     KNOWLEDGE MODAL
 ==========================*/
-   .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    align-items: center;
-    justify-content: center;
-    z-index: 200;
-  }
-  
-  .modal-content {
-    color: #fff;
-    font-size: 80px;
-    background: var(--secondary-color);
-    padding: 4rem 2rem; 
-    border-radius: 0.6rem;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    position: relative;
-  }
-  
-  .modal-content h3 {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
-  
-  .modal-content p {
-    font-size: 1.4rem;
-    color: var(--paragraph);
-    line-height: 1.5;
-  }
-  
-  .close {
-    position: absolute;
-    top: 1rem;
-    right: 2rem;
-    font-size: 3rem; 
-    color: var(--primary-color);
-    cursor: pointer;
-  }
-  
-  .icon-item {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .icon-item span {
-    margin-top: 0.5rem;
-  }
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal.hide {
+  opacity: 0;
+}
+
+.modal-content {
+  color: var(--headline);
+  font-size: 1.6rem;
+  background: var(--secondary-color);
+  padding: 4rem 2rem;
+  border-radius: 0.6rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.modal-content h3 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.modal-content p {
+  font-size: 1.4rem;
+  color: var(--paragraph);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 3rem;
+  color: var(--primary-color);
+  cursor: pointer;
+}
 
 @keyframes modalFadeIn {
   from {
@@ -579,24 +604,6 @@ nav .nav-menu ul li a:hover,
   animation: modalFadeOut 0.2s ease-in forwards;
 }
 
-.modal {
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-.modal.show {
-  display: flex;
-  opacity: 1;
-}
-.modal.hide {
-  opacity: 0;
-}
-
-#modal-icon svg[width],
-#modal-icon svg[height] {
-  width: 8rem !important;
-  height: 8rem !important;
-}
-
 #modal-icon img {
   width: 8rem;
   height: 8rem;
@@ -604,7 +611,7 @@ nav .nav-menu ul li a:hover,
 }
 
 /*==========================
-         CONTACT
+        CONTACT
 ==========================*/
 #contact {
   padding: 10rem 0;
@@ -638,10 +645,6 @@ nav .nav-menu ul li a:hover,
   margin-bottom: 1rem;
 }
 
-#contact ul a:hover {
-  background: var(--third-color);
-}
-
 #contact ul a {
   display: flex;
   align-items: center;
@@ -651,10 +654,10 @@ nav .nav-menu ul li a:hover,
 }
 
 #contact ul a:hover {
-  color: #fff;
+  color: var(--headline);
   transform: scale(1.05);
+  background: var(--third-color);
 }
-
 
 #contact .right-column {
   flex: 1 1 40%;
@@ -675,15 +678,14 @@ nav .nav-menu ul li a:hover,
 }
 
 #contact a svg {
-  color: #fff; 
+  color: var(--headline);
   width: 20px;
   height: 20px;
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
-
 /*==========================
-         FOOTER
+        FOOTER
 ==========================*/
 footer {
   background-color: var(--bg-color);

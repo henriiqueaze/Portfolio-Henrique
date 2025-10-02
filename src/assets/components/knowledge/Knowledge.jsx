@@ -12,8 +12,8 @@ import {
   FaGitAlt,
   FaGithub,
 } from "react-icons/fa";
-import DjangoIcon from "../../images/icons/dark-theme/django-icon.svg?react";
-import SpringBootIcon from "../../images/icons/dark-theme/spring-boot-icon.svg?react";
+import DjangoIcon from "../../images/icons/django-icon.svg?react";
+import SpringBootIcon from "../../images/icons/spring-boot-icon.svg?react";
 
 const skills = [
   {
