@@ -1,16 +1,48 @@
-# React + Vite
+# Portfólio — Henrique Azevedo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositório contém meu portfólio profissional, uma página construída com React e Vite para apresentar projetos, conhecimentos e informações de contato.
 
-Currently, two official plugins are available:
+## Layout do Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img src="public/layout.png"></img>
 
-## React Compiler
+## Tecnologias
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- HTML
+- CSS
+- React
+- Vite
+- react-icons
 
-## Expanding the ESLint configuration
+## Estrutura do projeto (resumo)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Arquivos e pastas mais relevantes:
+
+- `index.html` – arquivo HTML base
+- `src/` – código fonte React
+  - `src/main.jsx` – bootstrap da app
+  - `src/App.jsx` – layout principal (Header, seções e Footer)
+  - `src/components/` – componentes reutilizáveis
+    - `Home/` — seção inicial (foto, saudação)
+    - `About/` — sobre e link para currículo (`docs/Henrique Azevedo Dutra.pdf`)
+    - `Projects/` — cards de projetos (cada card contém link para o repositório)
+    - `Knowledge/` — grid de skills e modal descritivo
+    - `Contact/` — informações de contato (e-mail, LinkedIn, GitHub)
+    - `ThemeToggle/` — botão que alterna tema claro/escuro (usa localStorage)
+- `assets/` – imagens, ícones e estilos
+- `docs/` – inclui o currículo em PDF
+
+## Recursos e comportamento notáveis
+
+- Alternância de tema (light/dark) persistida em localStorage.
+- Menu responsivo com comportamento mobile (hamburger).
+- Modal na seção de conhecimentos para descrever cada skill.
+- Projetos com imagens e link direto para seus repositórios no GitHub.
+
+## Contato
+
+- Email: henriquee.aze.dev@gmail.com
+- LinkedIn: https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/
+- GitHub: https://github.com/henriiqueaze
+
+---
