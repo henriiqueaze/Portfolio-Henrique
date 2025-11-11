@@ -1,30 +1,16 @@
-<h1 align="center">Portfólio Profissional</h1>
+# React + Vite
 
-<p align="center">
-  <img alt="Static Badge" src="https://img.shields.io/badge/Portf%C3%B3lio-Profissional-%231586BF?style=for-the-badge&logoColor=%231586BF&labelColor=grey&color=%231586BF">
-</p>
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-<h2>Descrição</h2>
-<p>Este é o meu portfólio profissional, criado para exibir os projetos, competências e vivências que adquiri no campo do desenvolvimento. Através deste site, compartilho minha trajetória e mostro meu trabalho, buscando atrair novas oportunidades com clientes e empresas.</p>
+Currently, two official plugins are available:
 
-<h2>Tópicos</h2>
-<ul>
-  <li>Sobre mim</li>
-  <li>Projetos</li>
-  <li>Conhecimentos</li>
-  <li>Contato</li>
-</ul>
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-<h2>Tecnologias utilizadas</h2>
-<ul>
-  <li>HTML5</li>
-  <li>CSS3</li>
-  <li>JavaScript</li>
-</ul>
+## React Compiler
 
-<h2>Layout do Projeto</h2>
-<img src="assets/images/layout.png"> 
+The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-<h2>Contato</h2>
-<p>Linkedin: https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/</p>
-<p>GitHub: https://github.com/henriiqueaze</p>
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

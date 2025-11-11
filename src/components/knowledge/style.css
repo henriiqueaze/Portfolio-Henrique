@@ -1,0 +1,133 @@
+#knowledge {
+  padding: 10rem 0;
+  background-color: var(--bg-color);
+  color: var(--paragraph);
+}
+
+#knowledge .container {
+  text-align: center;
+}
+
+#knowledge h2 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 3rem;
+}
+
+#knowledge .cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.skill-card {
+  background: var(--secondary-color);
+  padding: 2.8rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  width: 300px;
+  transition: background 0.4s;
+  text-align: center;
+}
+
+.skill-card:hover {
+  background: var(--third-color);
+}
+
+.skill-card h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--headline);
+}
+
+.skill-card p {
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.icon {
+  color: var(--headline);
+  font-size: 4.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.icon-item {
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  border-radius: 1.2rem;
+  padding: 9px;
+  width: 100px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-item span {
+  white-space: nowrap;
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--headline);
+}
+
+.icon-item:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: #fff;
+}
+
+.icon svg {
+  width: 6.4rem !important;
+  height: 6.4rem !important;
+  display: block;
+  fill: currentColor;
+  margin: 0 auto;
+}
+
+#modal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.6rem;
+  width: 100%;
+}
+
+#modal-icon svg {
+  width: 8rem !important;
+  height: 8rem !important;
+  display: block;
+  margin: 0 auto;
+  fill: currentColor;
+}
+
+.icon svg path,
+#modal-icon svg path {
+  fill: currentColor !important;
+}
+
+.details {
+  display: none;
+  max-width: 800px;
+  margin: 2rem auto 0;
+  text-align: left;
+  color: var(--paragraph);
+}
+
+/*Responsivity*/
+@media (max-width: 768px) {
+  #knowledge .cards .skill-card {
+    flex: 0 0 100%;
+  }
+}

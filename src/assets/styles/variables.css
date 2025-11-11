@@ -1,0 +1,27 @@
+:root[data-theme="dark"] {
+  --primary-color: hsl(200, 80%, 50%);
+  --primary-hover: hsl(200, 80%, 40%);
+  --secondary-color: hsl(0, 0%, 5%);
+  --third-color: hsla(0, 0%, 100%, 0.1);
+  --bg-color: hsl(0, 0%, 0%);
+  --headline: hsl(0, 0%, 100%);
+  --paragraph: hsla(0, 0%, 100%, 0.658);
+  --typing: #fff;
+  --rover: hsl(0, 0%, 20%);
+  --shadow: rgb(0, 0, 0);
+  font-size: 62.5%;
+}
+
+:root[data-theme="light"] {
+  --primary-color: hsl(200, 80%, 50%);
+  --primary-hover: hsl(200, 80%, 60%);
+  --secondary-color: hsl(0, 0%, 90%);
+  --third-color: hsl(0, 2%, 80%);
+  --bg-color: hsl(0, 0%, 100%);
+  --headline: hsl(0, 0%, 0%);
+  --paragraph: hsla(0, 0%, 0%, 0.66);
+  --typing: #0f0e0e;
+  --rover: hsl(0, 0%, 100%);
+  --shadow: rgba(0, 0, 0, 0.3);
+  font-size: 62.5%;
+}

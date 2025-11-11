@@ -1,0 +1,28 @@
+#about {
+  padding: 4rem 0;
+  background-color: var(--bg-color);
+  color: var(--paragraph);
+}
+
+#about .container {
+  padding-top: 20px;
+  text-align: center;
+}
+
+#about h2 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+}
+
+#about .content p {
+  font-size: 1.7rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+#resume {
+  margin: 50px;
+  margin-bottom: 20px;
+}
