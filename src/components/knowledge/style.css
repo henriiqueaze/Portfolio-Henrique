@@ -124,3 +124,10 @@
   text-align: left;
   color: var(--paragraph);
 }
+
+/*Responsivity*/
+@media (max-width: 768px) {
+  #knowledge .cards .skill-card {
+    flex: 0 0 100%;
+  }
+}

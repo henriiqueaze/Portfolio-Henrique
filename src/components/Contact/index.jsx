@@ -18,11 +18,6 @@ const ContactComponent = () => {
                   title="Send email"
                   target="_blank"
                   rel="noreferrer"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
                 >
                   <FaEnvelope/>
                   henriquee.aze.dev@gmail.com
@@ -34,14 +29,9 @@ const ContactComponent = () => {
                   title="LinkedIn profile"
                   target="_blank"
                   rel="noreferrer"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
                 >
                   <FaLinkedin/>
-                  https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/
+                  www.linkedin.com/henrique-azevedo
                 </a>
               </li>
               <li>
@@ -52,7 +42,7 @@ const ContactComponent = () => {
                   rel="noreferrer"
                 >
                   <FaGithub/>
-                  https://github.com/henriiqueaze
+                  github.com/henriiqueaze
                 </a>
               </li>
             </ul>
