@@ -60,3 +60,10 @@
 #projects .project-card .button {
   margin-top: 1rem;
 }
+
+/*Responsivity*/
+@media (max-width: 768px) {
+  #projects .project-card {
+    flex: 0 0 100%;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./style.css"
+import "./style.css";
 import {
   FaJava,
   FaPython,
@@ -13,6 +13,7 @@ import {
   FaGitAlt,
   FaGithub,
 } from "react-icons/fa";
+import { SiTypescript, SiNodedotjs, SiTailwindcss } from "react-icons/si";
 import DjangoIcon from "../../assets/images/icons/django-icon.svg?react";
 import SpringBootIcon from "../../assets/images/icons/spring-boot-icon.svg?react";
 import KnowledgeModal from "./Modal";
@@ -36,7 +37,7 @@ const skills = [
   {
     icon: <FaPython />,
     title: "Python",
-    desc: "Python é uma linguagem de programação de alto nível, conhecida por sua sintaxe simples e legível. É usada em diversas áreas, como desenvolvimento web, ciência de dados, automação e IA. Possui vasta comunidade e bibliotecas como Django, Flask, NumPy e Pandas.",
+    desc: "Python é uma linguagem de programação de alto nível, conhecida por sua sintaxe simples e legível. É usada em diversas áreas, como desenvolvimento web, ciência de dados, automação e IA. Possui vasta comunidade e bibliotecas como Flask, NumPy e Pandas.",
   },
   {
     icon: <DjangoIcon />,
@@ -54,6 +55,11 @@ const skills = [
     desc: "CSS3 é a última evolução das folhas de estilo em cascata, usadas para estilizar páginas HTML. Inclui recursos como animações, transições, media queries e layouts avançados. Permite adaptar o design para diferentes dispositivos e tamanhos de tela.",
   },
   {
+    icon: <SiTailwindcss />,
+    title: "Tailwind",
+    desc: "Tailwind CSS é um framework de utilitários para CSS que permite construir interfaces rapidamente usando classes atômicas. Facilita layouts responsivos, consistência visual e reduz a necessidade de CSS personalizado.",
+  },
+  {
     icon: <FaBootstrap />,
     title: "Bootstrap",
     desc: "Bootstrap é um framework front-end baseado em HTML, CSS e JavaScript. Fornece componentes prontos, como botões, menus e grids responsivos. É amplamente usado para criar interfaces modernas e responsivas rapidamente.",
@@ -64,9 +70,19 @@ const skills = [
     desc: "JavaScript é uma linguagem de programação usada para tornar páginas web interativas. É executada no navegador, controlando eventos, DOM e chamadas assíncronas. Também é usada no back-end com Node.js e possui vasta comunidade.",
   },
   {
+    icon: <SiTypescript />,
+    title: "TypeScript",
+    desc: "TypeScript é um superset do JavaScript que adiciona tipagem estática opcional. Ajuda a prevenir bugs em tempo de desenvolvimento e melhora a manutenção de código em projetos grandes. Transpila para JavaScript compatível com navegadores e Node.js.",
+  },
+  {
     icon: <FaReact />,
     title: "React",
     desc: "React é uma biblioteca JavaScript usada para criar interfaces de usuário de forma rápida e eficiente. Baseia-se em componentes reutilizáveis e atualiza a interface com desempenho usando o Virtual DOM.",
+  },
+  {
+    icon: <SiNodedotjs />,
+    title: "Node.js",
+    desc: "Node.js é um runtime JavaScript baseado em V8 que permite executar JavaScript no servidor. É ideal para construir APIs, servidores em tempo real e ferramentas de linha de comando. Ecosistema rico com npm e muitos frameworks (Express, Fastify, Nest).",
   },
   {
     icon: <FaDocker />,

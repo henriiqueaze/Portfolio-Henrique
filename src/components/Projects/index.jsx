@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.css";
 import Sociau from "../../assets/images/projects/sociau-logo.jpg";
+import PUM from "../../assets/images/projects/pum.png";
 import StudentProgress from "../../assets/images/projects/student-progress-logo.png";
 import Volumtarium from "../../assets/images/projects/volumtarium-logo.png";
 import GerenciamentoTarefas from "../../assets/images/projects/gerenciamento-de-tarefas-layout.png";
-
 
 const projectData = [
   {
@@ -12,6 +12,12 @@ const projectData = [
     title: "Sociau",
     desc: "A solução conecta ONGs, adotantes e voluntários de forma prática e organizada. Centraliza o cadastro, a divulgação e o processo de adoção de animais.",
     link: "https://github.com/Sociau",
+  },
+  {
+    img: PUM,
+    title: "Plataforma Universal de Monitoria",
+    desc: "Sistema de monitoria acadêmica escalável, desenvolvido para integrar alunos, monitores e cursos.",
+    link: "https://github.com/henriiqueaze/PUM",
   },
   {
     img: StudentProgress,
@@ -22,7 +28,7 @@ const projectData = [
   {
     img: Volumtarium,
     title: "Volumtarium",
-    desc: "Aplicação Java que conecta ONGs e voluntários. ONGs divulgam áreas de atuação e oportunidades; voluntários encontram vagas por perfil e localização.",
+    desc: "Aplicação que conecta ONGs e voluntários. ONGs divulgam áreas de atuação e oportunidades e voluntários encontram vagas por perfil e localização.",
     link: "https://github.com/henriiqueaze/Volumtarium",
   },
   {
@@ -63,6 +69,6 @@ const Projects = () => {
       </div>
     </section>
   );
-}
+};
 
 export default Projects;

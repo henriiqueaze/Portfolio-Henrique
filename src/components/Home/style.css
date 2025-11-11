@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  padding-top: var(--nav-height);
+  padding-top:7.2rem;
   background-color: var(--secondary-color);
 }
 
@@ -54,4 +54,24 @@
   max-width: 400px;
   border-radius: 1rem;
   box-shadow: 0 0 1rem var(--shadow);
+}
+
+/*Responsivity*/
+@media (max-width: 768px) {
+  #home .container {
+    margin-top: 70px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  #home .left-column {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  #home .right-column {
+    margin-top: 2rem;
+  }
+  .typing {
+    margin-left: 13%;
+  }
 }
