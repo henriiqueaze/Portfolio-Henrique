@@ -12,6 +12,7 @@ import {
   FaDocker,
   FaGitAlt,
   FaGithub,
+  FaAngular,
 } from "react-icons/fa";
 import { SiTypescript, SiNodedotjs, SiTailwindcss } from "react-icons/si";
 import DjangoIcon from "../../assets/images/icons/django-icon.svg?react";
@@ -73,6 +74,11 @@ const skills = [
     icon: <SiTypescript />,
     title: "TypeScript",
     desc: "TypeScript é um superset do JavaScript que adiciona tipagem estática opcional. Ajuda a prevenir bugs em tempo de desenvolvimento e melhora a manutenção de código em projetos grandes. Transpila para JavaScript compatível com navegadores e Node.js.",
+  },
+  {
+    icon: <FaAngular />,
+    title: "Angular",
+    desc: "Angular é um framework do Google escrito em TypeScript, com recursos nativos como rotas, injeção de dependência e formulários, facilitando a criação de aplicações web estruturadas e escaláveis.",
   },
   {
     icon: <FaReact />,
