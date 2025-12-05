@@ -3,6 +3,7 @@
   background-color: var(--secondary-color);
   color: var(--paragraph);
   text-align: left;
+  font-size: 6.5rem;
 }
 
 #contact .container {
@@ -27,6 +28,7 @@
 }
 
 #contact ul li {
+  font-size: 2.6rem;
   margin-bottom: 1rem;
 }
 
@@ -69,7 +71,6 @@
   flex-shrink: 0;
 }
 
-/*Responsivity*/
 @media (max-width: 768px) {
   #contact .container {
     flex-direction: column;

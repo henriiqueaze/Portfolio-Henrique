@@ -23,7 +23,7 @@ const ThemeToggle = () => {
     const prefersDark = window.matchMedia?.(
       "(prefers-color-scheme: dark)"
     ).matches;
-    setChecked(!prefersDark); 
+    setChecked(!prefersDark);
   }, []);
 
   useEffect(() => {

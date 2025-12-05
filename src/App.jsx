@@ -19,7 +19,7 @@ export default function App() {
     <>
       <Header />
 
-      {/* Semantic HTML */}
+      {}
       <main>
         <section>
           <Home />

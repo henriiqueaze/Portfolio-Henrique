@@ -9,7 +9,6 @@
   --typing: #fff;
   --rover: hsl(0, 0%, 20%);
   --shadow: rgb(0, 0, 0);
-  font-size: 62.5%;
 }
 
 :root[data-theme="light"] {
@@ -23,5 +22,4 @@
   --typing: #0f0e0e;
   --rover: hsl(0, 0%, 100%);
   --shadow: rgba(0, 0, 0, 0.3);
-  font-size: 62.5%;
 }

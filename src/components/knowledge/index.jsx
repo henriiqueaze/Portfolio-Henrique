@@ -12,11 +12,11 @@ import {
   FaDocker,
   FaGitAlt,
   FaGithub,
-  FaAngular,
 } from "react-icons/fa";
 import { SiTypescript, SiNodedotjs, SiTailwindcss } from "react-icons/si";
 import DjangoIcon from "../../assets/images/icons/django-icon.svg?react";
 import SpringBootIcon from "../../assets/images/icons/spring-boot-icon.svg?react";
+import AngularIcon from "../../assets/images/icons/angular-icon.svg?react";
 import KnowledgeModal from "./Modal";
 
 const skills = [
@@ -56,7 +56,7 @@ const skills = [
     desc: "React é uma biblioteca JavaScript usada para criar interfaces de usuário de forma rápida e eficiente. Baseia-se em componentes reutilizáveis e atualiza a interface com desempenho usando o Virtual DOM.",
   },
   {
-    icon: <FaAngular />,
+    icon: <AngularIcon />,
     title: "Angular",
     desc: "Angular é um framework do Google escrito em TypeScript, com recursos nativos como rotas, injeção de dependência e formulários, facilitando a criação de aplicações web estruturadas e escaláveis.",
   },

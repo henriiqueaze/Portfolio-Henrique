@@ -20,15 +20,11 @@ const Home = () => {
         </div>
 
         <div className="right-column">
-          <img
-            src={henriquePicture}
-            alt="Henrique - Foto"
-            id="profile-photo"
-          />
+          <img src={henriquePicture} alt="Henrique - Foto" id="profile-photo" />
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Home;
