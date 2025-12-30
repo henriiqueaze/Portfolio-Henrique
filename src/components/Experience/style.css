@@ -1,0 +1,139 @@
+#experience {
+  padding: 10rem 0;
+  background: var(--secondary-color);
+}
+
+#experience header h2 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.experience-card {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
+  padding: 3rem;
+  background: linear-gradient(145deg, var(--secondary-color), var(--bg-color));
+  border-radius: 1.4rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1.5rem 3.5rem var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-4px);
+}
+
+.experience-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15%;
+  width: 4px;
+  height: 70%;
+  background: var(--primary-color);
+  border-radius: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.experience-card:hover::before {
+  opacity: 1;
+}
+
+.company-logo {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  border-radius: 50%;
+  justify-self: center;
+  align-self: center;
+}
+
+.experience-content {
+  margin-left: 100px;
+  display: grid;
+  grid-template-rows: auto auto auto auto auto;
+  gap: 0.8rem;
+  max-width: 520px;
+}
+
+.experience-content h3 {
+  font-size: 2.2rem;
+  color: var(--headline);
+}
+
+.experience-content .role {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.experience-content .period {
+  font-size: 1.3rem;
+  color: var(--paragraph);
+}
+
+.experience-content p {
+  font-size: 1.5rem;
+  color: var(--paragraph);
+  line-height: 1.7;
+  margin-top: 0.6rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.info-button {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.info-button:hover {
+  transform: scale(1.1);
+  background: var(--primary-color);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .experience-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .experience-card::before {
+    display: none;
+  }
+
+  .company-logo {
+    margin-bottom: 2rem;
+  }
+
+  .experience-content {
+    align-items: center;
+    max-width: 100%;
+    margin-left: 0;
+  }
+}

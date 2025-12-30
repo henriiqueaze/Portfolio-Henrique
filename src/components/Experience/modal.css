@@ -1,0 +1,99 @@
+.experience-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 400;
+}
+
+.experience-modal-content {
+  background: var(--secondary-color);
+  padding: 4rem 3rem;
+  border-radius: 1.2rem;
+  width: 95%;
+  max-width: 800px;
+  color: var(--headline);
+  position: relative;
+  box-shadow: 0 2rem 4rem var(--shadow);
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.experience-modal-content h3 {
+  font-size: 2.6rem;
+  color: var(--primary-color);
+}
+
+.experience-modal-content .role {
+  font-size: 1.6rem;
+  margin-top: 0.4rem;
+}
+
+.experience-modal-content .period {
+  font-size: 1.4rem;
+  color: var(--paragraph);
+  margin-bottom: 1.6rem;
+}
+
+.modal-company-logo {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 2rem;
+}
+
+.experience-modal-content h4 {
+  margin-top: 1.8rem;
+  font-size: 1.7rem;
+  color: var(--headline);
+}
+
+.experience-modal-content p {
+  font-size: 1.5rem;
+  color: var(--paragraph);
+  line-height: 1.7;
+}
+
+.tech-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.tech-list li {
+  background: var(--third-color);
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  font-size: 1.3rem;
+}
+
+.modal-list {
+  margin-top: 0.8rem;
+  padding-left: 0;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+.modal-list li {
+  font-size: 1.4rem;
+  color: var(--paragraph);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 3rem;
+  cursor: pointer;
+  color: var(--primary-color);
+}

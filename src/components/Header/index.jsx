@@ -59,6 +59,15 @@ const Header = () => {
               </li>
               <li>
                 <a
+                  id="experienceNav"
+                  href="#experience"
+                  onClick={() => setOpenMobile(false)}
+                >
+                  Experiência
+                </a>
+              </li>
+              <li>
+                <a
                   id="projectsNav"
                   href="#projects"
                   onClick={() => setOpenMobile(false)}

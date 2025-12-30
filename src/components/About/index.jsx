@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import Curriculo from "../../docs/Henrique Azevedo Dutra.pdf";
+import Curriculo from "../../docs/Henrique Azevedo - Currículo - Desenvolvedor.pdf";
 
 const AboutComponent = () => {
   return (

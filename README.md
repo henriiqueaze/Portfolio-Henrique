@@ -13,24 +13,7 @@ Este repositório contém meu portfólio profissional, uma página construída c
 - React
 - Vite
 - react-icons
-
-## Estrutura do projeto (resumo)
-
-Arquivos e pastas mais relevantes:
-
-- `index.html` – arquivo HTML base
-- `src/` – código fonte React
-  - `src/main.jsx` – bootstrap da app
-  - `src/App.jsx` – layout principal (Header, seções e Footer)
-  - `src/components/` – componentes reutilizáveis
-    - `Home/` — seção inicial (foto, saudação)
-    - `About/` — sobre e link para currículo (`docs/Henrique Azevedo Dutra.pdf`)
-    - `Projects/` — cards de projetos (cada card contém link para o repositório)
-    - `Knowledge/` — grid de skills e modal descritivo
-    - `Contact/` — informações de contato (e-mail, LinkedIn, GitHub)
-    - `ThemeToggle/` — botão que alterna tema claro/escuro (usa localStorage)
-- `assets/` – imagens, ícones e estilos
-- `docs/` – inclui o currículo em PDF
+- framer-motion
 
 ## Recursos e comportamento notáveis
 
