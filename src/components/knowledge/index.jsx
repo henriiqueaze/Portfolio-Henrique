@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
+import { motion } from "framer-motion";
 import {
   FaJava,
   FaPython,
@@ -14,6 +15,8 @@ import {
   FaGithub,
 } from "react-icons/fa";
 import { SiTypescript, SiNodedotjs, SiTailwindcss } from "react-icons/si";
+import { DiDotnet } from "react-icons/di";
+import CSharpIcon from "../../assets/images/icons/c-sharp-logo.svg?react";
 import DjangoIcon from "../../assets/images/icons/django-icon.svg?react";
 import SpringBootIcon from "../../assets/images/icons/spring-boot-icon.svg?react";
 import AngularIcon from "../../assets/images/icons/angular-icon.svg?react";
@@ -29,6 +32,16 @@ const skills = [
     icon: <SpringBootIcon />,
     title: "Spring Boot",
     desc: "Spring Boot é um framework Java que simplifica a criação de aplicações Spring. Ele facilita a configuração e o deployment, eliminando a necessidade de configuração manual extensa. Ideal para construir microsserviços e aplicações web rapidamente.",
+  },
+  {
+    icon: <CSharpIcon />,
+    title: "C#",
+    desc: "C# é uma linguagem de programação moderna e orientada a objetos, desenvolvida pela Microsoft. É amplamente usada no desenvolvimento de aplicações desktop, web, APIs e jogos, especialmente no ecossistema .NET.",
+  },
+  {
+    icon: <DiDotnet />,
+    title: "ASP.NET",
+    desc: "ASP.NET é um framework de desenvolvimento web da Microsoft usado para criar aplicações web modernas, APIs e serviços. Ele funciona sobre a plataforma .NET e oferece alto desempenho, segurança e escalabilidade.",
   },
   {
     icon: <FaPython />,
@@ -107,6 +120,29 @@ const skills = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 140,
+      damping: 18,
+    },
+  },
+};
+
 const Knowledge = () => {
   const [selected, setSelected] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -125,22 +161,53 @@ const Knowledge = () => {
     <section id="knowledge">
       <div className="container">
         <header>
-          <h2>Conhecimentos</h2>
+          <motion.h2
+            variants={{
+              hidden: { opacity: 0, y: -20 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.5 },
+              },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.4 }}
+          >
+            Conhecimentos
+          </motion.h2>
         </header>
 
         <div className="content">
-          <div className="icon-grid">
+          <motion.div
+            className="icon-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.3 }}
+          >
             {skills.map((s, i) => (
-              <button
+              <motion.button
                 key={s.title}
                 className="icon-item"
+                variants={itemVariants}
+                whileHover={{
+                  scale: 1.08,
+                  y: -6,
+                  transition: {
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 20,
+                  },
+                }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => openSkill(i)}
               >
                 <div className="icon">{s.icon}</div>
                 <span>{s.title}</span>
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 

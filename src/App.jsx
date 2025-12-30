@@ -6,7 +6,7 @@ import Projects from "./components/Projects/index";
 import Knowledge from "./components/Knowledge/index";
 import Contact from "./components/Contact/index";
 import Footer from "./components/Footer/index";
-import ThemeToggle from "./components/ThemeToggle/index";
+import Theme from "./components/Theme/index";
 
 export default function App() {
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function App() {
       <Footer />
 
       <aside>
-        <ThemeToggle />
+        <Theme />
       </aside>
     </>
   );
