@@ -10,90 +10,117 @@
 
 .experience-modal-content {
   background: var(--secondary-color);
-  padding: 4rem 3rem;
+  padding: 3.2rem 2.8rem;
   border-radius: 1.2rem;
   width: 95%;
-  max-width: 800px;
+  max-width: 640px;
   color: var(--headline);
   position: relative;
   box-shadow: 0 2rem 4rem var(--shadow);
-  max-height: 90vh;
+  max-height: 88vh;
   overflow-y: auto;
+  text-align: left;
+}
+
+.modal-header {
   display: flex;
-  flex-direction: column;
   align-items: center;
-}
-
-.experience-modal-content h3 {
-  font-size: 2.6rem;
-  color: var(--primary-color);
-}
-
-.experience-modal-content .role {
-  font-size: 1.6rem;
-  margin-top: 0.4rem;
-}
-
-.experience-modal-content .period {
-  font-size: 1.4rem;
-  color: var(--paragraph);
-  margin-bottom: 1.6rem;
+  gap: 1.8rem;
+  margin-bottom: 0.5rem;
 }
 
 .modal-company-logo {
-  width: 140px;
-  height: 140px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
-  border-radius: 50%;
-  margin-bottom: 2rem;
+  border-radius: 0.8rem;
+  background: var(--third-color);
+  padding: 0.8rem;
+  flex-shrink: 0;
+}
+
+.modal-header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.modal-header-info h3 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+}
+
+.modal-header-info .period {
+  font-size: 1.3rem;
+  color: var(--paragraph);
+  margin-top: 0.3rem;
+}
+
+.modal-divider {
+  border: none;
+  height: 1px;
+  background: var(--third-color);
+  margin: 2.2rem 0;
+}
+
+.role {
+  font-size: 1.55rem;
+  font-weight: 500;
+  color: var(--headline);
+  display: block;
+  margin-bottom: 2.4rem;
 }
 
 .experience-modal-content h4 {
-  margin-top: 1.8rem;
-  font-size: 1.7rem;
+  margin-top: 2.6rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
   color: var(--headline);
 }
 
-.experience-modal-content p {
-  font-size: 1.5rem;
+.modal-list {
+  margin-top: 0.8rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.modal-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1.35rem;
   color: var(--paragraph);
   line-height: 1.7;
+  margin-bottom: 0.9rem;
+}
+
+.bullet {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
 }
 
 .tech-list {
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 0.9rem;
 }
 
 .tech-list li {
   background: var(--third-color);
   padding: 0.6rem 1.2rem;
   border-radius: 2rem;
-  font-size: 1.3rem;
-}
-
-.modal-list {
-  margin-top: 0.8rem;
-  padding-left: 0;
-  list-style-type: disc;
-  list-style-position: inside;
-}
-
-.modal-list li {
-  font-size: 1.4rem;
-  color: var(--paragraph);
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
-  padding-left: 0.5rem;
+  font-size: 1.25rem;
 }
 
 .close {
   position: absolute;
   top: 1rem;
-  right: 2rem;
-  font-size: 3rem;
+  right: 1.6rem;
+  font-size: 2.8rem;
   cursor: pointer;
   color: var(--primary-color);
 }

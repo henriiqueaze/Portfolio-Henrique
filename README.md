@@ -17,7 +17,7 @@ Este repositório contém meu portfólio profissional, uma página construída c
 
 ## Recursos e comportamento notáveis
 
-- Alternância de tema (light/dark) persistida em localStorage.
+- Alternância de tema (light/dark).
 - Menu responsivo com comportamento mobile (hamburger).
 - Modal na seção de conhecimentos para descrever cada skill.
 - Projetos com imagens e link direto para seus repositórios no GitHub.

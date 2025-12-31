@@ -42,7 +42,7 @@ const ContactComponent = () => {
                   rel="noreferrer"
                 >
                   <FaGithub/>
-                  github.com/henriiqueaze
+                  www.github.com/henriiqueaze
                 </a>
               </li>
             </ul>

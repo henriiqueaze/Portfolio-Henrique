@@ -8,7 +8,7 @@ const modalVariants = {
 };
 
 const contentVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  hidden: { opacity: 0, y: 40, scale: 0.96 },
   visible: {
     opacity: 1,
     y: 0,
@@ -46,27 +46,41 @@ const Modal = ({ experience, onClose }) => {
               &times;
             </span>
 
-            <h3>{experience.company}</h3>
-            <span className="role">{experience.role}</span>
-            <span className="period">{experience.period}</span>
+            <div className="modal-header">
+              <img
+                src={experience.logo}
+                alt={`${experience.company} logo`}
+                className="modal-company-logo"
+              />
 
-            <img
-              src={experience.logo}
-              alt={`${experience.company} logo`}
-              className="modal-company-logo"
-            />
+              <div className="modal-header-info">
+                <h3>{experience.company}</h3>
+                <span className="period">{experience.period}</span>
+              </div>
+            </div>
+
+            <hr className="modal-divider" />
+
+            <h4>Cargo</h4>
+            <span className="role">{experience.role}</span>
 
             <h4>Responsabilidades</h4>
             <ul className="modal-list">
               {experience.responsibilities.map((item, index) => (
-                <li key={index}>{item}</li>
+                <li key={index}>
+                  <span className="bullet">•</span>
+                  {item}
+                </li>
               ))}
             </ul>
 
             <h4>Principais projetos</h4>
             <ul className="modal-list">
               {experience.projects.map((item, index) => (
-                <li key={index}>{item}</li>
+                <li key={index}>
+                  <span className="bullet">•</span>
+                  {item}
+                </li>
               ))}
             </ul>
 

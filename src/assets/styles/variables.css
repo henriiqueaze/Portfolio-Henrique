@@ -1,25 +1,25 @@
 :root[data-theme="dark"] {
   --primary-color: hsl(200, 80%, 50%);
   --primary-hover: hsl(200, 80%, 40%);
-  --secondary-color: hsl(0, 0%, 5%);
-  --third-color: hsla(0, 0%, 100%, 0.1);
-  --bg-color: hsl(0, 0%, 0%);
-  --headline: hsl(0, 0%, 100%);
-  --paragraph: hsla(0, 0%, 100%, 0.658);
-  --typing: #fff;
-  --rover: hsl(0, 0%, 20%);
-  --shadow: rgb(0, 0, 0);
+  --secondary-color: hsl(0, 0%, 10%);
+  --third-color: hsla(0, 0%, 18%, 0.6);
+  --bg-color: hsl(0, 0%, 4%);
+  --headline: hsl(0, 0%, 96%);
+  --paragraph: hsla(0, 0%, 100%, 0.68);
+  --typing: hsl(0, 0%, 96%);
+  --rover: hsl(0, 0%, 16%);
+  --shadow: rgba(0, 0, 0, 0.75);
 }
 
 :root[data-theme="light"] {
   --primary-color: hsl(200, 80%, 50%);
-  --primary-hover: hsl(200, 80%, 60%);
-  --secondary-color: hsl(0, 0%, 90%);
-  --third-color: hsl(0, 2%, 80%);
+  --primary-hover: hsl(200, 80%, 40%);
+  --secondary-color: hsl(210, 20%, 95%);
+  --third-color: hsl(210, 20%, 90%);
   --bg-color: hsl(0, 0%, 100%);
-  --headline: hsl(0, 0%, 0%);
-  --paragraph: hsla(0, 0%, 0%, 0.66);
-  --typing: #0f0e0e;
-  --rover: hsl(0, 0%, 100%);
-  --shadow: rgba(0, 0, 0, 0.3);
+  --headline: hsl(220, 15%, 15%);
+  --paragraph: hsla(220, 15%, 20%, 0.75);
+  --typing: hsl(220, 15%, 15%);
+  --rover: hsl(210, 20%, 98%);
+  --shadow: rgba(0, 0, 0, 0.15);
 }

@@ -83,7 +83,7 @@
 }
 
 .icon-item:hover {
-  background-color: var(--primary-hover);
+  background-color: var(--rover);
   border-color: var(--primary-hover);
   color: #fff;
 }

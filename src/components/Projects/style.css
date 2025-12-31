@@ -24,14 +24,16 @@
 #projects .project-card {
   background: var(--third-color);
   padding: 2.8rem;
-  border-radius: 0.6rem;
+  border-radius: 0.8rem;
   box-shadow: 0 0 1rem var(--shadow);
   transition: background 0.4s;
   text-align: center;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
   flex: 0 0 calc((100% - 4rem) / 3);
 }
 
@@ -42,7 +44,7 @@
 #projects .project-card img {
   width: 100%;
   height: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   border-radius: 1rem;
 }
 
@@ -58,10 +60,14 @@
 }
 
 #projects .project-card .button {
-  margin-top: 1rem;
+  margin-top: 1.4rem;
 }
 
 @media (max-width: 768px) {
+  #projects {
+    padding: 6rem 0;
+  }
+
   #projects .project-card {
     flex: 0 0 100%;
   }

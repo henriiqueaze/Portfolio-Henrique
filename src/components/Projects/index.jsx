@@ -24,48 +24,22 @@ const projectData = [
   {
     img: StudentProgress,
     title: "StudentProgress",
-    desc: "API em Spring Boot para gerenciar dados de alunos, incluindo notas e status acadêmico. Registra, atualiza e monitora registros e calcula médias.",
+    desc: "API em Spring Boot para gerenciar dados de alunos, incluindo notas e status acadêmico.",
     link: "https://github.com/henriiqueaze/StudentProgress",
   },
   {
     img: Volumtarium,
     title: "Volumtarium",
-    desc: "Aplicação que conecta ONGs e voluntários. ONGs divulgam áreas de atuação e oportunidades e voluntários encontram vagas por perfil e localização.",
+    desc: "Aplicação que conecta ONGs e voluntários por perfil e localização.",
     link: "https://github.com/henriiqueaze/Volumtarium",
   },
   {
     img: GerenciamentoTarefas,
     title: "Gerenciamento de Tarefas",
-    desc: "Sistema em Python/Tkinter para organizar tarefas diárias: adicionar, marcar como concluída e destacar itens na lista.",
+    desc: "Sistema em Python/Tkinter para organizar tarefas diárias.",
     link: "https://github.com/henriiqueaze/Sistema-de-Gerenciamento-de-Tarefas",
   },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 120,
-      damping: 18,
-    },
-  },
-};
 
 const Projects = () => {
   return (
@@ -73,43 +47,28 @@ const Projects = () => {
       <div className="container">
         <header>
           <motion.h2
-            variants={{
-              hidden: { opacity: 0, y: -20 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.5 },
-              },
-            }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ amount: 0.4 }}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
             Projetos
           </motion.h2>
         </header>
 
         <div className="content">
-          <motion.div
-            className="cards"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ amount: 0.3 }}
-          >
+          <div className="cards">
             {projectData.map((p) => (
               <motion.div
                 key={p.title}
                 className="project-card"
-                variants={cardVariants}
-                whileHover={{
-                  scale: 1.03,
-                  y: -6,
-                  transition: {
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20,
-                  },
+                initial={{ scale: 0.92 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: false, amount: 0.4 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 140,
+                  damping: 22,
                 }}
               >
                 <img src={p.img} alt={p.title} />
@@ -125,7 +84,7 @@ const Projects = () => {
                 </a>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
