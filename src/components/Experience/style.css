@@ -82,6 +82,7 @@
 
 .experience-content .period {
   font-size: 1.3rem;
+  margin-top: -28px;
   color: var(--paragraph);
 }
 
