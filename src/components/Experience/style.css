@@ -62,7 +62,7 @@
 }
 
 .experience-content {
-  margin-left: 100px;
+  margin-left: 150px;
   display: grid;
   grid-template-rows: auto auto auto auto auto;
   gap: 0.8rem;
