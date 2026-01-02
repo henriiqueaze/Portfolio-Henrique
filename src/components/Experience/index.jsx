@@ -7,9 +7,9 @@ import mbaLogo from "../../assets/images/experiences/mba-logo.jpg";
 
 const experiences = [
   {
-    company: "MBA Consultoria e Sistemas",
+    company: "MBA Consultoria & Sistemas",
     logo: mbaLogo,
-    role: "Estagiário de Desenvolvimento Full Stack",
+    role: "Estagiário de Desenvolvimento Full-Stack",
     period: "Jan 2026 - Atualmente",
     shortDesc:
       "Desenvolvimento e manutenção de aplicações web com C#/.NET, JavaScript/React e SQL Server, atuando em backend, frontend e banco de dados.",
