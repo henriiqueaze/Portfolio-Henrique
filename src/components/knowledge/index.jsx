@@ -120,13 +120,21 @@ const skills = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
+const sectionVariants = {
+  hidden: { opacity: 0, y: 60 },
   visible: {
     opacity: 1,
+    y: 0,
     transition: {
+      duration: 0.6,
+      ease: "easeOut",
       staggerChildren: 0.06,
     },
+  },
+  exit: {
+    opacity: 0,
+    y: -60,
+    transition: { duration: 0.4, ease: "easeIn" },
   },
 };
 
@@ -158,34 +166,21 @@ const Knowledge = () => {
   }
 
   return (
-    <section id="knowledge">
+    <motion.section
+      id="knowledge"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ amount: 0.3 }}
+    >
       <div className="container">
         <header>
-          <motion.h2
-            variants={{
-              hidden: { opacity: 0, y: -20 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.5 },
-              },
-            }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ amount: 0.4 }}
-          >
-            Conhecimentos
-          </motion.h2>
+          <h2>Conhecimentos</h2>
         </header>
 
         <div className="content">
-          <motion.div
-            className="icon-grid"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ amount: 0.3 }}
-          >
+          <motion.div className="icon-grid">
             {skills.map((s, i) => (
               <motion.button
                 key={s.title}
@@ -216,7 +211,7 @@ const Knowledge = () => {
         show={showModal}
         onClose={closeModal}
       />
-    </section>
+    </motion.section>
   );
 };
 
