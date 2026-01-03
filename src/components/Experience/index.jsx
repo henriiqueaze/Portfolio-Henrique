@@ -40,10 +40,10 @@ const experiences = [
       "Atuação como desenvolvedor full-stack freelancer em aplicações web completas.",
     responsibilities: [
       "Desenvolvimento de APIs REST modernas",
-      "Modelagem de banco de dados",
+      "Modelagem de banco de dados escalável",
       "Interfaces com React e Angular",
       "Versionamento com Git",
-      "Correção de bugs",
+      "Refatoração de código",
     ],
     projects: [
       "StudentProgress",

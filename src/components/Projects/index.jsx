@@ -12,48 +12,80 @@ const projectData = [
   {
     img: Sociau,
     title: "Sociau",
-    desc: "A solução conecta ONGs, adotantes e voluntários de forma prática e organizada. Centraliza o cadastro, a divulgação e o processo de adoção de animais.",
+    desc: "Uma aplicação conecta ONGs, adotantes e voluntários de forma prática e organizada. Centraliza o cadastro, a divulgação e o processo de adoção de animais.",
     link: "https://github.com/Sociau",
   },
   {
     img: PUM,
     title: "Plataforma Universal de Monitoria",
-    desc: "Sistema de monitoria acadêmica escalável, desenvolvido para integrar alunos, monitores e cursos.",
+    desc: "Sistema de monitoria acadêmica escalável que integra alunos, monitores e cursos. Facilita o gerenciamento de atividades, inscrições e acompanhamento acadêmico.",
     link: "https://github.com/henriiqueaze/PUM",
   },
   {
     img: StudentProgress,
     title: "StudentProgress",
-    desc: "API em Spring Boot para gerenciar dados de alunos, incluindo notas e status acadêmico.",
+    desc: "API em Spring Boot para gerenciar dados de alunos. Permite cadastrar informações, registrar notas e acompanhar o status acadêmico de forma simples e eficiente.",
     link: "https://github.com/henriiqueaze/StudentProgress",
   },
   {
     img: Volumtarium,
     title: "Volumtarium",
-    desc: "Aplicação que conecta ONGs e voluntários por perfil e localização.",
+    desc: "Aplicação que conecta ONGs e voluntários com base em perfil e localização. Facilita a divulgação de oportunidades e o engajamento em ações sociais.",
     link: "https://github.com/henriiqueaze/Volumtarium",
   },
   {
     img: GerenciamentoTarefas,
     title: "Gerenciamento de Tarefas",
-    desc: "Sistema em Python/Tkinter para organizar tarefas diárias.",
+    desc: "Sistema desenvolvido em Python com Tkinter para organizar tarefas diárias. Permite criar, editar e acompanhar atividades de forma simples e intuitiva.",
     link: "https://github.com/henriiqueaze/Sistema-de-Gerenciamento-de-Tarefas",
   },
 ];
 
+const sectionVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+      staggerChildren: 0.08,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -60,
+    transition: { duration: 0.4, ease: "easeIn" },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 140,
+      damping: 22,
+    },
+  },
+};
+
 const Projects = () => {
   return (
-    <section id="projects">
+    <motion.section
+      id="projects"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ amount: 0.3 }}
+    >
       <div className="container">
         <header>
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Projetos
-          </motion.h2>
+          <h2>Projetos</h2>
         </header>
 
         <div className="content">
@@ -62,13 +94,15 @@ const Projects = () => {
               <motion.div
                 key={p.title}
                 className="project-card"
-                initial={{ scale: 0.92 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: false, amount: 0.4 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 140,
-                  damping: 22,
+                variants={cardVariants}
+                whileHover={{
+                  y: -10,
+                  scale: 1.04,
+                  transition: {
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 18,
+                  },
                 }}
               >
                 <img src={p.img} alt={p.title} />
@@ -87,7 +121,7 @@ const Projects = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
