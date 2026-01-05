@@ -80,8 +80,7 @@ const Projects = () => {
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
-      exit="exit"
-      viewport={{ amount: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
     >
       <div className="container">
         <header>
@@ -95,6 +94,9 @@ const Projects = () => {
                 key={p.title}
                 className="project-card"
                 variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 whileHover={{
                   y: -10,
                   scale: 1.04,

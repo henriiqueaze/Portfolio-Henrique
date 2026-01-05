@@ -50,7 +50,19 @@ const experiences = [
       "Plataforma Universal de Monitoria",
       "Volumtarium",
     ],
-    technologies: ["Java", "Spring Boot", "Angular", "React", "Docker", "Git"],
+    technologies: [
+      "Java",
+      "Spring Boot",
+      "JavaScript",
+      "TypeScript",
+      "NodeJS",
+      "Angular",
+      "React",
+      "PostgreSQL",
+      "MySQL",
+      "Docker",
+      "Git",
+    ],
   },
 ];
 
