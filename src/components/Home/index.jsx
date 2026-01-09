@@ -3,53 +3,25 @@ import "./style.css";
 import { motion } from "framer-motion";
 import henriquePicture from "../../assets/images/henrique-picture.jpg";
 
-const containerVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-      ease: "easeOut",
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -30,
-    transition: {
-      duration: 0.3,
-      ease: "easeIn",
-    },
-  },
-};
+import {
+  sectionVariants,
+  containerVariants,
+  itemVariants,
+  cardVariants,
+} from "../../utils/animations/animations";
 
 const Home = () => {
   return (
-    <section id="home">
+    <motion.section
+      id="home"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: false, amount: 0.3 }}
+    >
       <div className="container">
-        <motion.div
-          className="left-column"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          exit="hidden"
-          viewport={{ once: false, amount: 0.3 }}
-        >
+        <motion.div className="left-column" variants={containerVariants}>
           <header>
             <motion.h4 variants={itemVariants}>Olá Mundo! 👋🏼</motion.h4>
 
@@ -73,14 +45,7 @@ const Home = () => {
           </div>
         </motion.div>
 
-        <motion.div
-          className="right-column"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
+        <motion.div className="right-column" variants={cardVariants}>
           <motion.img
             src={henriquePicture}
             alt="Henrique - Foto"
@@ -89,7 +54,7 @@ const Home = () => {
           />
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

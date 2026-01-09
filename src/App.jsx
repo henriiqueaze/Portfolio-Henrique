@@ -4,7 +4,7 @@ import Home from "./components/Home/index";
 import About from "./components/About/index";
 import Experience from "./components/Experience/index";
 import Projects from "./components/Projects/index";
-import Knowledge from "./components/Knowledge/index";
+import Skills from "./components/Skills/index";
 import Contact from "./components/Contact/index";
 import Footer from "./components/Footer/index";
 import Theme from "./components/Theme/index";
@@ -35,7 +35,7 @@ export default function App() {
           <Projects />
         </section>
         <section>
-          <Knowledge />
+          <Skills />
         </section>
         <section>
           <Contact />
