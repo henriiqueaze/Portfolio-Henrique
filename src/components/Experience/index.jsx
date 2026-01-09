@@ -24,9 +24,21 @@ const experiences = [
       "Versionamento com Git",
     ],
     projects: [
-      "Sistemas internos de gestão",
-      "APIs REST",
-      "Integrações entre sistemas",
+      {
+        title: "ERP Wiizi",
+        description: "Sistema de gestão empresarial",
+        link: "https://wiizi.com.br/",
+      },
+      {
+        title: "Wiizi Vendas",
+        description: "Aplicativo para gestão empresarial",
+        link: "https://wiizi.com.br/",
+      },
+      {
+        title: "Integralmed Delivery",
+        description: "Farmácia online",
+        link: "https://integralmed.com.br/",
+      },
     ],
     technologies: ["C#", "ASP.NET", "SQL Server", "React", "Git"],
   },
@@ -46,9 +58,23 @@ const experiences = [
       "Refatoração de código",
     ],
     projects: [
-      "StudentProgress",
-      "Plataforma Universal de Monitoria",
-      "Volumtarium",
+      {
+        title: "Sociau",
+        description:
+          "Aplicação que conecta ONGs de resgate de animais com adotantes",
+        link: "https://github.com/orgs/Sociau/repositories",
+      },
+      ,
+      {
+        title: "Plataforma Universal de Monitoria",
+        description: "Gerenciamento de monitorias acadêmicas",
+        link: "https://github.com/henriiqueaze/PUM",
+      },
+      {
+        title: "StudentProgress",
+        description: "Aplicação para gerenciar e acompanhar dados acadêmicos",
+        link: "https://github.com/henriiqueaze/StudentProgress",
+      },
     ],
     technologies: [
       "Java",
@@ -67,10 +93,7 @@ const experiences = [
 ];
 
 const sectionVariants = {
-  hidden: {
-    opacity: 0,
-    y: 80,
-  },
+  hidden: { opacity: 0, y: 80 },
   visible: {
     opacity: 1,
     y: 0,
@@ -84,10 +107,7 @@ const sectionVariants = {
   exit: {
     opacity: 0,
     y: -80,
-    transition: {
-      duration: 0.5,
-      ease: "easeIn",
-    },
+    transition: { duration: 0.5, ease: "easeIn" },
   },
 };
 

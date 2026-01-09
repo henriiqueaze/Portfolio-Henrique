@@ -76,10 +76,21 @@ const Modal = ({ experience, onClose }) => {
 
             <h4>Principais projetos</h4>
             <ul className="modal-list">
-              {experience.projects.map((item, index) => (
+              {experience.projects.map((project, index) => (
                 <li key={index}>
                   <span className="bullet">•</span>
-                  {item}
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                  >
+                    {project.title}
+                  </a>
+                  <span className="project-description">
+                    {" "}
+                    - {project.description}
+                  </span>
                 </li>
               ))}
             </ul>

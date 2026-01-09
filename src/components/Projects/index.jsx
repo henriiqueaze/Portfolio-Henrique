@@ -12,7 +12,7 @@ const projectData = [
   {
     img: Sociau,
     title: "Sociau",
-    desc: "Uma aplicação conecta ONGs, adotantes e voluntários de forma prática e organizada. Centraliza o cadastro, a divulgação e o processo de adoção de animais.",
+    desc: "Uma aplicação que conecta ONGs de resgate de animais e adotantes de forma prática e organizada. Centraliza o cadastro, a divulgação e o processo de adoção de animais.",
     link: "https://github.com/Sociau",
   },
   {
