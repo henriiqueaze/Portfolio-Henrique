@@ -4,6 +4,12 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import Modal from "./modal";
 import "./style.css";
 
+import {
+  sectionVariants,
+  containerVariants,
+  itemVariants,
+} from "../../utils/animations/animations";
+
 import mbaLogo from "../../assets/images/experiences/mba-logo.jpg";
 import freelancerLogo from "../../assets/images/experiences/freelancer-logo.png";
 
@@ -64,7 +70,6 @@ const experiences = [
           "Aplicação que conecta ONGs de resgate de animais com adotantes",
         link: "https://github.com/orgs/Sociau/repositories",
       },
-      ,
       {
         title: "Plataforma Universal de Monitoria",
         description: "Gerenciamento de monitorias acadêmicas",
@@ -92,25 +97,6 @@ const experiences = [
   },
 ];
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 80 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: "easeOut",
-      when: "beforeChildren",
-      staggerChildren: 0.15,
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -80,
-    transition: { duration: 0.5, ease: "easeIn" },
-  },
-};
-
 const Experience = () => {
   const [selected, setSelected] = useState(null);
 
@@ -121,19 +107,16 @@ const Experience = () => {
       initial="hidden"
       whileInView="visible"
       exit="exit"
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: false, amount: 0.15 }}
     >
-      <h2>Experiência Profissional</h2>
+      <motion.h2 variants={itemVariants}>Experiência Profissional</motion.h2>
 
-      <div className="timeline">
+      <motion.div className="timeline" variants={containerVariants}>
         {experiences.map((exp, index) => (
           <motion.div
             key={index}
             className={`timeline-item ${index % 2 === 0 ? "left" : "right"}`}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            viewport={{ once: true }}
+            variants={itemVariants}
           >
             <span className="timeline-dot" />
 
@@ -183,7 +166,7 @@ const Experience = () => {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {selected && (
         <Modal experience={selected} onClose={() => setSelected(null)} />

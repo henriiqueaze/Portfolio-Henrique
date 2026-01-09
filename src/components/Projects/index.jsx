@@ -2,6 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import "./style.css";
 
+import {
+  sectionVariants,
+  containerVariants,
+  cardVariants,
+} from "../../utils/animations/animations";
+
 import Sociau from "../../assets/images/projects/sociau-logo.jpg";
 import PUM from "../../assets/images/projects/pum.png";
 import StudentProgress from "../../assets/images/projects/student-progress-logo.png";
@@ -41,38 +47,6 @@ const projectData = [
   },
 ];
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 60 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-      staggerChildren: 0.08,
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -60,
-    transition: { duration: 0.4, ease: "easeIn" },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.96 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 140,
-      damping: 22,
-    },
-  },
-};
-
 const Projects = () => {
   return (
     <motion.section
@@ -80,23 +54,21 @@ const Projects = () => {
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
+      exit="exit"
       viewport={{ once: true, amount: 0.2 }}
     >
       <div className="container">
         <header>
-          <h2>Projetos</h2>
+          <motion.h2 variants={cardVariants}>Projetos</motion.h2>
         </header>
 
-        <div className="content">
+        <motion.div className="content" variants={containerVariants}>
           <div className="cards">
             {projectData.map((p) => (
               <motion.div
                 key={p.title}
                 className="project-card"
                 variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
                 whileHover={{
                   y: -10,
                   scale: 1.04,
@@ -108,8 +80,11 @@ const Projects = () => {
                 }}
               >
                 <img src={p.img} alt={p.title} />
+
                 <h3>{p.title}</h3>
+
                 <p>{p.desc}</p>
+
                 <a
                   href={p.link}
                   target="_blank"
@@ -121,7 +96,7 @@ const Projects = () => {
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );
