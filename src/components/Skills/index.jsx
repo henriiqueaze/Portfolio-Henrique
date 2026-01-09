@@ -8,7 +8,7 @@ import {
   sectionVariants,
 } from "../../utils/animations/animations";
 
-import KnowledgeModal from "./modal";
+import Modal from "./modal.jsx";
 import skills from "../../data/skills.data";
 
 const Knowledge = () => {
@@ -65,11 +65,7 @@ const Knowledge = () => {
         </motion.div>
       </div>
 
-      <KnowledgeModal
-        selected={selected}
-        show={showModal}
-        onClose={closeModal}
-      />
+      <Modal selected={selected} show={showModal} onClose={closeModal} />
     </motion.section>
   );
 };
