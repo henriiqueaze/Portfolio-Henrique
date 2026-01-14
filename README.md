@@ -14,6 +14,8 @@ Este repositório contém meu portfólio profissional, uma página construída c
 - Vite
 - react-icons
 - framer-motion
+- prop-types
+- vite-plugin-svgr
 
 ## Recursos e comportamento notáveis
 
