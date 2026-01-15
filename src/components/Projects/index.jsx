@@ -32,15 +32,6 @@ const Projects = () => {
                 key={p.title}
                 className="project-card"
                 variants={cardVariants}
-                whileHover={{
-                  y: -10,
-                  scale: 1.04,
-                  transition: {
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 18,
-                  },
-                }}
               >
                 <img src={p.img} alt={p.title} />
 
