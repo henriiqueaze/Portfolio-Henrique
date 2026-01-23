@@ -19,6 +19,8 @@ import CSharpIcon from "../assets/images/icons/c-sharp-logo.svg?react";
 import DjangoIcon from "../assets/images/icons/django-icon.svg?react";
 import SpringBootIcon from "../assets/images/icons/spring-boot-icon.svg?react";
 import AngularIcon from "../assets/images/icons/angular-icon.svg?react";
+import AzureIcon from "../assets/images/icons/azure-icon.svg?react";
+
 
 const skills = [
   {
@@ -116,6 +118,12 @@ const skills = [
     title: "GitHub",
     desc: "GitHub é uma plataforma de hospedagem de repositórios Git baseada na nuvem. Oferece ferramentas para colaboração, revisão de código e integração contínua. É amplamente usado por desenvolvedores para compartilhar e versionar projetos.",
   },
+  {
+    icon: AzureIcon,
+    title: "Azure",
+    desc: "Azure é a plataforma de computação em nuvem da Microsoft. Oferece serviços como hospedagem de aplicações, bancos de dados, máquinas virtuais, DevOps, IA e integração contínua. É amplamente utilizada para criar, implantar e gerenciar soluções em nuvem de forma escalável e segura.",
+  },
+
 ];
 
 export default skills;
