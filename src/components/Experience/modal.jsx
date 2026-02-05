@@ -32,9 +32,7 @@ const Modal = ({ experience, onClose }) => {
             exit="exit"
             onClick={(e) => e.stopPropagation()}
           >
-            <motion.div
-              className="experience-modal-content"
-            >
+            <motion.div className="experience-modal-content">
               <span className="close" onClick={onClose}>
                 &times;
               </span>

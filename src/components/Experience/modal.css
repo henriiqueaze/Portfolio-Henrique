@@ -96,6 +96,10 @@
   flex-wrap: wrap;
 }
 
+.modal-list a {
+  text-decoration: underline;
+}
+
 .bullet {
   color: var(--primary-color);
   font-size: 1.8rem;
@@ -108,7 +112,6 @@
   margin-top: 1.2rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.9rem;
 }
 
 .tech-list li {
@@ -133,7 +136,9 @@
   color: var(--primary-color);
   text-decoration: none;
   cursor: pointer;
-  transition: color 0.2s ease, text-decoration 0.2s ease;
+  transition:
+    color 0.2s ease,
+    text-decoration 0.2s ease;
 }
 
 .project-link:hover {
