@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   z-index: 400;
+  padding: 1.6rem;
 }
 
 .experience-modal-content {
@@ -144,4 +145,63 @@
   font-size: 13.5px;
   color: var(--paragraph);
   font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .experience-modal-content {
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+    padding: 2.4rem 1.8rem;
+    border-radius: 1rem;
+    text-align: center;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .modal-header-info {
+    align-items: center;
+  }
+
+  .modal-company-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .modal-list li {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .modal-list a {
+    font-size: 16px;
+    text-decoration: underline;
+  }
+
+  .bullet {
+    display: none;
+  }
+
+  .project-link {
+    display: block;
+    width: 100%;
+  }
+
+  .project-description {
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  .tech-list {
+    justify-content: center;
+  }
+
+  .close {
+    top: 0.8rem;
+    right: 1.2rem;
+  }
 }
