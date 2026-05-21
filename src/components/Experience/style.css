@@ -85,7 +85,9 @@
   color: var(--primary-color);
   cursor: pointer;
   z-index: 5;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
 .info-button:hover {
@@ -172,7 +174,7 @@
 
 @media (max-width: 768px) {
   .timeline::before {
-    left: 8px;
+    display: none;
   }
 
   .timeline-item {
@@ -182,8 +184,7 @@
   }
 
   .timeline-dot {
-    left: 2px !important;
-    right: auto;
+    display: none;
   }
 
   .timeline-card {
@@ -202,5 +203,4 @@
   .meta span:nth-child(2) {
     display: none;
   }
-
 }

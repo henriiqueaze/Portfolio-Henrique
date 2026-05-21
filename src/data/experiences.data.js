@@ -24,17 +24,25 @@ const experiences = [
         link: "https://wiizi.com.br/",
       },
       {
-        title: "Wiizi Vendas",
-        description: "Aplicativo para gestão empresarial",
-        link: "https://wiizi.com.br/",
-      },
-      {
         title: "Integralmed Delivery",
         description: "Farmácia online",
         link: "https://integralmed.com.br/",
       },
+      {
+        title: "Wiizi Atendimento",
+        description: "Sistema para atendimento de empresas",
+        link: "https://atendimento.wiizi2.com.br/",
+      },
     ],
-    technologies: ["C#", "ASP.NET", "SQL Server", "React", "Git"],
+    technologies: [
+      "C#",
+      "ASP.NET",
+      "SQL Server",
+      "React",
+      "Bootstrap",
+      "Git",
+      "Azure",
+    ],
   },
   {
     company: "Freelancer",
@@ -53,15 +61,16 @@ const experiences = [
     ],
     projects: [
       {
+        title: "Cook-It",
+        description:
+          "Busca por receitas com ingredientes disponíveis na sua casa",
+        link: "https://cook-it-zeta.vercel.app/",
+      },
+      {
         title: "Sociau",
         description:
           "Aplicação que conecta ONGs de resgate de animais com adotantes",
         link: "https://github.com/orgs/Sociau/repositories",
-      },
-      {
-        title: "Plataforma Universal de Monitoria",
-        description: "Gerenciamento de monitorias acadêmicas",
-        link: "https://github.com/henriiqueaze/PUM",
       },
       {
         title: "StudentProgress",

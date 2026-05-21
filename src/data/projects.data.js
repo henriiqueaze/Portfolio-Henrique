@@ -1,10 +1,17 @@
 import Sociau from "../assets/images/projects/sociau-logo.jpg";
+import CookIt from "../assets/images/projects/cook-it.jpg";
 import PUM from "../assets/images/projects/pum.png";
 import StudentProgress from "../assets/images/projects/student-progress-logo.png";
 import Volumtarium from "../assets/images/projects/volumtarium-logo.png";
 import GerenciamentoTarefas from "../assets/images/projects/gerenciamento-de-tarefas-layout.png";
 
 const projectData = [
+  {
+    img: CookIt,
+    title: "Cook-It",
+    desc: "Sistema de receitas baseado nos ingredientes disponíveis em casa, permitindo que o usuário informe os alimentos que possui e receba sugestões de pratos que podem ser preparados com eles.",
+    link: "https://cook-it-zeta.vercel.app/",
+  },
   {
     img: Sociau,
     title: "Sociau",

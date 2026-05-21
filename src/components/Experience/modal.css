@@ -112,6 +112,7 @@
   margin-top: 1.2rem;
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem 1.2rem;
 }
 
 .tech-list li {
@@ -203,6 +204,7 @@
 
   .tech-list {
     justify-content: center;
+    gap: 0.8rem 0.8rem;
   }
 
   .close {
