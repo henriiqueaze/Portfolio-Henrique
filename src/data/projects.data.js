@@ -25,10 +25,10 @@ const projectData = [
       en: "StudentProgress",
     },
     desc: {
-      pt: "API em Spring Boot para gerenciar dados de alunos. Permite cadastrar informações, registrar notas e acompanhar o status acadêmico de forma simples e eficiente.",
-      en: "A Spring Boot API for managing student data. It allows you to register information, record grades, and track academic status in a simple and efficient way.",
+      pt: "Site para gerenciar dados de alunos. Permite cadastrar informações, registrar notas e acompanhar o status acadêmico de forma simples e eficiente.",
+      en: "A website for managing student data. It allows you to register information, record grades, and track academic status in a simple and efficient way.",
     },
-    link: "https://github.com/henriiqueaze/StudentProgress",
+    link: "https://student-progress-livid.vercel.app/",
   },
   {
     img: Sociau,
