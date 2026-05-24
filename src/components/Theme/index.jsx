@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
+import siteCopy from "../../data/siteCopy";
+import { useLanguage } from "../../context/LanguageContext";
 
 const ThemeToggle = () => {
+  const { language } = useLanguage();
+  const copy = siteCopy[language].theme;
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -42,9 +46,9 @@ const ThemeToggle = () => {
         id="sw-checkbox"
         checked={checked}
         onChange={(e) => setChecked(e.target.checked)}
-        aria-label="Mudar tema"
+        aria-label={copy.label}
       />
-      <label htmlFor="sw-checkbox" title="Mudar tema">
+      <label htmlFor="sw-checkbox" title={copy.label}>
         <BsSunFill className="sun" />
         <BsMoonFill className="moon" />
       </label>

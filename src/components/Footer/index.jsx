@@ -1,7 +1,12 @@
 import React from "react";
 import "./style.css";
+import siteCopy from "../../data/siteCopy";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Footer = () => {
+  const { language } = useLanguage();
+  const copy = siteCopy[language].footer;
+
   return (
     <footer>
       <div className="container">
@@ -9,11 +14,7 @@ const Footer = () => {
           <a className="logo" href="#home">
             Henrique Azevedo
           </a>
-          <p>
-            ©2025 por Henrique Azevedo.
-            <br />
-            Todos os direitos reservados.
-          </p>
+          <p>{copy.copyright}</p>
         </div>
       </div>
     </footer>

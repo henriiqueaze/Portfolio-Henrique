@@ -3,7 +3,7 @@
     width: 0;
   }
   to {
-    width: 223px;
+    width: var(--typing-width, 223px);
   }
 }
 
