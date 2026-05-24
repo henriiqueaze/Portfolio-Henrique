@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./style.css";
 import { motion } from "framer-motion";
+import siteCopy from "../../data/siteCopy";
+import { useLanguage } from "../../context/LanguageContext";
 
 import {
   containerVariants,
@@ -12,6 +14,8 @@ import Modal from "./modal.jsx";
 import skills from "../../data/skills.data";
 
 const Knowledge = () => {
+  const { language } = useLanguage();
+  const copy = siteCopy[language].knowledge;
   const [selected, setSelected] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -35,7 +39,7 @@ const Knowledge = () => {
     >
       <div className="container">
         <header>
-          <h2>Conhecimentos</h2>
+          <h2>{copy.title}</h2>
         </header>
 
         <motion.div

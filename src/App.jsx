@@ -8,6 +8,7 @@ import Skills from "./components/Skills/index";
 import Contact from "./components/Contact/index";
 import Footer from "./components/Footer/index";
 import Theme from "./components/Theme/index";
+import { LanguageProvider } from "./context/LanguageContext";
 
 export default function App() {
   useEffect(() => {
@@ -17,10 +18,9 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <LanguageProvider>
       <Header />
 
-      {}
       <main>
         <section>
           <Home />
@@ -47,6 +47,6 @@ export default function App() {
       <aside>
         <Theme />
       </aside>
-    </>
+    </LanguageProvider>
   );
 }

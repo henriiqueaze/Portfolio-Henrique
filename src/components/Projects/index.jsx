@@ -1,6 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./style.css";
+import siteCopy from "../../data/siteCopy";
+import { useLanguage } from "../../context/LanguageContext";
+import { resolveLocalizedValue } from "../../utils/i18n";
 
 import {
   sectionVariants,
@@ -11,6 +14,9 @@ import {
 import projectData from "../../data/projects.data";
 
 const Projects = () => {
+  const { language } = useLanguage();
+  const copy = siteCopy[language].projects;
+
   return (
     <motion.section
       id="projects"
@@ -22,22 +28,25 @@ const Projects = () => {
     >
       <div className="container">
         <header>
-          <motion.h2 variants={cardVariants}>Projetos</motion.h2>
+          <motion.h2 variants={cardVariants}>{copy.title}</motion.h2>
         </header>
 
         <motion.div className="content" variants={containerVariants}>
           <div className="cards">
-            {projectData.map((p) => (
+            {projectData.map((p, i) => (
               <motion.div
-                key={p.title}
+                key={p.img || i}
                 className="project-card"
                 variants={cardVariants}
               >
-                <img src={p.img} alt={p.title} />
+                <img
+                  src={p.img}
+                  alt={resolveLocalizedValue(p.title, language)}
+                />
 
-                <h3>{p.title}</h3>
+                <h3>{resolveLocalizedValue(p.title, language)}</h3>
 
-                <p>{p.desc}</p>
+                <p>{resolveLocalizedValue(p.desc, language)}</p>
 
                 <a
                   href={p.link}
@@ -45,7 +54,7 @@ const Projects = () => {
                   rel="noreferrer"
                   className="button"
                 >
-                  Ver mais
+                  {copy.button}
                 </a>
               </motion.div>
             ))}

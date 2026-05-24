@@ -1,23 +1,22 @@
 import React from "react";
 import "./style.css";
 import Curriculo from "../../../public/Henrique Azevedo - Currículo - Desenvolvedor.pdf";
+import siteCopy from "../../data/siteCopy";
+import { useLanguage } from "../../context/LanguageContext";
 
 const AboutComponent = () => {
+  const { language } = useLanguage();
+  const copy = siteCopy[language].about;
+
   return (
     <section id="about">
       <div className="container">
         <div className="left-column">
           <header>
-            <h2>Sobre mim</h2>
+            <h2>{copy.title}</h2>
           </header>
           <div className="content">
-            <p>
-              Sou desenvolvedor Full Stack com experiência em múltiplas
-              linguagens, frameworks e bancos de dados. Tenho facilidade em
-              aprender novas tecnologias e me adaptar rapidamente a diferentes
-              stacks, sempre focando em performance, escalabilidade e boas
-              práticas de desenvolvimento.
-            </p>
+            <p>{copy.body}</p>
           </div>
         </div>
       </div>
@@ -28,7 +27,7 @@ const AboutComponent = () => {
         id="resume"
         className="button"
       >
-        Currículo
+        {copy.resume}
       </a>
     </section>
   );

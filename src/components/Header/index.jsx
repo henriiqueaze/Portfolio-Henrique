@@ -1,11 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./style.css";
+import { GiBrazilFlag, GiUnionJack } from "react-icons/gi";
+import siteCopy from "../../data/siteCopy";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Header = () => {
+  const { language, toggleLanguage } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [openMobile, setOpenMobile] = useState(false);
 
   const navRef = useRef(null);
+  const copy = siteCopy[language];
 
   const toggleMenu = () => setOpenMobile(!openMobile);
 
@@ -37,6 +42,33 @@ const Header = () => {
             Henrique Azevedo
           </a>
 
+          <button
+            className="language-toggle"
+            type="button"
+            onClick={toggleLanguage}
+            data-tooltip={
+              language === "en"
+                ? copy.language.switchToPortuguese
+                : copy.language.switchToEnglish
+            }
+            aria-label={
+              language === "en"
+                ? copy.language.switchToPortuguese
+                : copy.language.switchToEnglish
+            }
+            title={
+              language === "en"
+                ? copy.language.switchToPortuguese
+                : copy.language.switchToEnglish
+            }
+          >
+            {language === "pt" ? (
+              <GiBrazilFlag aria-hidden="true" className="language-icon" />
+            ) : (
+              <GiUnionJack aria-hidden="true" className="language-icon" />
+            )}
+          </button>
+
           <div
             className={`hamburger ${openMobile ? "active" : ""}`}
             onClick={toggleMenu}
@@ -54,7 +86,7 @@ const Header = () => {
                   href="#about"
                   onClick={() => setOpenMobile(false)}
                 >
-                  Sobre mim
+                  {copy.nav.about}
                 </a>
               </li>
               <li>
@@ -63,7 +95,7 @@ const Header = () => {
                   href="#experience"
                   onClick={() => setOpenMobile(false)}
                 >
-                  Experiência
+                  {copy.nav.experience}
                 </a>
               </li>
               <li>
@@ -72,7 +104,7 @@ const Header = () => {
                   href="#projects"
                   onClick={() => setOpenMobile(false)}
                 >
-                  Projetos
+                  {copy.nav.projects}
                 </a>
               </li>
               <li>
@@ -81,7 +113,7 @@ const Header = () => {
                   href="#knowledge"
                   onClick={() => setOpenMobile(false)}
                 >
-                  Conhecimentos
+                  {copy.nav.knowledge}
                 </a>
               </li>
               <li>
@@ -90,7 +122,7 @@ const Header = () => {
                   href="#contact"
                   onClick={() => setOpenMobile(false)}
                 >
-                  Contato
+                  {copy.nav.contact}
                 </a>
               </li>
             </ul>

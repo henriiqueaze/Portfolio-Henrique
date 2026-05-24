@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./modal.css";
+import { resolveLocalizedValue } from "../../utils/i18n";
+import { useLanguage } from "../../context/LanguageContext";
 
 import {
   backdropVariants,
@@ -9,6 +11,8 @@ import {
 } from "../../utils/animations/animations";
 
 const KnowledgeModal = ({ selected, show, onClose }) => {
+  const { language } = useLanguage();
+
   useEffect(() => {
     if (!show) return;
 
@@ -58,7 +62,7 @@ const KnowledgeModal = ({ selected, show, onClose }) => {
           </motion.h3>
 
           <motion.p id="modal-desc" variants={itemVariants}>
-            {selected.desc}
+            {resolveLocalizedValue(selected.desc, language)}
           </motion.p>
         </motion.div>
       </motion.div>
