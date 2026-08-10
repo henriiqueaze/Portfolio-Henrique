@@ -1,8 +1,12 @@
 import React from "react";
 import "./style.css";
-import Curriculo from "../../../public/Henrique Azevedo - Currículo - Desenvolvedor.pdf";
 import siteCopy from "../../data/siteCopy";
 import { useLanguage } from "../../context/LanguageContext";
+
+const resumePaths = {
+  pt: `${import.meta.env.BASE_URL}Henrique Azevedo - Currículo - Desenvolvedor - (Português).pdf`,
+  en: `${import.meta.env.BASE_URL}Henrique Azevedo - Resume - Developer - (English).pdf`,
+};
 
 const AboutComponent = () => {
   const { language } = useLanguage();
@@ -21,7 +25,7 @@ const AboutComponent = () => {
         </div>
       </div>
       <a
-        href={Curriculo}
+        href={resumePaths[language]}
         target="_blank"
         rel="noreferrer"
         id="resume"

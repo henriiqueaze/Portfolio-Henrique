@@ -6,8 +6,8 @@ const experiences = [
     company: "MBA Consultoria & Sistemas",
     logo: mbaLogo,
     role: {
-      pt: "Estagiário de Desenvolvimento Full-Stack",
-      en: "Full-Stack Development Intern",
+      pt: "Desenvolvedor Full-Stack",
+      en: "Full-Stack Developer",
     },
     period: {
       pt: "Jan 2026 - Atualmente",
