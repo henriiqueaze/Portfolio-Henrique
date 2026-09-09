@@ -1,37 +1,39 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap");
 @import "tailwindcss";
 
 @custom-variant light (&:where(.light, .light *));
 
 @theme {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "DM Mono", ui-monospace, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --color-cyan-400: hsl(200 80% 50%);
-  --color-cyan-500: hsl(200 80% 44%);
+  --color-cyan-500: hsl(200 80% 42%);
 }
 
 @layer base {
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; background: #0c0a09; }
-  html.light { background: #f4f3ef; }
+  html { scroll-behavior: smooth; background: #020617; }
+  html.light { background: #f8fafc; }
   body { margin: 0; min-width: 320px; font-family: var(--font-sans); text-rendering: optimizeLegibility; }
   button, a { -webkit-tap-highlight-color: transparent; }
   button { cursor: pointer; }
-  :focus-visible { outline: 2px solid hsl(200 80% 50%); outline-offset: 4px; }
+  :focus-visible { outline: 2px solid hsl(200 80% 50%); outline-offset: 3px; }
 }
 
 @layer components {
-  .section-shell { @apply mx-auto max-w-none px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40; }
-  .section-shell > * { @apply mx-auto max-w-[1440px]; }
-  .section-title { @apply text-4xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl lg:text-7xl; }
-  .nav-link { @apply relative py-2 transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-right after:scale-x-0 after:bg-cyan-400 after:transition-transform hover:after:origin-left hover:after:scale-x-100; }
-  .icon-button { @apply flex h-9 items-center gap-1.5 rounded-full px-3 text-sm text-stone-400 transition hover:bg-white/10 hover:text-cyan-400 light:text-stone-600 light:hover:bg-black/5; }
-  .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-5 py-3 text-sm font-bold text-stone-950 transition hover:-translate-y-0.5 hover:bg-cyan-500 hover:shadow-[0_12px_40px_hsl(200_80%_50%/0.22)] sm:px-6 sm:py-3.5; }
-  .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold transition hover:-translate-y-0.5 hover:border-cyan-400 hover:text-cyan-400 light:border-black/15 sm:px-6 sm:py-3.5; }
-  .project-image-wrap { @apply relative overflow-hidden rounded-[1.5rem] bg-stone-900 sm:rounded-[2rem] light:bg-stone-200; }
-  .project-image { @apply h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.035]; }
-  .tech-pill { @apply rounded-full border border-white/10 px-3 py-1.5 font-mono text-[9px] uppercase tracking-wider text-stone-500 light:border-black/10; }
-  .social-link { @apply grid size-9 place-items-center rounded-full border border-white/10 text-base transition hover:border-cyan-400 hover:text-cyan-400 light:border-black/10; }
+  .site-container { @apply mx-auto w-full max-w-6xl px-5 sm:px-7 lg:px-8; }
+  .section-block { @apply scroll-mt-16 py-20 sm:py-24; }
+  .section-kicker { @apply mb-3 block font-mono text-xs font-medium uppercase tracking-[0.18em] text-cyan-400; }
+  .section-title { @apply text-3xl font-bold tracking-[-0.035em] sm:text-4xl; }
+  .nav-link { @apply text-sm font-medium text-slate-400 transition hover:text-cyan-400 light:text-slate-600; }
+  .icon-button { @apply flex h-9 items-center gap-1.5 rounded-lg px-2.5 text-sm text-slate-400 transition hover:bg-white/10 hover:text-cyan-400 light:text-slate-600 light:hover:bg-slate-200; }
+  .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-500 hover:text-white; }
+  .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-5 py-3 text-sm font-semibold transition hover:border-cyan-400 hover:text-cyan-400 light:border-slate-300; }
+  .social-button { @apply grid size-10 place-items-center rounded-lg border border-white/10 text-slate-400 transition hover:border-cyan-400 hover:text-cyan-400 light:border-slate-200 light:text-slate-600; }
+  .content-card { @apply rounded-2xl border border-white/10 bg-slate-900/70 light:border-slate-200 light:bg-white; }
+  .project-card { @apply flex overflow-hidden rounded-2xl border border-white/10 bg-slate-950 transition hover:-translate-y-1 hover:border-cyan-400/40 hover:shadow-xl hover:shadow-black/20 light:border-slate-200 light:bg-white light:shadow-slate-200/30; }
+  .project-card { @apply flex-col; }
+  .tag { @apply rounded-md bg-white/5 px-2.5 py-1 font-mono text-[10px] text-slate-400 light:bg-slate-100 light:text-slate-600; }
 }
 
 @media (prefers-reduced-motion: reduce) {
