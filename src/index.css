@@ -1,39 +1,103 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 @custom-variant light (&:where(.light, .light *));
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --color-cyan-400: hsl(200 80% 50%);
-  --color-cyan-500: hsl(200 80% 42%);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+  --color-accent: hsl(200 80% 50%);
 }
 
 @layer base {
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; background: #020617; }
-  html.light { background: #f8fafc; }
+  html { scroll-behavior: smooth; background: #111; }
+  html.light { background: #eeeeec; }
   body { margin: 0; min-width: 320px; font-family: var(--font-sans); text-rendering: optimizeLegibility; }
-  button, a { -webkit-tap-highlight-color: transparent; }
+  a, button { -webkit-tap-highlight-color: transparent; }
   button { cursor: pointer; }
-  :focus-visible { outline: 2px solid hsl(200 80% 50%); outline-offset: 3px; }
+  :focus-visible { outline: 2px solid hsl(200 80% 50%); outline-offset: 4px; }
 }
 
 @layer components {
-  .site-container { @apply mx-auto w-full max-w-6xl px-5 sm:px-7 lg:px-8; }
-  .section-block { @apply scroll-mt-16 py-20 sm:py-24; }
-  .section-kicker { @apply mb-3 block font-mono text-xs font-medium uppercase tracking-[0.18em] text-cyan-400; }
-  .section-title { @apply text-3xl font-bold tracking-[-0.035em] sm:text-4xl; }
-  .nav-link { @apply text-sm font-medium text-slate-400 transition hover:text-cyan-400 light:text-slate-600; }
-  .icon-button { @apply flex h-9 items-center gap-1.5 rounded-lg px-2.5 text-sm text-slate-400 transition hover:bg-white/10 hover:text-cyan-400 light:text-slate-600 light:hover:bg-slate-200; }
-  .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-500 hover:text-white; }
-  .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-5 py-3 text-sm font-semibold transition hover:border-cyan-400 hover:text-cyan-400 light:border-slate-300; }
-  .social-button { @apply grid size-10 place-items-center rounded-lg border border-white/10 text-slate-400 transition hover:border-cyan-400 hover:text-cyan-400 light:border-slate-200 light:text-slate-600; }
-  .content-card { @apply rounded-2xl border border-white/10 bg-slate-900/70 light:border-slate-200 light:bg-white; }
-  .project-card { @apply flex overflow-hidden rounded-2xl border border-white/10 bg-slate-950 transition hover:-translate-y-1 hover:border-cyan-400/40 hover:shadow-xl hover:shadow-black/20 light:border-slate-200 light:bg-white light:shadow-slate-200/30; }
-  .project-card { @apply flex-col; }
-  .tag { @apply rounded-md bg-white/5 px-2.5 py-1 font-mono text-[10px] text-slate-400 light:bg-slate-100 light:text-slate-600; }
+  .page-shell { @apply relative min-h-screen overflow-hidden bg-[#111] text-[#eeeeec] light:bg-[#eeeeec] light:text-[#191919]; }
+  .layout { @apply relative mx-auto w-full max-w-[1080px] px-5 sm:px-8; }
+
+  .page-grid { @apply pointer-events-none fixed inset-y-0 left-1/2 z-0 hidden w-full max-w-[1080px] -translate-x-1/2 sm:flex; }
+  .page-grid i { @apply h-full flex-1 border-l border-white/[0.035] last:border-r light:border-black/[0.045]; }
+
+  .topbar { @apply fixed inset-x-0 top-0 z-50 h-[68px] border-b border-white/10 bg-[#111]/90 backdrop-blur-md light:border-black/10 light:bg-[#eeeeec]/90; }
+  .wordmark { @apply text-sm font-semibold tracking-[0.08em]; }
+  .wordmark span { @apply text-accent; }
+  .nav-item { @apply font-mono text-[11px] uppercase tracking-[0.09em] text-[#999] transition-colors hover:text-accent light:text-[#666]; }
+  .utility-button { @apply flex h-9 items-center gap-1.5 rounded-full px-2.5 font-mono text-xs uppercase text-[#999] transition hover:bg-white/10 hover:text-accent light:text-[#666] light:hover:bg-black/5; }
+  .mobile-menu { @apply absolute inset-x-0 top-[67px] flex flex-col border-b border-white/10 bg-[#111] px-5 py-3 light:border-black/10 light:bg-[#eeeeec]; }
+  .mobile-menu a { @apply flex items-center justify-between border-b border-white/10 py-4 text-sm last:border-0 light:border-black/10; }
+
+  .hero { @apply flex min-h-screen flex-col justify-center pb-14 pt-28; }
+  .hero-content { @apply mx-auto flex max-w-[880px] flex-col items-center text-center; }
+  .status-pill { @apply mb-12 inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.1em] text-[#aaa] light:border-black/15 light:text-[#555]; }
+  .status-pill span { @apply size-1.5 rounded-full bg-accent shadow-[0_0_10px_hsl(200_80%_50%)]; }
+  .hero-role { @apply mb-4 font-mono text-xs uppercase tracking-[0.22em] text-accent; }
+  .hero h1 { @apply text-[clamp(3.5rem,10vw,7.5rem)] font-medium uppercase leading-[0.82] tracking-[-0.065em]; }
+  .hero-summary { @apply mt-8 max-w-2xl text-lg leading-8 text-[#aaa] sm:text-xl light:text-[#555]; }
+  .outline-button { @apply mt-8 inline-flex items-center gap-3 rounded-full border border-white/60 px-5 py-2.5 font-mono text-xs uppercase tracking-[0.08em] transition hover:border-accent hover:bg-accent hover:text-[#111] light:border-black/50; }
+  .hero-meta { @apply absolute inset-x-5 bottom-6 flex justify-between border-t border-white/10 pt-4 font-mono text-[9px] uppercase tracking-[0.08em] text-[#777] sm:inset-x-8 light:border-black/10 light:text-[#777]; }
+
+  .section { @apply scroll-mt-16 border-t border-white/10 py-24 sm:py-32 light:border-black/10; }
+  .section-heading { @apply mb-12 sm:mb-16; }
+  .section-heading p { @apply mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-accent; }
+  .section-heading h2 { @apply text-4xl font-medium tracking-[-0.045em] sm:text-6xl; }
+
+  .project-list { @apply space-y-20 sm:space-y-28; }
+  .project { @apply block; }
+  .project-visual { @apply relative aspect-[16/9] overflow-hidden sm:aspect-[16/8]; }
+  .project-visual img { @apply h-full w-full transition-transform duration-700 ease-out; }
+  .project:hover .project-visual img { @apply scale-[1.025]; }
+  .project-index { @apply absolute bottom-4 left-4 rounded-full bg-black/60 px-3 py-1.5 font-mono text-[9px] text-white backdrop-blur; }
+  .project-open { @apply absolute right-4 top-4 grid size-11 place-items-center rounded-full bg-[#111] text-white opacity-0 transition duration-300 group-hover:opacity-100; }
+  .project:hover .project-open { @apply opacity-100; }
+  .project-info { @apply grid gap-5 border-b border-white/10 py-6 sm:grid-cols-[1fr_1fr_auto] sm:items-start light:border-black/10; }
+  .project-type { @apply mb-2 font-mono text-[10px] uppercase tracking-[0.08em] text-[#777]; }
+  .project-info h3 { @apply text-2xl font-medium tracking-[-0.03em] sm:text-3xl; }
+  .project-description { @apply max-w-sm text-sm leading-6 text-[#999] light:text-[#555]; }
+  .project-tags { @apply flex flex-wrap gap-2 sm:justify-end; }
+  .project-tags span { @apply rounded-full border border-white/10 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wide text-[#888] light:border-black/10 light:text-[#666]; }
+
+  .about-grid { @apply grid gap-3 sm:grid-cols-2 lg:grid-cols-4; }
+  .tile { @apply min-h-48 overflow-hidden border border-white/10 bg-[#171717] p-6 light:border-black/10 light:bg-[#f6f6f3]; }
+  .tile-large { @apply sm:col-span-2 sm:row-span-2; }
+  .about-copy { @apply flex flex-col justify-between gap-6; }
+  .about-copy > p { @apply text-base leading-7 text-[#aaa] first:text-xl first:leading-8 first:text-[#eee] light:text-[#555] light:first:text-[#191919]; }
+  .text-link { @apply flex w-fit items-center gap-2 border-b border-white/30 pb-1 font-mono text-[10px] uppercase tracking-[0.08em] transition hover:border-accent hover:text-accent light:border-black/30; }
+  .portrait-tile { @apply min-h-[380px] p-0 sm:row-span-2; }
+  .portrait-tile img { @apply h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0; }
+  .small-story { @apply flex flex-col justify-between; }
+  .small-story span, .stack-tile > span { @apply font-mono text-[9px] uppercase tracking-[0.1em] text-accent; }
+  .small-story p { @apply text-lg font-medium leading-7; }
+  .number-tile { @apply flex flex-col justify-between; }
+  .number-tile strong { @apply text-6xl font-medium tracking-[-0.06em] text-accent; }
+  .number-tile span { @apply max-w-28 text-sm text-[#888] light:text-[#555]; }
+  .stack-tile { @apply sm:col-span-2; }
+  .stack-tile div { @apply mt-7 flex flex-wrap gap-2; }
+  .stack-tile b { @apply rounded-full border border-white/10 px-3 py-1.5 text-xs font-normal text-[#aaa] light:border-black/10 light:text-[#555]; }
+
+  .experience-list { @apply border-t border-white/10 light:border-black/10; }
+  .experience-row { @apply grid gap-5 border-b border-white/10 py-8 sm:grid-cols-[0.6fr_1fr_1.3fr] sm:gap-8 light:border-black/10; }
+  .experience-period { @apply font-mono text-[10px] uppercase tracking-[0.06em] text-accent; }
+  .experience-row h3 { @apply text-lg font-medium; }
+  .experience-row span { @apply mt-1 block text-xs text-[#888] light:text-[#666]; }
+  .experience-row div:last-child p { @apply text-sm leading-6 text-[#aaa] light:text-[#555]; }
+  .experience-row small { @apply mt-4 block font-mono text-[9px] uppercase leading-5 tracking-[0.06em] text-[#777]; }
+
+  .contact-section { @apply border-t border-white/10 py-28 text-center sm:py-40 light:border-black/10; }
+  .contact-inner { @apply mx-auto max-w-3xl; }
+  .contact-eyebrow { @apply mb-5 font-mono text-[10px] uppercase tracking-[0.16em] text-accent; }
+  .contact-inner h2 { @apply text-4xl font-medium leading-tight tracking-[-0.05em] sm:text-7xl; }
+  .contact-inner > p:not(.contact-eyebrow) { @apply mx-auto mt-6 max-w-lg text-base leading-7 text-[#999] light:text-[#555]; }
+  .footer { @apply flex flex-col items-center justify-between gap-4 border-t border-white/10 py-7 font-mono text-[9px] uppercase tracking-[0.06em] text-[#777] sm:flex-row light:border-black/10; }
+  .footer div { @apply flex gap-3; }
+  .footer a { @apply grid size-8 place-items-center rounded-full border border-white/10 text-sm transition hover:border-accent hover:text-accent light:border-black/10; }
 }
 
 @media (prefers-reduced-motion: reduce) {
