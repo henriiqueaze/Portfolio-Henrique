@@ -64,8 +64,8 @@ const translations = {
     experienceEyebrow: "Trajetória",
     experienceTitle: "Experiência.",
     experience: [
-      { period: "2026 — hoje", company: "MBA Consultoria & Sistemas", role: "Desenvolvedor Full-Stack", description: "Desenvolvimento e evolução de aplicações web, APIs e produtos mobile em operação.", technologies: "C# · .NET · React · SQL Server · Azure" },
-      { period: "2023 — hoje", company: "Freelancer", role: "Desenvolvedor Full-Stack", description: "Projetos completos para diferentes contextos, da arquitetura à entrega da interface.", technologies: "Java · Spring Boot · React · Angular · PostgreSQL" },
+      { period: "2026 — hoje", company: "MBA Consultoria & Sistemas", role: "Desenvolvedor Full-Stack", description: "Desenvolvimento e evolução de aplicações web, APIs e produtos mobile em operação.", highlights: ["Criação e manutenção de APIs REST com C# e .NET", "Interfaces web em React e aplicações com React Native", "Correções, refatorações e evolução de produtos existentes"], technologies: ["C#", ".NET", "React", "SQL Server", "Azure"] },
+      { period: "2023 — hoje", company: "Freelancer", role: "Desenvolvedor Full-Stack", description: "Projetos completos para diferentes contextos, da arquitetura à entrega da interface.", highlights: ["Modelagem de bancos de dados e arquitetura de aplicações", "Desenvolvimento de APIs modernas e integrações", "Interfaces responsivas com React e Angular"], technologies: ["Java", "Spring Boot", "React", "Angular", "PostgreSQL"] },
     ],
     contactEyebrow: "Contato",
     contactTitle: "Vamos construir algo juntos?",
@@ -107,8 +107,8 @@ const translations = {
     experienceEyebrow: "Journey",
     experienceTitle: "Experience.",
     experience: [
-      { period: "2026 — present", company: "MBA Consulting & Systems", role: "Full-Stack Developer", description: "Building and evolving web applications, APIs, and live mobile products.", technologies: "C# · .NET · React · SQL Server · Azure" },
-      { period: "2023 — present", company: "Freelance", role: "Full-Stack Developer", description: "End-to-end projects for different contexts, from architecture to interface delivery.", technologies: "Java · Spring Boot · React · Angular · PostgreSQL" },
+      { period: "2026 — present", company: "MBA Consulting & Systems", role: "Full-Stack Developer", description: "Building and evolving web applications, APIs, and live mobile products.", highlights: ["Creating and maintaining REST APIs with C# and .NET", "Web interfaces in React and applications with React Native", "Bug fixes, refactoring, and evolution of existing products"], technologies: ["C#", ".NET", "React", "SQL Server", "Azure"] },
+      { period: "2023 — present", company: "Freelance", role: "Full-Stack Developer", description: "End-to-end projects for different contexts, from architecture to interface delivery.", highlights: ["Database modeling and application architecture", "Modern API development and integrations", "Responsive interfaces with React and Angular"], technologies: ["Java", "Spring Boot", "React", "Angular", "PostgreSQL"] },
     ],
     contactEyebrow: "Contact",
     contactTitle: "Let's build something together?",
@@ -173,46 +173,54 @@ export default function App() {
 
         <section id="work" className="section layout">
           <motion.div {...reveal}><SectionHeader eyebrow={t.workEyebrow} title={t.workTitle} /></motion.div>
-          <div className="project-list">
-            {t.projects.map((project, index) => {
+          <div className="featured-projects">
+            {t.projects.slice(0, 2).map((project, index) => {
               const asset = projectAssets[index];
               return (
-                <motion.a {...reveal} href={asset.link} target="_blank" rel="noreferrer" className="project" key={project.title}>
+                <motion.a {...reveal} href={asset.link} target="_blank" rel="noreferrer" className="featured-project group" key={project.title}>
                   <div className={`project-visual ${asset.color}`}>
-                    <img src={asset.image} alt={project.title} className={asset.fit === "contain" ? "object-contain p-[12%]" : "object-cover"} />
+                    <img src={asset.image} alt={project.title} className={asset.fit === "contain" ? "object-contain p-[10%]" : "object-cover"} />
                     <span className="project-index">0{index + 1}</span>
                     <span className="project-open"><FiArrowUpRight /></span>
                   </div>
                   <div className="project-info">
-                    <div><p className="project-type">{project.type}</p><h3>{project.title}</h3></div>
+                    <p className="project-type">{project.type}</p>
+                    <h3>{project.title}</h3>
                     <p className="project-description">{project.description}</p>
-                    <div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+                    <div className="project-footer"><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><span className="project-action">{t.projectAction}<FiArrowUpRight /></span></div>
                   </div>
                 </motion.a>
               );
+            })}
+          </div>
+          <div className="compact-projects">
+            {t.projects.slice(2).map((project, offset) => {
+              const index = offset + 2;
+              const asset = projectAssets[index];
+              return <motion.a {...reveal} href={asset.link} target="_blank" rel="noreferrer" className="compact-project group" key={project.title}><div className={`compact-visual ${asset.color}`}><img src={asset.image} alt={project.title} className={asset.fit === "contain" ? "object-contain p-[14%]" : "object-cover"} /><span>0{index + 1}</span></div><div className="compact-info"><p>{project.type}</p><div><h3>{project.title}</h3><FiArrowUpRight /></div><p>{project.description}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div></motion.a>;
             })}
           </div>
         </section>
 
         <section id="about" className="section layout">
           <motion.div {...reveal}><SectionHeader eyebrow={t.aboutEyebrow} title={t.aboutTitle} /></motion.div>
-          <motion.div {...reveal} className="about-grid">
-            <div className="about-copy tile tile-large">
-              <p>{t.aboutText}</p><p>{t.aboutText2}</p>
+          <motion.div {...reveal} className="about-layout">
+            <div className="about-portrait"><img src={profilePhoto} alt="Henrique Azevedo" /><span>São Paulo · BR</span></div>
+            <div className="about-content">
+              <p className="about-lead">{t.aboutText}</p>
+              <p className="about-detail">{t.aboutText2}</p>
               <a href={`${import.meta.env.BASE_URL}${language === "pt" ? "Henrique Azevedo - Currículo - Desenvolvedor - (Português).pdf" : "Henrique Azevedo - Resume - Developer - (English).pdf"}`} target="_blank" rel="noreferrer" className="text-link">{t.resume}<FiDownload /></a>
+              <div className="about-facts"><div><span>{t.now}</span><p>{t.currentRole}</p></div><div><span>{t.since}</span><p>{t.independent}</p></div><div className="about-number"><strong>{t.experienceNumber}</strong><p>{t.experienceLabel}</p></div></div>
             </div>
-            <div className="portrait-tile tile"><img src={profilePhoto} alt="Henrique Azevedo" /></div>
-            <div className="tile small-story"><span>{t.now}</span><p>{t.currentRole}</p></div>
-            <div className="tile small-story"><span>{t.since}</span><p>{t.independent}</p></div>
-            <div className="tile number-tile"><strong>{t.experienceNumber}</strong><span>{t.experienceLabel}</span></div>
-            <div className="tile stack-tile"><span>{t.stackLabel}</span><div>{stack.map(item => <b key={item}>{item}</b>)}</div></div>
+          </motion.div>
+          <motion.div {...reveal} className="stack-row"><span>{t.stackLabel}</span><div>{stack.map((item, index) => <b key={item}><i>{String(index + 1).padStart(2, "0")}</i>{item}</b>)}</div>
           </motion.div>
         </section>
 
         <section id="experience" className="section layout">
           <motion.div {...reveal}><SectionHeader eyebrow={t.experienceEyebrow} title={t.experienceTitle} /></motion.div>
           <motion.div {...reveal} className="experience-list">
-            {t.experience.map(item => <article key={item.company} className="experience-row"><p className="experience-period">{item.period}</p><div><h3>{item.company}</h3><span>{item.role}</span></div><div><p>{item.description}</p><small>{item.technologies}</small></div></article>)}
+            {t.experience.map((item, index) => <article key={item.company} className="experience-row"><div className="experience-marker"><span>0{index + 1}</span><i /></div><div className="experience-heading"><p className="experience-period">{item.period}</p><h3>{item.company}</h3><span>{item.role}</span></div><div className="experience-body"><p>{item.description}</p><ul>{item.highlights.map(highlight => <li key={highlight}>{highlight}</li>)}</ul><div>{item.technologies.map(technology => <small key={technology}>{technology}</small>)}</div></div></article>)}
           </motion.div>
         </section>
 
