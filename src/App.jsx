@@ -22,7 +22,7 @@ const content = {
     aboutLead: "Sou Henrique Azevedo, desenvolvedor full-stack que trabalha entre produto, interface e infraestrutura.",
     aboutBody: "Minha experiência passa por sistemas empresariais, produtos independentes e aplicações com impacto real. Transformo regras complexas em experiências claras, construindo desde a arquitetura e as APIs até a última interação da interface — sempre com atenção a desempenho, manutenção e contexto de negócio.",
     resume: "Baixar currículo", based: "São Paulo, Brasil", available: "Disponível para projetos e oportunidades selecionadas", aboutMeta: "PRODUTO, CÓDIGO E MOVIMENTO / 2026",
-    aboutStatement: "Código é ferramenta. O objetivo é criar produtos que funcionem, evoluam e façam sentido para quem usa.",
+    aboutStatement: "Transformo problemas complexos em produtos digitais claros — da arquitetura que ninguém vê à experiência que todo mundo sente.",
     aboutPillars: [{ title: "Pensar antes de construir", text: "Entendo o problema, o contexto e as pessoas antes de escolher a tecnologia.", icon: "layers" }, { title: "Do início ao produto", text: "Conecto interface, regras de negócio, APIs e dados em uma experiência coerente.", icon: "zap" }, { title: "Feito para continuar", text: "Desempenho, manutenção e evolução fazem parte da solução desde o primeiro commit.", icon: "code" }],
     selected: "Trabalho selecionado", selectedTitle: "Projetos em movimento.", selectedText: "Arraste a faixa para explorar. Toque no projeto central para abrir sua apresentação.",
     openPresentation: "Abrir projeto", drag: "Arraste para navegar", project: "Projeto", technologies: "Tecnologias", visit: "Visitar projeto", repository: "Ver repositório", closeProject: "Fechar projeto", videoPlaceholder: "Prévia do projeto",
@@ -39,7 +39,7 @@ const content = {
     aboutLead: "I'm Henrique Azevedo, a full-stack developer working across product, interface and infrastructure.",
     aboutBody: "My experience spans business systems, independent products and applications with real-world impact. I turn complex rules into clear experiences, building from architecture and APIs to the last interface interaction — always considering performance, maintainability and business context.",
     resume: "Download résumé", based: "São Paulo, Brazil", available: "Available for selected projects and opportunities", aboutMeta: "PRODUCT, CODE AND MOTION / 2026",
-    aboutStatement: "Code is a tool. The goal is to create products that work, evolve and make sense to the people using them.",
+    aboutStatement: "I turn complex problems into clear digital products — from the architecture no one sees to the experience everyone feels.",
     aboutPillars: [{ title: "Think before building", text: "I understand the problem, context and people before choosing the technology.", icon: "layers" }, { title: "From start to product", text: "I connect interface, business rules, APIs and data into one coherent experience.", icon: "zap" }, { title: "Built to keep going", text: "Performance, maintenance and evolution are part of the solution from the first commit.", icon: "code" }],
     selected: "Selected work", selectedTitle: "Projects in motion.", selectedText: "Drag the reel to explore. Select the centered project to open its presentation.",
     openPresentation: "Open project", drag: "Drag to browse", project: "Project", technologies: "Technologies", visit: "Visit project", repository: "View repository", closeProject: "Close project", videoPlaceholder: "Project preview",
@@ -80,7 +80,7 @@ function ProjectDialog({ project, language, onClose }) {
 
 function ProjectReel({ language, onOpen }) {
   const t = content[language];
-  const trackRef = useRef(null); const reelX = useMotionValue(0); const loopWidth = useRef(1); const paused = useRef(false); const clickGuard = useRef(0);
+  const trackRef = useRef(null); const reelX = useMotionValue(0); const loopWidth = useRef(1); const paused = useRef(false); const clickGuard = useRef(0); const pointerStart = useRef(null); const dragging = useRef(false);
   useEffect(() => {
     const measure = () => { if (trackRef.current) loopWidth.current = trackRef.current.scrollWidth / 2; };
     measure(); window.addEventListener("resize", measure); return () => window.removeEventListener("resize", measure);
@@ -93,8 +93,8 @@ function ProjectReel({ language, onOpen }) {
   });
   const repeatedProjects = [...projects, ...projects];
   return <div className="project-reel">
-    <div className="reel-viewport"><motion.div ref={trackRef} className="reel-track" style={{ x: reelX }} drag="x" dragConstraints={{ left: -100000, right: 100000 }} dragElastic={0} dragMomentum onDragStart={() => { paused.current = true; }} onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 5) clickGuard.current = Date.now() + 420; const width = loopWidth.current; if (width > 1) { let normalized = reelX.get() % width; if (normalized > 0) normalized -= width; reelX.set(normalized); } window.setTimeout(() => { paused.current = false; }, 120); }}>
-      {repeatedProjects.map((project, index) => <motion.button key={`${project.title}-${index}`} className="reel-card" style={{ "--project-accent": project.accent, "--card-ratio": index % 3 === 2 ? "1.38" : index % 2 ? "1.66" : "1.75" }} whileHover={{ y: -6 }} onClick={() => { if (Date.now() > clickGuard.current) onOpen(project); }} aria-label={`${t.openPresentation}: ${project.title}`}>
+    <div className="reel-viewport"><motion.div ref={trackRef} className="reel-track" style={{ x: reelX }} drag="x" dragConstraints={{ left: -100000, right: 100000 }} dragElastic={0} dragMomentum onDragStart={() => { paused.current = true; dragging.current = true; clickGuard.current = Number.POSITIVE_INFINITY; }} onDragEnd={() => { clickGuard.current = Date.now() + 520; dragging.current = false; const width = loopWidth.current; if (width > 1) { let normalized = reelX.get() % width; if (normalized > 0) normalized -= width; reelX.set(normalized); } window.setTimeout(() => { paused.current = false; }, 120); }}>
+      {repeatedProjects.map((project, index) => <motion.button key={`${project.title}-${index}`} className="reel-card" style={{ "--project-accent": project.accent, "--card-ratio": index % 3 === 2 ? "1.38" : index % 2 ? "1.66" : "1.75" }} whileHover={{ y: -6 }} onPointerDown={event => { pointerStart.current = { x: event.clientX, y: event.clientY }; }} onPointerUp={event => { const start = pointerStart.current; pointerStart.current = null; if (!start) return; const distance = Math.hypot(event.clientX - start.x, event.clientY - start.y); window.setTimeout(() => { if (distance < 5 && !dragging.current && Date.now() > clickGuard.current) onOpen(project); }, 0); }} onPointerCancel={() => { pointerStart.current = null; }} onClick={event => event.preventDefault()} onKeyDown={event => { if ((event.key === "Enter" || event.key === " ") && Date.now() > clickGuard.current) { event.preventDefault(); onOpen(project); } }} aria-label={`${t.openPresentation}: ${project.title}`}>
         <motion.div className="reel-media"><img src={project.image} alt="" className={project.fit} /><div className="reel-shade" /><div className="reel-meta"><span>{project.title}</span><small>{project.category[language]}</small></div><div className="reel-play"><FiPlay /></div></motion.div>
       </motion.button>)}
     </motion.div></div>

@@ -682,3 +682,12 @@ footer > a { justify-self:end; }
   .reel-track { padding-left:0; }
   .selected-bottom { bottom:20px; }
 }
+
+/* Focused interaction fixes. */
+.about-portrait > a { position:static; isolation:auto; min-height:0; overflow:visible; margin-top:14px; padding:0; border:0; border-radius:0; color:var(--blue); background:transparent; font-size:inherit; letter-spacing:inherit; transform:none; box-shadow:none; transition:opacity .3s,color .3s; }
+.about-portrait > a::before { display:none; animation:none; }
+.about-portrait > a svg { font-size:inherit; animation:none; }
+.about-portrait > a:hover { color:var(--text); background:transparent; transform:none; box-shadow:none; opacity:.72; }
+.experience { background:var(--surface); }
+.career-card { background:var(--bg); }
+.timeline-runner { border-color:var(--surface); }
