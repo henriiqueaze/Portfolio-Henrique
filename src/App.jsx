@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useAnimationFrame, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
-import { FiArrowDown, FiArrowLeft, FiArrowUpRight, FiDownload, FiGithub, FiLinkedin, FiMail, FiMenu, FiMoon, FiPause, FiPlay, FiSun, FiX } from "react-icons/fi";
+import { FiArrowDown, FiArrowLeft, FiArrowUpRight, FiDownload, FiGithub, FiLinkedin, FiMail, FiMenu, FiMoon, FiPlay, FiSun, FiX } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaBootstrap, FaCss3Alt, FaDatabase, FaDocker, FaGitAlt, FaGithub as FaGithubBrand, FaHtml5, FaJava, FaJsSquare, FaNodeJs, FaPython, FaReact } from "react-icons/fa";
 import { SiAngular, SiDjango, SiDotnet, SiSpringboot, SiTailwindcss, SiTypescript } from "react-icons/si";
@@ -248,14 +248,12 @@ function AboutStory({ language }) {
 }
 
 function TechnologyLoop({ language }) {
-  const [paused, setPaused] = useState(false);
   const repeated = [...technologies, ...technologies];
   const label = language === "pt" ? "Tecnologias que utilizo" : "Technologies I use";
   return <div className="technology-loop" role="region" aria-label={label}>
     <div className="technology-loop-fade left" aria-hidden="true" />
     <div className="technology-loop-fade right" aria-hidden="true" />
-    <div className={`technology-loop-track${paused ? " paused" : ""}`}>{repeated.map(([name, icon], index) => <span className="technology-loop-item" key={`${name}-${index}`} aria-hidden={index >= technologies.length}>{icon}<b>{name}</b></span>)}</div>
-    <button type="button" onClick={() => setPaused(value => !value)} aria-label={paused ? (language === "pt" ? "Continuar movimento das tecnologias" : "Resume technology movement") : (language === "pt" ? "Pausar movimento das tecnologias" : "Pause technology movement")} aria-pressed={paused}>{paused ? <FiPlay /> : <FiPause />}</button>
+    <div className="technology-loop-track">{repeated.map(([name, icon], index) => <span className="technology-loop-item" key={`${name}-${index}`} aria-hidden={index >= technologies.length}>{icon}<b>{name}</b></span>)}</div>
   </div>;
 }
 
@@ -266,7 +264,6 @@ function ExperienceSection({ language }) {
   const runnerTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   return <section className="experience" id="experience">
     <motion.h2 {...reveal}>{t.experienceLabel}</motion.h2>
-    <TechnologyLoop language={language} />
     <div className="career-timeline" ref={timelineRef}>
       <span className="timeline-rail" aria-hidden="true" /><motion.span className="timeline-progress" style={{ scaleY: scrollYProgress }} aria-hidden="true" /><motion.span className="timeline-runner" style={{ top: runnerTop }} aria-hidden="true" />
       {experiences.map((item, index) => <motion.article className={index % 2 === 0 ? "left" : "right"} key={item.company} initial={{ opacity: 0, x: index % 2 === 0 ? -90 : 90, rotate: index % 2 === 0 ? -2 : 2 }} whileInView={{ opacity: 1, x: 0, rotate: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .85, ease: [0.16, 1, .3, 1] }}>
@@ -280,6 +277,7 @@ function ExperienceSection({ language }) {
         </motion.div>
       </motion.article>)}
     </div>
+    <TechnologyLoop language={language} />
   </section>;
 }
 
