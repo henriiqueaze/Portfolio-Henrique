@@ -1,19 +1,6 @@
-import { useEffect, useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
-import {
-  FiArrowDown,
-  FiArrowUpRight,
-  FiDownload,
-  FiGithub,
-  FiGlobe,
-  FiGrid,
-  FiLinkedin,
-  FiMail,
-  FiMenu,
-  FiMoon,
-  FiSun,
-  FiX,
-} from "react-icons/fi";
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { FiArrowDown, FiArrowUpRight, FiDownload, FiGithub, FiLinkedin, FiMail, FiMenu, FiX } from "react-icons/fi";
 import profilePhoto from "./assets/images/henrique-picture.jpg";
 import cookIt from "./assets/images/projects/cook-it.jpg";
 import studentProgress from "./assets/images/projects/student-progress-logo.png";
@@ -22,203 +9,120 @@ import volumtarium from "./assets/images/projects/volumtarium-logo.png";
 import taskManager from "./assets/images/projects/gerenciamento-de-tarefas-layout.png";
 import pum from "./assets/images/projects/pum.png";
 
-const ui = {
+const copy = {
   pt: {
-    nav: [["Projetos", "projects"], ["Fragmentos", "about"], ["Experiência", "experience"], ["Contato", "contact"]],
-    available: "Disponível para novos projetos",
-    role: "Desenvolvedor Full-Stack",
-    statement: "Transformo ideias em produtos digitais claros, rápidos e prontos para crescer.",
-    explore: "Explorar portfólio",
-    based: "São Paulo, Brasil",
-    projectsLabel: "Trabalho selecionado",
-    projectsTitle: "Alguns projetos.",
-    projectsIntro: "Produtos que combinam engenharia, experiência e atenção aos detalhes.",
-    open: "Abrir projeto",
-    fragmentsLabel: "Um pouco sobre mim",
-    fragmentsTitle: "Fragmentos de quem eu sou.",
-    aboutLead: "Sou um desenvolvedor que gosta de entender o produto inteiro, não apenas a tarefa da vez.",
-    aboutBody: "Trabalho da interface ao banco de dados, transformando necessidades reais em software claro e confiável. Tenho facilidade para aprender novas tecnologias e gosto de colaborar desde a ideia inicial até a entrega.",
-    resume: "Abrir currículo",
-    currentLabel: "Agora",
-    current: "Desenvolvendo produtos web na MBA Consultoria & Sistemas.",
-    independentLabel: "Desde 2023",
-    independent: "Criando aplicações e produtos independentes como freelancer.",
-    years: "anos construindo software",
-    terminalTitle: "henrique@portfolio — skills",
-    terminalLines: ["> carregando curiosidade...", "> conectando frontend + backend", "> entregando produto com cuidado", "✓ pronto para o próximo desafio"],
-    stackLabel: "Ferramentas que uso",
-    experienceLabel: "Currículo",
-    experienceTitle: "Experiência.",
-    educationLabel: "Formação contínua",
-    education: "Desenvolvimento guiado por prática, projetos reais e aprendizado constante.",
-    contactLabel: "Vamos conversar",
-    contactTitle: "Tem uma ideia? Vamos construir.",
-    contactBody: "Estou aberto a projetos, oportunidades e conversas interessantes sobre tecnologia.",
-    email: "Enviar um e-mail",
-    footer: "Desenvolvido por Henrique Azevedo",
-    theme: "Alternar tema", language: "Switch to English", grid: "Mostrar ou ocultar grade", menu: "Abrir menu", close: "Fechar menu",
+    nav: [["Início", "home"], ["Projetos", "work"], ["Sobre", "about"], ["Contato", "contact"]], menu: "Menu", close: "Fechar", language: "EN",
+    eyebrow: "Desenvolvedor full-stack independente", heroLine: "Código, produto", heroLine2: "& experiências digitais.", heroNote: "Transformo ideias em produtos digitais claros, rápidos e prontos para crescer — da primeira interface à infraestrutura.",
+    scroll: "Role para explorar", status: "Disponível para projetos selecionados", based: "São Paulo, Brasil", introLabel: "Olá, prazer em conhecer",
+    intro: "Sou Henrique — um desenvolvedor que combina engenharia, sensibilidade visual e visão de produto para criar experiências que funcionam tão bem quanto parecem.",
+    workKicker: "Trabalho selecionado", workTitle: "Projetos", workIntro: "Uma seleção de produtos construídos com intenção, do raciocínio de produto ao último detalhe da implementação.",
+    explore: "Explorar projeto", completed: "Concluído", type: "Tipo", role: "Atuação", aboutKicker: "Perfil / 2026", aboutTitle: "Curioso por natureza.\nPreciso por escolha.",
+    aboutBody: "Gosto de entender o produto inteiro, não apenas a tarefa da vez. Trabalho da interface ao banco de dados, transformando necessidades reais em software confiável, intuitivo e com personalidade.",
+    resume: "Abrir currículo", portrait: "Retrato de Henrique Azevedo", location: "Baseado em São Paulo", services: "Especialidades", now: "Agora",
+    nowBody: "Desenvolvendo produtos web na MBA Consultoria & Sistemas e criando soluções independentes.", experience: "Experiência", contactKicker: "Tem um projeto em mente?",
+    contactTitle: "Vamos fazer\nalgo marcante.", contactBody: "Estou aberto a oportunidades, colaborações e boas conversas sobre tecnologia e produto.", email: "Escreva para mim",
+    backTop: "Voltar ao topo", copyright: "Criado e desenvolvido por Henrique Azevedo",
   },
   en: {
-    nav: [["Projects", "projects"], ["Fragments", "about"], ["Experience", "experience"], ["Contact", "contact"]],
-    available: "Available for new projects",
-    role: "Full-Stack Developer",
-    statement: "I turn ideas into digital products that are clear, fast, and ready to grow.",
-    explore: "Explore portfolio",
-    based: "São Paulo, Brazil",
-    projectsLabel: "Selected work",
-    projectsTitle: "A few projects.",
-    projectsIntro: "Products combining engineering, experience, and attention to detail.",
-    open: "Open project",
-    fragmentsLabel: "A little about me",
-    fragmentsTitle: "Fragments of who I am.",
-    aboutLead: "I'm a developer who likes to understand the whole product, not just the task at hand.",
-    aboutBody: "I work from interface to database, turning real needs into clear and reliable software. I learn new technologies quickly and enjoy collaborating from the first idea through delivery.",
-    resume: "Open résumé",
-    currentLabel: "Now",
-    current: "Building web products at MBA Consulting & Systems.",
-    independentLabel: "Since 2023",
-    independent: "Creating independent applications and products as a freelancer.",
-    years: "years building software",
-    terminalTitle: "henrique@portfolio — skills",
-    terminalLines: ["> loading curiosity...", "> connecting frontend + backend", "> shipping products with care", "✓ ready for the next challenge"],
-    stackLabel: "Tools I use",
-    experienceLabel: "Résumé",
-    experienceTitle: "Experience.",
-    educationLabel: "Continuous learning",
-    education: "Development shaped by practice, real projects, and constant learning.",
-    contactLabel: "Let's talk",
-    contactTitle: "Have an idea? Let's build it.",
-    contactBody: "I'm open to projects, opportunities, and interesting conversations about technology.",
-    email: "Send an email",
-    footer: "Developed by Henrique Azevedo",
-    theme: "Toggle theme", language: "Mudar para português", grid: "Show or hide grid", menu: "Open menu", close: "Close menu",
+    nav: [["Home", "home"], ["Projects", "work"], ["About", "about"], ["Contact", "contact"]], menu: "Menu", close: "Close", language: "PT",
+    eyebrow: "Independent full-stack developer", heroLine: "Code, product", heroLine2: "& digital experiences.", heroNote: "I turn ideas into digital products that are clear, fast and ready to grow — from the first interface to the infrastructure.",
+    scroll: "Scroll to explore", status: "Available for selected projects", based: "São Paulo, Brazil", introLabel: "Hello, nice to meet you",
+    intro: "I'm Henrique — a developer combining engineering, visual sensitivity and product thinking to create experiences that work as beautifully as they look.",
+    workKicker: "Selected work", workTitle: "Projects", workIntro: "A selection of products built with intent, from product thinking to the final implementation detail.",
+    explore: "Explore project", completed: "Completed", type: "Type", role: "Role", aboutKicker: "Profile / 2026", aboutTitle: "Curious by nature.\nPrecise by choice.",
+    aboutBody: "I like to understand the entire product, not just the task at hand. I work from interface to database, turning real needs into reliable, intuitive software with personality.",
+    resume: "Open résumé", portrait: "Portrait of Henrique Azevedo", location: "Based in São Paulo", services: "Expertise", now: "Now",
+    nowBody: "Building web products at MBA Consulting & Systems and creating independent solutions.", experience: "Experience", contactKicker: "Have a project in mind?",
+    contactTitle: "Let's make\nsomething memorable.", contactBody: "I'm open to opportunities, collaborations and good conversations about technology and product.", email: "Write to me",
+    backTop: "Back to top", copyright: "Created and developed by Henrique Azevedo",
   },
 };
 
 const projects = [
-  { title: "Cook-It", image: cookIt, link: "https://cook-it-zeta.vercel.app/", fit: "cover", background: "#211d1e", year: "2026", category: { pt: "Produto web", en: "Web product" }, description: { pt: "Receitas inteligentes usando o que já existe na sua cozinha.", en: "Smart recipes using what is already available in your kitchen." }, tags: ["React", "Spring Boot", "PostgreSQL"] },
-  { title: "StudentProgress", image: studentProgress, link: "https://student-progress-livid.vercel.app/", fit: "contain", background: "#e7f0fb", year: "2025", category: { pt: "Educação", en: "Education" }, description: { pt: "Gestão acadêmica para acompanhar alunos, notas e evolução.", en: "Academic management for students, grades, and progress." }, tags: ["React", "Java", "REST"] },
-  { title: "Sociau", image: sociau, link: "https://github.com/Sociau", fit: "cover", background: "#e9ded5", year: "2025", category: { pt: "Impacto social", en: "Social impact" }, description: { pt: "Conectando ONGs de resgate animal a pessoas que querem adotar.", en: "Connecting animal rescue NGOs with people looking to adopt." }, tags: ["Angular", "Java", "UX"] },
-  { title: "Volumtarium", image: volumtarium, link: "https://github.com/henriiqueaze/Volumtarium", fit: "contain", background: "#e8eee7", year: "2024", category: { pt: "Voluntariado", en: "Volunteering" }, description: { pt: "Oportunidades sociais encontradas por perfil e localização.", en: "Social opportunities discovered by profile and location." }, tags: ["React", "Node.js", "Maps"] },
-  { title: "Gerenciador de Tarefas", image: taskManager, link: "https://github.com/henriiqueaze/Sistema-de-Gerenciamento-de-Tarefas", fit: "cover", background: "#dce6ef", year: "2024", category: { pt: "Aplicação desktop", en: "Desktop app" }, description: { pt: "Uma forma direta de organizar e acompanhar atividades diárias.", en: "A direct way to organize and track daily activities." }, tags: ["Python", "Tkinter", "SQLite"] },
-  { title: "PUM", image: pum, link: "https://github.com/henriiqueaze/PUM", fit: "contain", background: "#f1eee8", year: "2024", category: { pt: "Educação", en: "Education" }, description: { pt: "Ecossistema acadêmico para alunos, monitores e cursos.", en: "An academic ecosystem for students, mentors, and courses." }, tags: ["Java", "Spring Boot", "SQL"] },
+  { title: "Cook—It", image: cookIt, link: "https://cook-it-zeta.vercel.app/", year: "2026", type: { pt: "Produto digital", en: "Digital product" }, role: "Full-stack / UI", summary: { pt: "Receitas inteligentes a partir dos ingredientes que já estão na sua cozinha.", en: "Smart recipes built around the ingredients already available in your kitchen." }, color: "#f0764b", fit: "cover" },
+  { title: "Student Progress", image: studentProgress, link: "https://student-progress-livid.vercel.app/", year: "2025", type: { pt: "Plataforma educacional", en: "Education platform" }, role: "Full-stack", summary: { pt: "Gestão acadêmica clara para acompanhar alunos, notas e evolução.", en: "Clear academic management for students, grades and progress." }, color: "#b5c9d9", fit: "contain" },
+  { title: "Sociau", image: sociau, link: "https://github.com/Sociau", year: "2025", type: { pt: "Impacto social", en: "Social impact" }, role: "Front-end / UX", summary: { pt: "Uma ponte entre ONGs de resgate animal e pessoas que querem adotar.", en: "A bridge between animal rescue NGOs and people looking to adopt." }, color: "#d69b91", fit: "cover" },
+  { title: "Volumtarium", image: volumtarium, link: "https://github.com/henriiqueaze/Volumtarium", year: "2024", type: { pt: "Voluntariado", en: "Volunteering" }, role: "Full-stack", summary: { pt: "Oportunidades sociais encontradas por perfil, interesse e localização.", en: "Social opportunities discovered by profile, interests and location." }, color: "#a9b79e", fit: "contain" },
+  { title: "Task Manager", image: taskManager, link: "https://github.com/henriiqueaze/Sistema-de-Gerenciamento-de-Tarefas", year: "2024", type: { pt: "Aplicação desktop", en: "Desktop application" }, role: "Python / UI", summary: { pt: "Uma forma direta de organizar e acompanhar atividades diárias.", en: "A direct way to organize and track daily activities." }, color: "#95aabe", fit: "cover" },
+  { title: "P.U.M.", image: pum, link: "https://github.com/henriiqueaze/PUM", year: "2024", type: { pt: "Ecossistema acadêmico", en: "Academic ecosystem" }, role: "Back-end / Product", summary: { pt: "Monitoria acadêmica integrada para alunos, monitores e cursos.", en: "Integrated academic mentoring for students, tutors and courses." }, color: "#d4c1a6", fit: "contain" },
 ];
 
-const experiences = [
-  {
-    period: { pt: "2026 — hoje", en: "2026 — present" },
-    company: "MBA Consultoria & Sistemas",
-    role: { pt: "Desenvolvedor Full-Stack", en: "Full-Stack Developer" },
-    summary: { pt: "Construção e evolução de produtos digitais utilizados em operações reais.", en: "Building and evolving digital products used in real-world operations." },
-    work: { pt: ["APIs REST com C# e .NET", "Interfaces web em React", "Aplicações com React Native", "Manutenção, refatoração e qualidade"], en: ["REST APIs with C# and .NET", "Web interfaces with React", "Applications with React Native", "Maintenance, refactoring, and quality"] },
-    stack: ["C#", ".NET", "React", "SQL Server", "Azure"],
-  },
-  {
-    period: { pt: "2023 — hoje", en: "2023 — present" },
-    company: "Freelancer",
-    role: { pt: "Desenvolvedor Full-Stack", en: "Full-Stack Developer" },
-    summary: { pt: "Produtos completos para diferentes contextos, da arquitetura à experiência final.", en: "End-to-end products for different contexts, from architecture to final experience." },
-    work: { pt: ["Arquitetura e modelagem de dados", "Desenvolvimento de APIs e integrações", "Interfaces responsivas", "Entrega e evolução contínua"], en: ["Architecture and data modeling", "API development and integrations", "Responsive interfaces", "Delivery and continuous evolution"] },
-    stack: ["Java", "Spring Boot", "React", "Angular", "PostgreSQL"],
-  },
+const experience = [
+  { period: "2026 — NOW", company: "MBA CONSULTORIA & SISTEMAS", role: "FULL-STACK DEVELOPER", stack: "C# · .NET · REACT · SQL SERVER · AZURE" },
+  { period: "2023 — NOW", company: "INDEPENDENT / FREELANCE", role: "FULL-STACK DEVELOPER", stack: "JAVA · SPRING · REACT · ANGULAR · POSTGRESQL" },
 ];
 
-const stack = ["Java", "Spring Boot", "C#", ".NET", "React", "Angular", "TypeScript", "Node.js", "Python", "PostgreSQL", "Docker", "Azure"];
-const reveal = { initial: { opacity: 0, y: 28 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-80px" }, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } };
+const expertise = ["Product thinking", "Front-end", "Back-end", "APIs", "UI engineering", "Data modelling", "Cloud", "Motion"];
+const reveal = { initial: { opacity: 0, y: 44 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-10%" }, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } };
 
-function SectionTitle({ label, title, intro }) {
-  return <div className="section-title-block"><p>{label}</p><div><h2>{title}</h2>{intro && <span>{intro}</span>}</div></div>;
+function Project({ project, index, language, t }) {
+  const number = String(index + 1).padStart(2, "0");
+  return (
+    <motion.article className="project" style={{ "--project-accent": project.color }} {...reveal}>
+      <div className="project-ghost" aria-hidden="true">{project.title}</div>
+      <div className="project-grid">
+        <div className="project-count"><span>{number}</span><i>/</i><small>{String(projects.length).padStart(2, "0")}</small></div>
+        <a className="project-visual" href={project.link} target="_blank" rel="noreferrer" aria-label={`${t.explore}: ${project.title}`}>
+          <img src={project.image} alt="" className={project.fit} /><span className="project-cta">{t.explore}<FiArrowUpRight /></span>
+        </a>
+        <div className="project-name"><span>{project.type[language]}</span><h3>{project.title}</h3><p>{project.summary[language]}</p></div>
+        <dl className="project-facts"><div><dt>A / {t.completed}</dt><dd>{project.year}</dd></div><div><dt>B / {t.type}</dt><dd>{project.type[language]}</dd></div><div><dt>C / {t.role}</dt><dd>{project.role}</dd></div></dl>
+      </div>
+    </motion.article>
+  );
 }
 
 export default function App() {
   const [language, setLanguage] = useState(() => localStorage.getItem("portfolio-language") || "pt");
-  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
-  const [gridVisible, setGridVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 160, damping: 32 });
-  const t = ui[language];
+  const progress = useSpring(scrollYProgress, { stiffness: 150, damping: 30, restDelta: 0.001 });
+  const t = copy[language];
+  const year = useMemo(() => new Date().getFullYear(), []);
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("light", theme === "light");
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  useEffect(() => {
-    document.documentElement.lang = language === "pt" ? "pt-BR" : "en";
-    localStorage.setItem("portfolio-language", language);
-  }, [language]);
+  useEffect(() => { document.documentElement.lang = language === "pt" ? "pt-BR" : "en"; localStorage.setItem("portfolio-language", language); }, [language]);
+  useEffect(() => { document.body.classList.toggle("menu-is-open", menuOpen); return () => document.body.classList.remove("menu-is-open"); }, [menuOpen]);
 
   return (
-    <div className="site">
-      <motion.div className="scroll-progress" style={{ scaleX: progress }} />
-      <div className={`design-grid ${gridVisible ? "design-grid-visible" : ""}`} aria-hidden="true">{Array.from({ length: 8 }, (_, index) => <i key={index} />)}</div>
-
-      <header className="header">
-        <nav className="frame header-inner">
-          <a className="brand" href="#home"><span>H</span>enrique <span>A</span>zevedo</a>
-          <div className="desktop-nav">{t.nav.map(([label, id], index) => <a href={`#${id}`} key={id}><i>0{index + 1}</i>{label}</a>)}</div>
-          <div className="header-tools">
-            <button onClick={() => setGridVisible(!gridVisible)} aria-label={t.grid} className={gridVisible ? "active" : ""}><FiGrid /></button>
-            <button onClick={() => setLanguage(language === "pt" ? "en" : "pt")} aria-label={t.language}><FiGlobe /><small>{language}</small></button>
-            <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={t.theme}>{theme === "dark" ? <FiSun /> : <FiMoon />}</button>
-            <button onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? t.close : t.menu} className="mobile-trigger">{menuOpen ? <FiX /> : <FiMenu />}</button>
-          </div>
-        </nav>
-        {menuOpen && <div className="mobile-nav frame">{t.nav.map(([label, id], index) => <a href={`#${id}`} key={id} onClick={() => setMenuOpen(false)}><i>0{index + 1}</i>{label}<FiArrowUpRight /></a>)}</div>}
+    <div className="site-shell">
+      <motion.div className="progress" style={{ scaleX: progress }} />
+      <header className="topbar">
+        <a className="monogram" href="#home" aria-label="Henrique Azevedo — início"><span>H</span><i>/</i><span>A</span></a>
+        <nav className="desktop-links" aria-label="Navegação principal">{t.nav.map(([label, target], index) => <a href={`#${target}`} key={target}><small>0{index + 1}</small>{label}</a>)}</nav>
+        <div className="top-actions"><button className="language-button" onClick={() => setLanguage(language === "pt" ? "en" : "pt")} aria-label={language === "pt" ? "Switch to English" : "Mudar para português"}>{t.language}</button><button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? t.close : t.menu}>{menuOpen ? <FiX /> : <FiMenu />}<span>{menuOpen ? t.close : t.menu}</span></button></div>
       </header>
 
+      <AnimatePresence>{menuOpen && <motion.div className="menu-panel" initial={{ clipPath: "inset(0 0 100% 0)" }} animate={{ clipPath: "inset(0 0 0% 0)" }} exit={{ clipPath: "inset(0 0 100% 0)" }} transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}><div className="menu-panel-meta"><span>PORTFOLIO / {year}</span><span>{t.based}</span></div><nav>{t.nav.map(([label, target], index) => <a href={`#${target}`} key={target} onClick={() => setMenuOpen(false)}><small>0{index + 1}</small><span>{label}</span><FiArrowUpRight /></a>)}</nav></motion.div>}</AnimatePresence>
+
       <main>
-        <section id="home" className="hero frame">
-          <motion.div className="hero-center" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <div className="availability"><i />{t.available}</div>
-            <p className="hero-role">{t.role}</p>
-            <h1><span>Henrique</span><span>Azevedo</span></h1>
-            <p className="hero-statement">{t.statement}</p>
-            <a href="#projects" className="pill-button">{t.explore}<FiArrowDown /></a>
-          </motion.div>
-          <div className="hero-foot"><span>© 2026</span><span>{t.based}</span><span>40.7° W · 23.5° S</span></div>
+        <section className="hero" id="home">
+          <div className="hero-side hero-side-left" aria-hidden="true"><span>﹁</span><b>開<br />発<br />者</b><span>﹂</span></div>
+          <div className="hero-side hero-side-right"><span>{t.status}</span><i /></div>
+          <motion.div className="hero-heading" initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}><p>{t.eyebrow}</p><h1><span>Henrique</span><span>Azevedo</span></h1></motion.div>
+          <div className="hero-bottom"><div className="hero-statement"><span>[ 01 ]</span><p>{t.heroLine}<br />{t.heroLine2}</p></div><p className="hero-note">{t.heroNote}</p><a className="round-link" href="#work" aria-label={t.scroll}><FiArrowDown /></a></div>
+          <div className="hero-coordinate"><span>{t.based}</span><span>23.5° S · 46.6° W</span></div>
         </section>
 
-        <div className="ticker" aria-hidden="true"><div>{[...stack, ...stack].map((item, index) => <span key={`${item}-${index}`}>{item}<i>✦</i></span>)}</div></div>
+        <section className="manifesto"><motion.div {...reveal}><p className="section-marker">[ {t.introLabel} ]</p><p className="manifesto-copy">{t.intro}</p></motion.div><div className="marquee" aria-hidden="true"><div>{[...expertise, ...expertise].map((item, index) => <span key={`${item}-${index}`}>{item}<i>✦</i></span>)}</div></div></section>
 
-        <section id="projects" className="page-section frame">
-          <motion.div {...reveal}><SectionTitle label={t.projectsLabel} title={t.projectsTitle} intro={t.projectsIntro} /></motion.div>
-          <div className="project-mosaic">
-            {projects.map((project, index) => <motion.a {...reveal} href={project.link} target="_blank" rel="noreferrer" className={`project-card project-${index + 1}`} key={project.title}>
-              <div className="project-image" style={{ backgroundColor: project.background }}><img src={project.image} alt={project.title} className={project.fit === "contain" ? "contain" : "cover"} /><span className="project-number">0{index + 1}</span><span className="project-arrow"><FiArrowUpRight /></span></div>
-              <div className="project-copy"><div className="project-meta"><span>{project.category[language]}</span><span>{project.year}</span></div><h3>{project.title}</h3><p>{project.description[language]}</p><div className="project-bottom"><div>{project.tags.map(tag => <small key={tag}>{tag}</small>)}</div><b>{t.open}<FiArrowUpRight /></b></div></div>
-            </motion.a>)}
+        <section className="work" id="work"><div className="work-head"><p>[ {t.workKicker} ]</p><h2>{t.workTitle}<sup>{projects.length}</sup></h2><span>{t.workIntro}</span></div><div className="projects-list">{projects.map((project, index) => <Project key={project.title} project={project} index={index} language={language} t={t} />)}</div></section>
+
+        <section className="about" id="about">
+          <div className="about-heading"><p>{t.aboutKicker}</p><motion.h2 {...reveal}>{t.aboutTitle.split("\n").map(line => <span key={line}>{line}</span>)}</motion.h2></div>
+          <div className="about-layout">
+            <motion.div className="portrait" {...reveal}><img src={profilePhoto} alt={t.portrait} /><span>{t.location}</span><i>HA / 26</i></motion.div>
+            <motion.div className="about-copy" {...reveal}><span>[ A ]</span><p>{t.aboutBody}</p><a href={`${import.meta.env.BASE_URL}${language === "pt" ? "Henrique Azevedo - Currículo - Desenvolvedor - (Português).pdf" : "Henrique Azevedo - Resume - Developer - (English).pdf"}`} target="_blank" rel="noreferrer">{t.resume}<FiDownload /></a></motion.div>
+            <motion.div className="about-now" {...reveal}><span>[ B / {t.now} ]</span><p>{t.nowBody}</p><i /></motion.div>
+            <motion.div className="expertise" {...reveal}><span>[ C / {t.services} ]</span>{expertise.map((item, index) => <div key={item}><small>{String(index + 1).padStart(2, "0")}</small><p>{item}</p></div>)}</motion.div>
           </div>
         </section>
 
-        <section id="about" className="page-section frame">
-          <motion.div {...reveal}><SectionTitle label={t.fragmentsLabel} title={t.fragmentsTitle} /></motion.div>
-          <div className="fragments">
-            <motion.div {...reveal} className="fragment fragment-about"><span className="fragment-label">01 / BIO</span><p>{t.aboutLead}</p><small>{t.aboutBody}</small><a href={`${import.meta.env.BASE_URL}${language === "pt" ? "Henrique Azevedo - Currículo - Desenvolvedor - (Português).pdf" : "Henrique Azevedo - Resume - Developer - (English).pdf"}`} target="_blank" rel="noreferrer">{t.resume}<FiDownload /></a></motion.div>
-            <motion.div {...reveal} className="fragment fragment-photo"><img src={profilePhoto} alt="Henrique Azevedo" /><span>São Paulo · Brasil</span></motion.div>
-            <motion.div {...reveal} className="fragment fragment-now"><span className="fragment-label">{t.currentLabel}</span><p>{t.current}</p><i className="live-dot" /></motion.div>
-            <motion.div {...reveal} className="fragment fragment-years"><strong>3+</strong><span>{t.years}</span></motion.div>
-            <motion.div {...reveal} className="fragment fragment-independent"><span className="fragment-label">{t.independentLabel}</span><p>{t.independent}</p></motion.div>
-            <motion.div {...reveal} className="fragment fragment-terminal"><div className="terminal-top"><span /><span /><span /><p>{t.terminalTitle}</p></div><div className="terminal-body">{t.terminalLines.map((line, index) => <p key={line} className={index === t.terminalLines.length - 1 ? "terminal-success" : ""}>{line}</p>)}</div></motion.div>
-            <motion.div {...reveal} className="fragment fragment-stack"><span className="fragment-label">{t.stackLabel}</span><div>{stack.map((item, index) => <b key={item}><i>{String(index + 1).padStart(2, "0")}</i>{item}</b>)}</div></motion.div>
-          </div>
-        </section>
+        <section className="experience" id="experience"><div className="experience-title"><p>[ {t.experience} ]</p><span>2023 — {year}</span></div>{experience.map((item, index) => <motion.article {...reveal} key={item.company}><span>0{index + 1}</span><div><small>{item.period}</small><h3>{item.company}</h3></div><p>{item.role}</p><small>{item.stack}</small></motion.article>)}</section>
 
-        <section id="experience" className="page-section frame">
-          <motion.div {...reveal}><SectionTitle label={t.experienceLabel} title={t.experienceTitle} /></motion.div>
-          <div className="resume-list">
-            {experiences.map((experience, index) => <motion.article {...reveal} key={experience.company} className="resume-item"><div className="resume-index">0{index + 1}</div><div className="resume-role"><span>{experience.period[language]}</span><h3>{experience.company}</h3><p>{experience.role[language]}</p></div><div className="resume-details"><p>{experience.summary[language]}</p><ul>{experience.work[language].map(item => <li key={item}>{item}</li>)}</ul><div>{experience.stack.map(item => <small key={item}>{item}</small>)}</div></div></motion.article>)}
-          </div>
-          <motion.div {...reveal} className="education-note"><span>{t.educationLabel}</span><p>{t.education}</p><i>↗</i></motion.div>
-        </section>
-
-        <section id="contact" className="contact frame">
-          <motion.div {...reveal}><p>{t.contactLabel}</p><h2>{t.contactTitle}</h2><span>{t.contactBody}</span><a className="pill-button" href="mailto:henriquee.aze.dev@gmail.com">{t.email}<FiMail /></a></motion.div>
-        </section>
+        <section className="contact" id="contact"><div className="contact-orbit" aria-hidden="true"><span>COME SAY HELLO · VAMOS CONVERSAR · </span></div><motion.div {...reveal} className="contact-main"><p>[ {t.contactKicker} ]</p><h2>{t.contactTitle.split("\n").map(line => <span key={line}>{line}</span>)}</h2><small>{t.contactBody}</small><a href="mailto:henriquee.aze.dev@gmail.com">{t.email}<FiMail /></a></motion.div><div className="contact-symbol" aria-hidden="true">你<br />好</div></section>
       </main>
 
-      <footer className="footer frame"><p>© 2026 · {t.footer}</p><div><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer">GitHub <FiArrowUpRight /></a><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer">LinkedIn <FiArrowUpRight /></a></div></footer>
+      <footer><div><span>© {year}</span><p>{t.copyright}</p></div><div className="socials"><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer"><FiGithub /> GitHub</a><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer"><FiLinkedin /> LinkedIn</a><a href="mailto:henriquee.aze.dev@gmail.com"><FiMail /> Email</a></div><a href="#home" className="back-top">{t.backTop}<FiArrowUpRight /></a></footer>
     </div>
   );
 }
