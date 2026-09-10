@@ -691,3 +691,30 @@ footer > a { justify-self:end; }
 .experience { background:var(--surface); }
 .career-card { background:var(--bg); }
 .timeline-runner { border-color:var(--surface); }
+
+/* Keep the about composition at a natural 100% reading scale. */
+.about-top,.about-manifesto,.about-spectrum { width:100%; max-width:1450px; margin-left:auto; margin-right:auto; }
+.about-top { grid-template-columns:minmax(0,1.65fr) minmax(260px,.55fr); gap:clamp(48px,6vw,96px); }
+.about-roles h2 { font-size:clamp(50px,5.1vw,84px); letter-spacing:-.06em; }
+.about-portrait { width:100%; max-width:350px; justify-self:end; }
+.about-spectrum { margin-top:clamp(70px,8vw,120px); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.about-spectrum-copy { display:grid; grid-template-columns:minmax(150px,.45fr) 1.55fr; gap:clamp(40px,8vw,120px); padding:clamp(38px,5vw,72px) 0; }
+.about-spectrum-copy > span { color:var(--blue); font:9px "DM Mono",monospace; text-transform:uppercase; }
+.about-spectrum-copy > p { max-width:900px; margin:0; color:var(--muted); font-size:clamp(19px,2vw,31px); line-height:1.45; letter-spacing:-.03em; }
+.about-marquee { overflow:hidden; padding:22px 0; border-top:1px solid var(--line); }
+.about-marquee > div { width:max-content; display:flex; align-items:center; }
+.about-marquee span { display:flex; align-items:center; gap:18px; padding-right:clamp(38px,5vw,80px); color:var(--text); font-size:clamp(22px,2.8vw,44px); letter-spacing:-.045em; white-space:nowrap; }
+.about-marquee i { color:var(--blue); font:18px "DM Mono",monospace; font-style:normal; }
+.contact { background:var(--bg); }
+footer { background:var(--surface); }
+
+@media (max-width:850px) {
+  .about-top { grid-template-columns:1fr; }
+  .about-portrait { max-width:420px; }
+  .about-spectrum-copy { grid-template-columns:1fr; gap:25px; }
+}
+
+@media (max-width:650px) {
+  .about-roles h2 { font-size:12vw; }
+  .about-portrait { max-width:none; }
+}

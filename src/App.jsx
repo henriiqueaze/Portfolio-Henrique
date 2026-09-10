@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useAnimationFrame, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
-import { FiArrowDown, FiArrowLeft, FiArrowUpRight, FiCode, FiDownload, FiGithub, FiLayers, FiLinkedin, FiMail, FiMenu, FiMoon, FiPlay, FiSun, FiZap, FiX } from "react-icons/fi";
+import { FiArrowDown, FiArrowLeft, FiArrowUpRight, FiDownload, FiGithub, FiLinkedin, FiMail, FiMenu, FiMoon, FiPlay, FiSun, FiX } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import profilePhoto from "./assets/images/henrique-picture.jpg";
 import cookIt from "./assets/images/projects/cook-it.jpg";
@@ -14,38 +14,143 @@ import freelancerLogo from "./assets/images/experiences/freelancer-logo.png";
 
 const content = {
   pt: {
-    nav: [["Início", "home"], ["Trabalhos", "work"], ["Sobre", "info"], ["Experiência", "experience"], ["Contato", "contact"]],
-    menu: "Menu", close: "Fechar", theme: "Alternar tema", language: "Switch to English",
-    folio: "Portfólio de", role: "Desenvolvedor Full-Stack", location: "São Paulo, Brasil",
-    hero: "Produtos digitais construídos de ponta a ponta — com intenção, desempenho e movimento.", explore: "Conheça meu trabalho",
-    aboutLabel: "Sobre mim", aboutRoles: ["Desenvolvedor full-stack.", "Visão de produto.", "Construtor de sistemas."],
-    aboutLead: "Sou Henrique Azevedo, desenvolvedor full-stack que trabalha entre produto, interface e infraestrutura.",
-    aboutBody: "Minha experiência passa por sistemas empresariais, produtos independentes e aplicações com impacto real. Transformo regras complexas em experiências claras, construindo desde a arquitetura e as APIs até a última interação da interface — sempre com atenção a desempenho, manutenção e contexto de negócio.",
-    resume: "Baixar currículo", based: "São Paulo, Brasil", available: "Disponível para projetos e oportunidades selecionadas", aboutMeta: "PRODUTO, CÓDIGO E MOVIMENTO / 2026",
-    aboutStatement: "Transformo problemas complexos em produtos digitais claros — da arquitetura que ninguém vê à experiência que todo mundo sente.",
-    aboutPillars: [{ title: "Pensar antes de construir", text: "Entendo o problema, o contexto e as pessoas antes de escolher a tecnologia.", icon: "layers" }, { title: "Do início ao produto", text: "Conecto interface, regras de negócio, APIs e dados em uma experiência coerente.", icon: "zap" }, { title: "Feito para continuar", text: "Desempenho, manutenção e evolução fazem parte da solução desde o primeiro commit.", icon: "code" }],
-    selected: "Trabalho selecionado", selectedTitle: "Projetos em movimento.", selectedText: "Arraste a faixa para explorar. Toque no projeto central para abrir sua apresentação.",
-    openPresentation: "Abrir projeto", drag: "Arraste para navegar", project: "Projeto", technologies: "Tecnologias", visit: "Visitar projeto", repository: "Ver repositório", closeProject: "Fechar projeto", videoPlaceholder: "Prévia do projeto",
-    all: "Todos os projetos", allTitle: "Arquivo de trabalhos.", allHint: "Passe o cursor sobre um projeto para visualizar sua identidade.", viewAll: "Ver todos os trabalhos", archiveBack: "Voltar ao portfólio",
-    experienceLabel: "Experiência", experienceTitle: "Experiência construída\nem produto real.", experienceIntro: "Do software empresarial aos produtos autorais, cada trabalho ampliou meu repertório técnico e meu olhar de produto.", responsibilities: "Principais frentes", projects: "Projetos", details: "Ver detalhes",
-    contactLabel: "Contato", contactQuestion: "Tem uma ideia que precisa sair do papel?", contactBody: "Conte o que você quer construir — um produto novo, uma experiência melhor ou uma solução para um problema real. Vamos encontrar um caminho claro, tecnicamente sólido e com personalidade.", choose: "Escolha o canal que preferir:", write: "E-mail", whatsapp: "Abrir WhatsApp", back: "Voltar ao topo", footer: "Projetado e desenvolvido por Henrique Azevedo",
+    nav: [
+      ["Início", "home"],
+      ["Trabalhos", "work"],
+      ["Sobre", "info"],
+      ["Experiência", "experience"],
+      ["Contato", "contact"],
+    ],
+    menu: "Menu",
+    close: "Fechar",
+    theme: "Alternar tema",
+    language: "Switch to English",
+    folio: "Portfólio de",
+    role: "Desenvolvedor Full-Stack",
+    location: "São Paulo, Brasil",
+    hero: "Produtos digitais construídos de ponta a ponta — com intenção, desempenho e movimento.",
+    explore: "Conheça meu trabalho",
+    aboutLabel: "Sobre mim",
+    aboutRoles: [
+      "Desenvolvedor full-stack.",
+      "Qualidade de software.",
+      "Analista de sistemas.",
+    ],
+    aboutLead:
+      "Sou Henrique Azevedo, desenvolvedor full-stack que trabalha entre produto, interface e infraestrutura.",
+    aboutBody:
+      "Minha experiência passa por sistemas empresariais, produtos independentes e aplicações com impacto real. Transformo regras complexas em experiências claras, construindo desde a arquitetura e as APIs até a última interação da interface — sempre com atenção a desempenho, manutenção e contexto de negócio.",
+    resume: "Baixar currículo",
+    based: "São Paulo, Brasil",
+    available: "Disponível para projetos e oportunidades selecionadas",
+    aboutMeta: "CÓDIGO, SOFTWARE E ARQUITETURA / 2026",
+    aboutStatement:
+      "Construo software com visão de produto — sólido por dentro, simples de usar e preparado para evoluir.",
+    aboutSupport:
+      "Meu trabalho atravessa todo o produto. Entendo a necessidade, desenho a solução e conecto interface, regras de negócio, APIs e dados até a entrega.",
+    aboutCapabilities: ["Produto digital", "Front-end", "Back-end", "Arquitetura", "Qualidade", "Evolução contínua"],
+    selectedTitle: "Projetos em movimento.",
+    selectedText:
+      "Arraste a faixa para explorar. Toque no projeto central para abrir sua apresentação.",
+    openPresentation: "Abrir projeto",
+    drag: "Arraste para navegar",
+    project: "Projeto",
+    technologies: "Tecnologias",
+    visit: "Visitar projeto",
+    repository: "Ver repositório",
+    closeProject: "Fechar projeto",
+    videoPlaceholder: "Prévia do projeto",
+    all: "Todos os projetos",
+    allTitle: "Arquivo de trabalhos.",
+    allHint: "Passe o cursor sobre um projeto para visualizar sua identidade.",
+    viewAll: "Ver todos os trabalhos",
+    archiveBack: "Voltar ao portfólio",
+    experienceLabel: "Experiência",
+    experienceTitle: "Experiência construída\nem produto real.",
+    experienceIntro:
+      "Do software empresarial aos produtos autorais, cada trabalho ampliou meu repertório técnico e meu olhar de produto.",
+    responsibilities: "Principais frentes",
+    projects: "Projetos",
+    details: "Ver detalhes",
+    contactLabel: "Contato",
+    contactQuestion: "Entre em contato!",
+    contactBody:
+      "Me conta o que você tem em mente. Pode ser um produto novo, uma ideia que ainda está tomando forma ou um problema que precisa de uma boa solução. A gente pensa no melhor caminho para transformar isso em algo real, bem feito e com personalidade.",
+    choose: "Escolha o canal que preferir:",
+    write: "E-mail",
+    whatsapp: "Abrir WhatsApp",
+    back: "Voltar ao topo",
+    footer: "Projetado e desenvolvido por Henrique Azevedo",
   },
   en: {
-    nav: [["Home", "home"], ["Work", "work"], ["About", "info"], ["Experience", "experience"], ["Contact", "contact"]],
-    menu: "Menu", close: "Close", theme: "Toggle theme", language: "Mudar para português",
-    folio: "Portfolio of", role: "Full-Stack Developer", location: "São Paulo, Brazil",
-    hero: "End-to-end digital products — built with intention, performance and motion.", explore: "Discover my work",
-    aboutLabel: "About me", aboutRoles: ["Full-stack developer.", "Product-minded.", "Systems builder."],
-    aboutLead: "I'm Henrique Azevedo, a full-stack developer working across product, interface and infrastructure.",
-    aboutBody: "My experience spans business systems, independent products and applications with real-world impact. I turn complex rules into clear experiences, building from architecture and APIs to the last interface interaction — always considering performance, maintainability and business context.",
-    resume: "Download résumé", based: "São Paulo, Brazil", available: "Available for selected projects and opportunities", aboutMeta: "PRODUCT, CODE AND MOTION / 2026",
-    aboutStatement: "I turn complex problems into clear digital products — from the architecture no one sees to the experience everyone feels.",
-    aboutPillars: [{ title: "Think before building", text: "I understand the problem, context and people before choosing the technology.", icon: "layers" }, { title: "From start to product", text: "I connect interface, business rules, APIs and data into one coherent experience.", icon: "zap" }, { title: "Built to keep going", text: "Performance, maintenance and evolution are part of the solution from the first commit.", icon: "code" }],
-    selected: "Selected work", selectedTitle: "Projects in motion.", selectedText: "Drag the reel to explore. Select the centered project to open its presentation.",
-    openPresentation: "Open project", drag: "Drag to browse", project: "Project", technologies: "Technologies", visit: "Visit project", repository: "View repository", closeProject: "Close project", videoPlaceholder: "Project preview",
-    all: "All projects", allTitle: "Work archive.", allHint: "Move your cursor over a project to reveal its identity.", viewAll: "View all work", archiveBack: "Back to portfolio",
-    experienceLabel: "Experience", experienceTitle: "Experience built\nthrough real products.", experienceIntro: "From enterprise software to independent products, each engagement expanded my technical range and product perspective.", responsibilities: "Primary focus", projects: "Projects", details: "View details",
-    contactLabel: "Contact", contactQuestion: "Have an idea that needs to become real?", contactBody: "Tell me what you want to build — a new product, a better experience or a solution to a real problem. Let's find a clear, technically sound path with personality.", choose: "Choose the channel you prefer:", write: "Email", whatsapp: "Open WhatsApp", back: "Back to top", footer: "Designed and developed by Henrique Azevedo",
+    nav: [
+      ["Home", "home"],
+      ["Work", "work"],
+      ["About", "info"],
+      ["Experience", "experience"],
+      ["Contact", "contact"],
+    ],
+    menu: "Menu",
+    close: "Close",
+    theme: "Toggle theme",
+    language: "Mudar para português",
+    folio: "Portfolio of",
+    role: "Full-Stack Developer",
+    location: "São Paulo, Brazil",
+    hero: "End-to-end digital products — built with intention, performance and motion.",
+    explore: "Discover my work",
+    aboutLabel: "About me",
+    aboutRoles: [
+      "Full-stack developer.",
+      "Product-minded.",
+      "Systems builder.",
+    ],
+    aboutLead:
+      "I'm Henrique Azevedo, a full-stack developer working across product, interface and infrastructure.",
+    aboutBody:
+      "My experience spans business systems, independent products and applications with real-world impact. I turn complex rules into clear experiences, building from architecture and APIs to the last interface interaction — always considering performance, maintainability and business context.",
+    resume: "Download résumé",
+    based: "São Paulo, Brazil",
+    available: "Available for selected projects and opportunities",
+    aboutMeta: "PRODUCT, CODE AND MOTION / 2026",
+    aboutStatement:
+      "I build software with a product mindset — solid underneath, simple to use and ready to evolve.",
+    aboutSupport:
+      "My work spans the entire product. I understand the need, shape the solution and connect interface, business rules, APIs and data through delivery.",
+    aboutCapabilities: ["Digital product", "Front-end", "Back-end", "Architecture", "Quality", "Continuous evolution"],
+    selected: "Selected work",
+    selectedTitle: "Projects in motion.",
+    selectedText:
+      "Drag the reel to explore. Select the centered project to open its presentation.",
+    openPresentation: "Open project",
+    drag: "Drag to browse",
+    project: "Project",
+    technologies: "Technologies",
+    visit: "Visit project",
+    repository: "View repository",
+    closeProject: "Close project",
+    videoPlaceholder: "Project preview",
+    all: "All projects",
+    allTitle: "Work archive.",
+    allHint: "Move your cursor over a project to reveal its identity.",
+    viewAll: "View all work",
+    archiveBack: "Back to portfolio",
+    experienceLabel: "Experience",
+    experienceTitle: "Experience built\nthrough real products.",
+    experienceIntro:
+      "From enterprise software to independent products, each engagement expanded my technical range and product perspective.",
+    responsibilities: "Primary focus",
+    projects: "Projects",
+    details: "View details",
+    contactLabel: "Contact",
+    contactQuestion: "Have an idea that needs to become real?",
+    contactBody:
+      "Tell me what you want to build — a new product, a better experience or a solution to a real problem. Let's find a clear, technically sound path with personality.",
+    choose: "Choose the channel you prefer:",
+    write: "Email",
+    whatsapp: "Open WhatsApp",
+    back: "Back to top",
+    footer: "Designed and developed by Henrique Azevedo",
   },
 };
 
@@ -162,9 +267,12 @@ export default function App() {
         <div className="about-manifesto">
           <motion.span {...reveal}>[ {t.aboutLabel} ]</motion.span><motion.p {...reveal}>{t.aboutStatement}</motion.p>
         </div>
-        <div className="about-pillars">{t.aboutPillars.map((item, index) => { const Icon = item.icon === "layers" ? FiLayers : item.icon === "zap" ? FiZap : FiCode; return <motion.article key={item.title} initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} transition={{ delay: index * .1, duration: .7 }} whileHover={{ y: -12 }}><div><span>0{index + 1}</span><Icon /></div><h3>{item.title}</h3><p>{item.text}</p></motion.article>; })}</div>
+        <motion.div className="about-spectrum" {...reveal}>
+          <div className="about-spectrum-copy"><span>{language === "pt" ? "Da ideia à entrega" : "From idea to delivery"}</span><p>{t.aboutSupport}</p></div>
+          <div className="about-marquee" aria-label={t.aboutCapabilities.join(", ")}><motion.div animate={{ x: ["0%", "-50%"] }} transition={{ duration: 24, repeat: Infinity, ease: "linear" }}>{[...t.aboutCapabilities, ...t.aboutCapabilities].map((item, index) => <span key={`${item}-${index}`}>{item}<i>↗</i></span>)}</motion.div></div>
+        </motion.div>
       </section>
-      <section className="selected-work" id="work"><div className="selected-interface"><p>Henrique Azevedo</p><span>{t.drag}</span></div><ProjectReel language={language} onOpen={setProjectOpen} /><a className="all-work-cta" href="/trabalhos">{t.viewAll}<FiArrowUpRight /></a><div className="selected-bottom"><span>{t.selected}</span><span>Featured / Full</span></div></section>
+      <section className="selected-work" id="work"><div className="selected-interface"><p>Projetos Selecionados</p><span>{t.drag}</span></div><ProjectReel language={language} onOpen={setProjectOpen} /><a className="all-work-cta" href="/trabalhos">{t.viewAll}<FiArrowUpRight /></a><div className="selected-bottom"><span>{t.selected}</span></div></section>
       <ExperienceSection language={language} />
       <section className="contact" id="contact"><div className="contact-direct"><motion.div className="contact-copy" {...reveal}><p>{t.contactLabel}</p><h2>{t.contactQuestion}</h2><span>{t.contactBody}</span></motion.div><motion.div className="contact-side" {...reveal}><p>{t.choose}</p><ul className="contact-channels"><li><a href="https://wa.me/" target="_blank" rel="noreferrer"><span>01</span><span><strong><FaWhatsapp />WhatsApp</strong><small>{t.whatsapp}</small></span><FiArrowUpRight /></a></li><li><a href="mailto:henriquee.aze.dev@gmail.com"><span>02</span><span><strong><FiMail />{t.write}</strong><small>henriquee.aze.dev@gmail.com</small></span><FiArrowUpRight /></a></li><li><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer"><span>03</span><span><strong><FiLinkedin />LinkedIn</strong><small>/in/henrique-azevedo</small></span><FiArrowUpRight /></a></li><li><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer"><span>04</span><span><strong><FiGithub />GitHub</strong><small>@henriiqueaze</small></span><FiArrowUpRight /></a></li></ul></motion.div></div></section>
     </main>}
