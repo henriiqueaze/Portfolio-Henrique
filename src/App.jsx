@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useAnimationFrame, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
-import { FiArrowDown, FiArrowLeft, FiArrowUpRight, FiDownload, FiGithub, FiLinkedin, FiMail, FiMenu, FiMoon, FiPlay, FiSun, FiX } from "react-icons/fi";
+import { FiArrowDown, FiArrowLeft, FiArrowUpRight, FiDownload, FiGithub, FiLinkedin, FiMail, FiMenu, FiMoon, FiPause, FiPlay, FiSun, FiX } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import { FaBootstrap, FaCss3Alt, FaDatabase, FaDocker, FaGitAlt, FaGithub as FaGithubBrand, FaHtml5, FaJava, FaJsSquare, FaNodeJs, FaPython, FaReact } from "react-icons/fa";
+import { SiAngular, SiDjango, SiDotnet, SiSpringboot, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { TbBrandAzure, TbBrandCSharp } from "react-icons/tb";
 import profilePhoto from "./assets/images/henrique-picture.jpg";
 import cookIt from "./assets/images/projects/cook-it.jpg";
 import studentProgress from "./assets/images/projects/student-progress-logo.png";
@@ -166,6 +169,10 @@ const experiences = [
   { period: { pt: "Jun 2023 — Hoje", en: "Jun 2023 — Present" }, company: "Independent / Freelance", role: "Full-Stack Developer", logo: freelancerLogo, location: { pt: "Remoto", en: "Remote" }, summary: { pt: "Criação de aplicações web completas, da descoberta e arquitetura à interface, publicação e evolução contínua.", en: "Building complete web applications, from discovery and architecture to interface, deployment and continuous evolution." }, items: { pt: ["APIs REST modernas e autenticação", "Modelagem de bancos de dados escaláveis", "Interfaces com React e Angular", "Deploy, Git e refatoração contínua"], en: ["Modern REST APIs and authentication", "Scalable database modeling", "Interfaces with React and Angular", "Deployment, Git and continuous refactoring"] }, products: ["Cook—It", "Sociau", "StudentProgress"], tech: ["Java", "Spring Boot", "TypeScript", "Angular", "React", "PostgreSQL", "Docker"] },
 ];
 
+const technologies = [
+  ["Java", <FaJava />], ["Spring Boot", <SiSpringboot />], ["C#", <TbBrandCSharp />], ["ASP.NET", <SiDotnet />], ["Python", <FaPython />], ["Django", <SiDjango />], ["JavaScript", <FaJsSquare />], ["TypeScript", <SiTypescript />], ["React", <FaReact />], ["Angular", <SiAngular />], ["Node.js", <FaNodeJs />], ["SQL", <FaDatabase />], ["HTML5", <FaHtml5 />], ["CSS3", <FaCss3Alt />], ["Tailwind", <SiTailwindcss />], ["Bootstrap", <FaBootstrap />], ["Docker", <FaDocker />], ["Git", <FaGitAlt />], ["GitHub", <FaGithubBrand />], ["Azure", <TbBrandAzure />],
+];
+
 const reveal = { initial: { opacity: 0, y: 50, filter: "blur(12px)" }, whileInView: { opacity: 1, y: 0, filter: "blur(0px)" }, viewport: { once: true, margin: "-10%" }, transition: { duration: .85, ease: [0.16, 1, .3, 1] } };
 
 function ProjectDialog({ project, language, onClose }) {
@@ -240,6 +247,18 @@ function AboutStory({ language }) {
   </section>;
 }
 
+function TechnologyLoop({ language }) {
+  const [paused, setPaused] = useState(false);
+  const repeated = [...technologies, ...technologies];
+  const label = language === "pt" ? "Tecnologias que utilizo" : "Technologies I use";
+  return <div className="technology-loop" role="region" aria-label={label}>
+    <div className="technology-loop-fade left" aria-hidden="true" />
+    <div className="technology-loop-fade right" aria-hidden="true" />
+    <div className={`technology-loop-track${paused ? " paused" : ""}`}>{repeated.map(([name, icon], index) => <span className="technology-loop-item" key={`${name}-${index}`} aria-hidden={index >= technologies.length}>{icon}<b>{name}</b></span>)}</div>
+    <button type="button" onClick={() => setPaused(value => !value)} aria-label={paused ? (language === "pt" ? "Continuar movimento das tecnologias" : "Resume technology movement") : (language === "pt" ? "Pausar movimento das tecnologias" : "Pause technology movement")} aria-pressed={paused}>{paused ? <FiPlay /> : <FiPause />}</button>
+  </div>;
+}
+
 function ExperienceSection({ language }) {
   const t = content[language];
   const timelineRef = useRef(null);
@@ -247,6 +266,7 @@ function ExperienceSection({ language }) {
   const runnerTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   return <section className="experience" id="experience">
     <motion.h2 {...reveal}>{t.experienceLabel}</motion.h2>
+    <TechnologyLoop language={language} />
     <div className="career-timeline" ref={timelineRef}>
       <span className="timeline-rail" aria-hidden="true" /><motion.span className="timeline-progress" style={{ scaleY: scrollYProgress }} aria-hidden="true" /><motion.span className="timeline-runner" style={{ top: runnerTop }} aria-hidden="true" />
       {experiences.map((item, index) => <motion.article className={index % 2 === 0 ? "left" : "right"} key={item.company} initial={{ opacity: 0, x: index % 2 === 0 ? -90 : 90, rotate: index % 2 === 0 ? -2 : 2 }} whileInView={{ opacity: 1, x: 0, rotate: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .85, ease: [0.16, 1, .3, 1] }}>
