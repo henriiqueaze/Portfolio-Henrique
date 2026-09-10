@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
-import { FiArrowDown, FiArrowUpRight, FiDownload, FiGithub, FiLinkedin, FiMenu, FiMoon, FiPlay, FiSun, FiX } from "react-icons/fi";
+import { AnimatePresence, motion, useAnimationFrame, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
+import { FiArrowDown, FiArrowLeft, FiArrowUpRight, FiCode, FiDownload, FiGithub, FiLayers, FiLinkedin, FiMail, FiMenu, FiMoon, FiPlay, FiSun, FiZap, FiX } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 import profilePhoto from "./assets/images/henrique-picture.jpg";
 import cookIt from "./assets/images/projects/cook-it.jpg";
 import studentProgress from "./assets/images/projects/student-progress-logo.png";
@@ -17,15 +18,17 @@ const content = {
     menu: "Menu", close: "Fechar", theme: "Alternar tema", language: "Switch to English",
     folio: "Portfólio de", role: "Desenvolvedor Full-Stack", location: "São Paulo, Brasil",
     hero: "Produtos digitais construídos de ponta a ponta — com intenção, desempenho e movimento.", explore: "Conheça meu trabalho",
-    aboutLabel: "Sobre mim", aboutRoles: ["Full-stack developer.", "Product-minded.", "Construtor de sistemas."],
+    aboutLabel: "Sobre mim", aboutRoles: ["Desenvolvedor full-stack.", "Visão de produto.", "Construtor de sistemas."],
     aboutLead: "Sou Henrique Azevedo, desenvolvedor full-stack que trabalha entre produto, interface e infraestrutura.",
     aboutBody: "Minha experiência passa por sistemas empresariais, produtos independentes e aplicações com impacto real. Transformo regras complexas em experiências claras, construindo desde a arquitetura e as APIs até a última interação da interface — sempre com atenção a desempenho, manutenção e contexto de negócio.",
-    resume: "Baixar currículo", based: "São Paulo, Brasil", available: "Disponível para projetos e oportunidades selecionadas",
+    resume: "Baixar currículo", based: "São Paulo, Brasil", available: "Disponível para projetos e oportunidades selecionadas", aboutMeta: "PRODUTO, CÓDIGO E MOVIMENTO / 2026",
+    aboutStatement: "Código é ferramenta. O objetivo é criar produtos que funcionem, evoluam e façam sentido para quem usa.",
+    aboutPillars: [{ title: "Pensar antes de construir", text: "Entendo o problema, o contexto e as pessoas antes de escolher a tecnologia.", icon: "layers" }, { title: "Do início ao produto", text: "Conecto interface, regras de negócio, APIs e dados em uma experiência coerente.", icon: "zap" }, { title: "Feito para continuar", text: "Desempenho, manutenção e evolução fazem parte da solução desde o primeiro commit.", icon: "code" }],
     selected: "Trabalho selecionado", selectedTitle: "Projetos em movimento.", selectedText: "Arraste a faixa para explorar. Toque no projeto central para abrir sua apresentação.",
     openPresentation: "Abrir projeto", drag: "Arraste para navegar", project: "Projeto", technologies: "Tecnologias", visit: "Visitar projeto", repository: "Ver repositório", closeProject: "Fechar projeto", videoPlaceholder: "Prévia do projeto",
-    all: "Todos os projetos", allTitle: "Arquivo de trabalhos.", allHint: "Passe o cursor sobre um projeto para visualizar sua identidade.",
+    all: "Todos os projetos", allTitle: "Arquivo de trabalhos.", allHint: "Passe o cursor sobre um projeto para visualizar sua identidade.", viewAll: "Ver todos os trabalhos", archiveBack: "Voltar ao portfólio",
     experienceLabel: "Experiência", experienceTitle: "Experiência construída\nem produto real.", experienceIntro: "Do software empresarial aos produtos autorais, cada trabalho ampliou meu repertório técnico e meu olhar de produto.", responsibilities: "Principais frentes", projects: "Projetos", details: "Ver detalhes",
-    contactLabel: "Contato", contactQuestion: "Tem uma ideia que precisa sair do papel?", contactBody: "Conte o que você quer construir — um produto novo, uma experiência melhor ou uma solução para um problema real. Vamos encontrar um caminho claro, tecnicamente sólido e com personalidade.", choose: "Escolha o canal que preferir:", create: "Vamos criar\nalgo real.", write: "E-mail", copyEmail: "Copiar e-mail", copied: "Copiado", back: "Voltar ao topo", footer: "Projetado e desenvolvido por Henrique Azevedo",
+    contactLabel: "Contato", contactQuestion: "Tem uma ideia que precisa sair do papel?", contactBody: "Conte o que você quer construir — um produto novo, uma experiência melhor ou uma solução para um problema real. Vamos encontrar um caminho claro, tecnicamente sólido e com personalidade.", choose: "Escolha o canal que preferir:", write: "E-mail", whatsapp: "Abrir WhatsApp", back: "Voltar ao topo", footer: "Projetado e desenvolvido por Henrique Azevedo",
   },
   en: {
     nav: [["Home", "home"], ["Work", "work"], ["About", "info"], ["Experience", "experience"], ["Contact", "contact"]],
@@ -35,12 +38,14 @@ const content = {
     aboutLabel: "About me", aboutRoles: ["Full-stack developer.", "Product-minded.", "Systems builder."],
     aboutLead: "I'm Henrique Azevedo, a full-stack developer working across product, interface and infrastructure.",
     aboutBody: "My experience spans business systems, independent products and applications with real-world impact. I turn complex rules into clear experiences, building from architecture and APIs to the last interface interaction — always considering performance, maintainability and business context.",
-    resume: "Download résumé", based: "São Paulo, Brazil", available: "Available for selected projects and opportunities",
+    resume: "Download résumé", based: "São Paulo, Brazil", available: "Available for selected projects and opportunities", aboutMeta: "PRODUCT, CODE AND MOTION / 2026",
+    aboutStatement: "Code is a tool. The goal is to create products that work, evolve and make sense to the people using them.",
+    aboutPillars: [{ title: "Think before building", text: "I understand the problem, context and people before choosing the technology.", icon: "layers" }, { title: "From start to product", text: "I connect interface, business rules, APIs and data into one coherent experience.", icon: "zap" }, { title: "Built to keep going", text: "Performance, maintenance and evolution are part of the solution from the first commit.", icon: "code" }],
     selected: "Selected work", selectedTitle: "Projects in motion.", selectedText: "Drag the reel to explore. Select the centered project to open its presentation.",
     openPresentation: "Open project", drag: "Drag to browse", project: "Project", technologies: "Technologies", visit: "Visit project", repository: "View repository", closeProject: "Close project", videoPlaceholder: "Project preview",
-    all: "All projects", allTitle: "Work archive.", allHint: "Move your cursor over a project to reveal its identity.",
+    all: "All projects", allTitle: "Work archive.", allHint: "Move your cursor over a project to reveal its identity.", viewAll: "View all work", archiveBack: "Back to portfolio",
     experienceLabel: "Experience", experienceTitle: "Experience built\nthrough real products.", experienceIntro: "From enterprise software to independent products, each engagement expanded my technical range and product perspective.", responsibilities: "Primary focus", projects: "Projects", details: "View details",
-    contactLabel: "Contact", contactQuestion: "Have an idea that needs to become real?", contactBody: "Tell me what you want to build — a new product, a better experience or a solution to a real problem. Let's find a clear, technically sound path with personality.", choose: "Choose the channel you prefer:", create: "Let's make\nsomething real.", write: "Email", copyEmail: "Copy email", copied: "Copied", back: "Back to top", footer: "Designed and developed by Henrique Azevedo",
+    contactLabel: "Contact", contactQuestion: "Have an idea that needs to become real?", contactBody: "Tell me what you want to build — a new product, a better experience or a solution to a real problem. Let's find a clear, technically sound path with personality.", choose: "Choose the channel you prefer:", write: "Email", whatsapp: "Open WhatsApp", back: "Back to top", footer: "Designed and developed by Henrique Azevedo",
   },
 };
 
@@ -75,10 +80,22 @@ function ProjectDialog({ project, language, onClose }) {
 
 function ProjectReel({ language, onOpen }) {
   const t = content[language];
+  const trackRef = useRef(null); const reelX = useMotionValue(0); const loopWidth = useRef(1); const paused = useRef(false); const clickGuard = useRef(0);
+  useEffect(() => {
+    const measure = () => { if (trackRef.current) loopWidth.current = trackRef.current.scrollWidth / 2; };
+    measure(); window.addEventListener("resize", measure); return () => window.removeEventListener("resize", measure);
+  }, []);
+  useAnimationFrame((_, delta) => {
+    if (paused.current || loopWidth.current <= 1) return;
+    let next = reelX.get() - Math.min(delta, 40) * .034;
+    if (next <= -loopWidth.current) next += loopWidth.current;
+    reelX.set(next);
+  });
+  const repeatedProjects = [...projects, ...projects];
   return <div className="project-reel">
-    <div className="reel-viewport"><motion.div className="reel-track" drag="x" dragConstraints={{ left: -3550, right: 0 }} dragElastic={.12} dragMomentum transition={{ type: "spring", stiffness: 90, damping: 24 }}>
-      {projects.map((project, index) => <motion.button key={project.title} className="reel-card" style={{ "--project-accent": project.accent, "--card-ratio": index % 3 === 2 ? "1.38" : index % 2 ? "1.66" : "1.75" }} whileHover={{ y: -6 }} onClick={() => onOpen(project)} aria-label={`${t.openPresentation}: ${project.title}`}>
-        <motion.div className="reel-media" layoutId={`project-${project.title}`}><img src={project.image} alt="" className={project.fit} /><div className="reel-shade" /><div className="reel-meta"><span>{project.title}</span><small>{project.category[language]}</small></div><div className="reel-play"><FiPlay /></div></motion.div>
+    <div className="reel-viewport"><motion.div ref={trackRef} className="reel-track" style={{ x: reelX }} drag="x" dragConstraints={{ left: -100000, right: 100000 }} dragElastic={0} dragMomentum onDragStart={() => { paused.current = true; }} onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 5) clickGuard.current = Date.now() + 420; const width = loopWidth.current; if (width > 1) { let normalized = reelX.get() % width; if (normalized > 0) normalized -= width; reelX.set(normalized); } window.setTimeout(() => { paused.current = false; }, 120); }}>
+      {repeatedProjects.map((project, index) => <motion.button key={`${project.title}-${index}`} className="reel-card" style={{ "--project-accent": project.accent, "--card-ratio": index % 3 === 2 ? "1.38" : index % 2 ? "1.66" : "1.75" }} whileHover={{ y: -6 }} onClick={() => { if (Date.now() > clickGuard.current) onOpen(project); }} aria-label={`${t.openPresentation}: ${project.title}`}>
+        <motion.div className="reel-media"><img src={project.image} alt="" className={project.fit} /><div className="reel-shade" /><div className="reel-meta"><span>{project.title}</span><small>{project.category[language]}</small></div><div className="reel-play"><FiPlay /></div></motion.div>
       </motion.button>)}
     </motion.div></div>
   </div>;
@@ -94,9 +111,13 @@ function ProjectArchive({ language }) {
 
 function ExperienceSection({ language }) {
   const t = content[language];
+  const timelineRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ["start 72%", "end 32%"] });
+  const runnerTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   return <section className="experience" id="experience">
     <motion.h2 {...reveal}>{t.experienceLabel}</motion.h2>
-    <div className="career-timeline">
+    <div className="career-timeline" ref={timelineRef}>
+      <span className="timeline-rail" aria-hidden="true" /><motion.span className="timeline-progress" style={{ scaleY: scrollYProgress }} aria-hidden="true" /><motion.span className="timeline-runner" style={{ top: runnerTop }} aria-hidden="true" />
       {experiences.map((item, index) => <motion.article className={index % 2 === 0 ? "left" : "right"} key={item.company} initial={{ opacity: 0, x: index % 2 === 0 ? -90 : 90, rotate: index % 2 === 0 ? -2 : 2 }} whileInView={{ opacity: 1, x: 0, rotate: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .85, ease: [0.16, 1, .3, 1] }}>
         <span className="timeline-dot" />
         <motion.div className="career-card" whileHover={{ y: -10, rotate: index % 2 === 0 ? -.5 : .5 }} transition={{ type: "spring", stiffness: 220, damping: 18 }}>
@@ -118,6 +139,8 @@ export default function App() {
   const heroRef = useRef(null); const mouseX = useMotionValue(0); const mouseY = useMotionValue(0);
   const tiltX = useSpring(useTransform(mouseY, [-.5, .5], [10, -10]), { stiffness: 80, damping: 18 }); const tiltY = useSpring(useTransform(mouseX, [-.5, .5], [-13, 13]), { stiffness: 80, damping: 18 });
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] }); const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]); const heroOpacity = useTransform(scrollYProgress, [0, .9], [1, .18]); const t = content[language];
+  const isWorkArchive = window.location.pathname.replace(/\/+$/, "") === "/trabalhos";
+  const navHref = id => isWorkArchive ? `/#${id}` : `#${id}`;
   useEffect(() => { document.documentElement.dataset.theme = theme; localStorage.setItem("portfolio-theme", theme); }, [theme]);
   useEffect(() => { document.documentElement.lang = language === "pt" ? "pt-BR" : "en"; localStorage.setItem("portfolio-language", language); }, [language]);
   useEffect(() => { document.body.classList.toggle("locked", menuOpen || Boolean(projectOpen)); return () => document.body.classList.remove("locked"); }, [menuOpen, projectOpen]);
@@ -127,26 +150,25 @@ export default function App() {
   }, []);
   function pointerMove(event) { mouseX.set(event.clientX / window.innerWidth - .5); mouseY.set(event.clientY / window.innerHeight - .5); }
   return <div className="site" onPointerMove={pointerMove}>
-    <header className="header"><a href="#home" className="logo" aria-label="Henrique Azevedo">H<span>/</span>A</a><nav>{t.nav.map(([label, id], index) => <a href={`#${id}`} key={id}><small>0{index + 1}</small><span>{label}</span></a>)}</nav><div className="header-actions"><button onClick={() => setLanguage(language === "pt" ? "en" : "pt")} aria-label={t.language}>{language === "pt" ? "EN" : "PT"}</button><button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={t.theme}>{theme === "dark" ? <FiSun /> : <FiMoon />}</button><button className="menu-trigger" onClick={() => setMenuOpen(true)} aria-label={t.menu}><FiMenu /></button></div></header>
-    <AnimatePresence>{menuOpen && <motion.div className="menu" initial={{ clipPath: "inset(0 0 100% 0)" }} animate={{ clipPath: "inset(0 0 0% 0)" }} exit={{ clipPath: "inset(0 0 100% 0)" }} transition={{ duration: .65, ease: [0.76, 0, .24, 1] }}><div><span>H/A — 2026</span><button onClick={() => setMenuOpen(false)}>{t.close}<FiX /></button></div><nav>{t.nav.map(([label, id], index) => <a href={`#${id}`} key={id} onClick={() => setMenuOpen(false)}><small>0{index + 1}</small><span>{label}</span><FiArrowUpRight /></a>)}</nav></motion.div>}</AnimatePresence>
-    <main>
+    <header className="header"><a href={navHref("home")} className="logo" aria-label="Henrique Azevedo">H<span>/</span>A</a><nav>{t.nav.map(([label, id], index) => <a href={navHref(id)} key={id}><small>0{index + 1}</small><span>{label}</span></a>)}</nav><div className="header-actions"><button onClick={() => setLanguage(language === "pt" ? "en" : "pt")} aria-label={t.language}>{language === "pt" ? "EN" : "PT"}</button><button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={t.theme}>{theme === "dark" ? <FiSun /> : <FiMoon />}</button><button className="menu-trigger" onClick={() => setMenuOpen(true)} aria-label={t.menu}><FiMenu /></button></div></header>
+    <AnimatePresence>{menuOpen && <motion.div className="menu" initial={{ clipPath: "inset(0 0 100% 0)" }} animate={{ clipPath: "inset(0 0 0% 0)" }} exit={{ clipPath: "inset(0 0 100% 0)" }} transition={{ duration: .65, ease: [0.76, 0, .24, 1] }}><div><span>H/A — 2026</span><button onClick={() => setMenuOpen(false)}>{t.close}<FiX /></button></div><nav>{t.nav.map(([label, id], index) => <a href={navHref(id)} key={id} onClick={() => setMenuOpen(false)}><small>0{index + 1}</small><span>{label}</span><FiArrowUpRight /></a>)}</nav></motion.div>}</AnimatePresence>
+    {isWorkArchive ? <main className="work-route"><a className="archive-back" href="/"><FiArrowLeft />{t.archiveBack}</a><ProjectArchive language={language} /></main> : <main>
       <section className="hero" id="home" ref={heroRef}><motion.div className="hero-image" style={{ scale: heroScale, opacity: heroOpacity }}><div /></motion.div><div className="hero-grid" aria-hidden="true" /><motion.div className="hero-monogram" style={{ rotateX: tiltX, rotateY: tiltY }} aria-hidden="true"><span>H</span><i>A</i><b>H</b><em>A</em></motion.div><motion.div className="hero-content" initial={{ opacity: 0, y: 40, filter: "blur(14px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1, delay: .15 }}><h1>Henrique<br /><span>Azevedo</span></h1></motion.div><motion.div className="hero-bottom" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .8, delay: .65 }}><span>{t.role}</span></motion.div><a className="hero-scroll" href="#info">{t.explore}<FiArrowDown /></a></section>
       <section className="about-editorial" id="info">
         <div className="about-top">
           <motion.div className="about-roles" {...reveal}>{t.aboutRoles.map((role, index) => <h2 key={role} className={index === 0 ? "circled" : ""}>{role}</h2>)}</motion.div>
-          <motion.div className="about-portrait" {...reveal}><div><img src={profilePhoto} alt="Henrique Azevedo" /></div><p>Henrique Azevedo</p><p><span>PT / EN</span><span>SÃO PAULO, BRASIL</span></p><a href={`${import.meta.env.BASE_URL}${language === "pt" ? "Henrique Azevedo - Currículo - Desenvolvedor - (Português).pdf" : "Henrique Azevedo - Resume - Developer - (English).pdf"}`} target="_blank" rel="noreferrer">{t.resume}<FiDownload /></a></motion.div>
+          <motion.div className="about-portrait" {...reveal}><div><img src={profilePhoto} alt="Henrique Azevedo" /></div><p>Henrique Azevedo</p><p><span>PT / EN</span><span>{t.aboutMeta}</span></p><a href={`${import.meta.env.BASE_URL}${language === "pt" ? "Henrique Azevedo - Currículo - Desenvolvedor - (Português).pdf" : "Henrique Azevedo - Resume - Developer - (English).pdf"}`} target="_blank" rel="noreferrer">{t.resume}<FiDownload /></a></motion.div>
         </div>
-        <div className="about-details">
-          <motion.div {...reveal}><span>{t.aboutLabel}</span><p>{t.aboutLead}<br /><br />{t.aboutBody}</p></motion.div>
-          <motion.div className="about-practice" {...reveal}><span>{language === "pt" ? "Atuação" : "Practice"}</span><p><small>01</small>{language === "pt" ? "Produtos web completos" : "End-to-end web products"}</p><p><small>02</small>{language === "pt" ? "Sistemas empresariais" : "Enterprise systems"}</p><p><small>03</small>APIs, interfaces & dados</p><p><small>04</small>{t.available}</p></motion.div>
+        <div className="about-manifesto">
+          <motion.span {...reveal}>[ {t.aboutLabel} ]</motion.span><motion.p {...reveal}>{t.aboutStatement}</motion.p>
         </div>
+        <div className="about-pillars">{t.aboutPillars.map((item, index) => { const Icon = item.icon === "layers" ? FiLayers : item.icon === "zap" ? FiZap : FiCode; return <motion.article key={item.title} initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} transition={{ delay: index * .1, duration: .7 }} whileHover={{ y: -12 }}><div><span>0{index + 1}</span><Icon /></div><h3>{item.title}</h3><p>{item.text}</p></motion.article>; })}</div>
       </section>
-      <section className="selected-work" id="work"><div className="selected-interface"><p>Henrique Azevedo</p><span>{t.drag}</span></div><ProjectReel language={language} onOpen={setProjectOpen} /><div className="selected-bottom"><span>{t.selected}</span><span>Featured / Full</span></div></section>
-      <ProjectArchive language={language} />
+      <section className="selected-work" id="work"><div className="selected-interface"><p>Henrique Azevedo</p><span>{t.drag}</span></div><ProjectReel language={language} onOpen={setProjectOpen} /><a className="all-work-cta" href="/trabalhos">{t.viewAll}<FiArrowUpRight /></a><div className="selected-bottom"><span>{t.selected}</span><span>Featured / Full</span></div></section>
       <ExperienceSection language={language} />
-      <section className="contact" id="contact"><div className="contact-direct"><motion.div className="contact-copy" {...reveal}><p>{t.contactLabel}</p><h2>{t.contactQuestion}</h2><span>{t.contactBody}</span></motion.div><motion.div className="contact-side" {...reveal}><p>{t.choose}</p><ul className="contact-channels"><li><a href="mailto:henriquee.aze.dev@gmail.com"><span>01</span><span><strong>{t.write}</strong><small>henriquee.aze.dev@gmail.com</small></span><FiArrowUpRight /></a></li><li><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer"><span>02</span><span><strong>LinkedIn</strong><small>/in/henrique-azevedo</small></span><FiArrowUpRight /></a></li><li><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer"><span>03</span><span><strong>GitHub</strong><small>@henriiqueaze</small></span><FiArrowUpRight /></a></li></ul></motion.div></div><motion.div className="contact-statement" {...reveal}><p>{language === "pt" ? "Vamos criar" : "Let's make"}</p><strong>{language === "pt" ? "algo real." : "something real."}</strong></motion.div></section>
-    </main>
-    <footer><div><span>© 2026</span><p>{t.footer}</p></div><div><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer"><FiGithub /> GitHub</a><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer"><FiLinkedin /> LinkedIn</a></div><a href="#home">{t.back}<FiArrowUpRight /></a></footer>
+      <section className="contact" id="contact"><div className="contact-direct"><motion.div className="contact-copy" {...reveal}><p>{t.contactLabel}</p><h2>{t.contactQuestion}</h2><span>{t.contactBody}</span></motion.div><motion.div className="contact-side" {...reveal}><p>{t.choose}</p><ul className="contact-channels"><li><a href="https://wa.me/" target="_blank" rel="noreferrer"><span>01</span><span><strong><FaWhatsapp />WhatsApp</strong><small>{t.whatsapp}</small></span><FiArrowUpRight /></a></li><li><a href="mailto:henriquee.aze.dev@gmail.com"><span>02</span><span><strong><FiMail />{t.write}</strong><small>henriquee.aze.dev@gmail.com</small></span><FiArrowUpRight /></a></li><li><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer"><span>03</span><span><strong><FiLinkedin />LinkedIn</strong><small>/in/henrique-azevedo</small></span><FiArrowUpRight /></a></li><li><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer"><span>04</span><span><strong><FiGithub />GitHub</strong><small>@henriiqueaze</small></span><FiArrowUpRight /></a></li></ul></motion.div></div></section>
+    </main>}
+    <footer><div><span>© 2026</span><p>{t.footer}</p></div><div><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer"><FiGithub /> GitHub</a><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer"><FiLinkedin /> LinkedIn</a></div><a href={navHref("home")}>{t.back}<FiArrowUpRight /></a></footer>
     <AnimatePresence>{projectOpen && <ProjectDialog project={projectOpen} language={language} onClose={() => setProjectOpen(null)} />}</AnimatePresence>
   </div>;
 }
