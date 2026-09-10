@@ -44,11 +44,10 @@ const content = {
     based: "São Paulo, Brasil",
     available: "Disponível para projetos e oportunidades selecionadas",
     aboutMeta: "CÓDIGO, SOFTWARE E ARQUITETURA / 2026",
-    aboutStatement:
-      "Construo software com visão de produto — sólido por dentro, simples de usar e preparado para evoluir.",
-    aboutSupport:
-      "Meu trabalho atravessa todo o produto. Entendo a necessidade, desenho a solução e conecto interface, regras de negócio, APIs e dados até a entrega.",
-    aboutCapabilities: ["Produto digital", "Front-end", "Back-end", "Arquitetura", "Qualidade", "Evolução contínua"],
+    aboutTitle: "Desenvolvedor full-stack no Brasil",
+    aboutParagraphs: ["Sou Henrique, desenvolvedor full-stack focado em construir produtos digitais completos que conectam necessidades reais a soluções tecnicamente sólidas.", "Trabalho entre interface, regras de negócio, APIs e dados, criando sistemas responsivos, claros e preparados para crescer. Desempenho, acessibilidade e manutenção fazem parte da base — não entram apenas no final.", "Também incorporo automação e ferramentas inteligentes ao processo para acelerar descobertas, melhorar entregas e manter a qualidade do produto em cada etapa."],
+    knowledgeLabel: "Meu conhecimento", knowledgeTitle: "Construindo produtos completos desde 2023",
+    knowledgeTimeline: [{ period: "2023", title: "Fundamentos", text: "Aprofundei lógica, orientação a objetos, desenvolvimento web e bancos de dados, transformando estudo em aplicações funcionais." }, { period: "2024", title: "Estrutura", text: "Passei a desenvolver sistemas completos com Java, Spring Boot, SQL, Python e interfaces conectadas a APIs REST." }, { period: "2025", title: "Produtos", text: "Ampliei o foco em React, Angular e experiência de uso por meio de produtos como StudentProgress, Sociau e outras aplicações independentes." }, { period: "2026 — Hoje", title: "Experiência profissional", text: "Atuo em software empresarial com C#, .NET, React, React Native, SQL Server e Azure, conectando arquitetura, produto e operação real." }],
     selectedTitle: "Projetos em movimento.",
     selectedText:
       "Arraste a faixa para explorar. Toque no projeto central para abrir sua apresentação.",
@@ -113,11 +112,10 @@ const content = {
     based: "São Paulo, Brazil",
     available: "Available for selected projects and opportunities",
     aboutMeta: "PRODUCT, CODE AND MOTION / 2026",
-    aboutStatement:
-      "I build software with a product mindset — solid underneath, simple to use and ready to evolve.",
-    aboutSupport:
-      "My work spans the entire product. I understand the need, shape the solution and connect interface, business rules, APIs and data through delivery.",
-    aboutCapabilities: ["Digital product", "Front-end", "Back-end", "Architecture", "Quality", "Continuous evolution"],
+    aboutTitle: "Full-stack developer based in Brazil",
+    aboutParagraphs: ["I'm Henrique, a full-stack developer focused on building complete digital products that connect real needs to technically sound solutions.", "I work across interfaces, business rules, APIs and data, creating responsive, clear systems built to grow. Performance, accessibility and maintainability are part of the foundation — never an afterthought.", "I also bring automation and intelligent tools into the process to accelerate discovery, improve delivery and preserve product quality at every stage."],
+    knowledgeLabel: "My knowledge", knowledgeTitle: "Building complete products since 2023",
+    knowledgeTimeline: [{ period: "2023", title: "Foundations", text: "I deepened my knowledge of logic, object-oriented programming, web development and databases, turning study into functional applications." }, { period: "2024", title: "Structure", text: "I began developing complete systems with Java, Spring Boot, SQL, Python and interfaces connected to REST APIs." }, { period: "2025", title: "Products", text: "I expanded my focus on React, Angular and user experience through StudentProgress, Sociau and other independent applications." }, { period: "2026 — Present", title: "Professional experience", text: "I work on enterprise software with C#, .NET, React, React Native, SQL Server and Azure, connecting architecture, product and real operations." }],
     selected: "Selected work",
     selectedTitle: "Projects in motion.",
     selectedText:
@@ -214,6 +212,34 @@ function ProjectArchive({ language }) {
   return <section className="archive" id="all-work" onPointerMove={event => { cursorX.set(event.clientX); cursorY.set(event.clientY); }} onPointerLeave={() => setHovered(null)}><div className="archive-head"><p>[ {t.all} ]</p><h2>{t.allTitle}</h2><span>{t.allHint}</span></div><div className="archive-list">{projects.map((project, index) => <a href={project.url} target="_blank" rel="noreferrer" key={project.title} onPointerEnter={() => setHovered(index)} onFocus={() => setHovered(index)} onBlur={() => setHovered(null)}><span>{String(index + 1).padStart(2, "0")}</span><h3>{project.title}</h3><p>{project.category[language]}</p><small>{project.year}</small><FiArrowUpRight /></a>)}</div><AnimatePresence>{hovered !== null && <motion.div className="cursor-project" style={{ x: smoothX, y: smoothY, rotate }} initial={{ opacity: 0, scale: .6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: .6 }}><img src={projects[hovered].image} alt="" className={projects[hovered].fit} /><span>{projects[hovered].title}</span></motion.div>}</AnimatePresence></section>;
 }
 
+function AboutStory({ language }) {
+  const t = content[language];
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const cardY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const cardRotate = useTransform(scrollYProgress, [0, .5, 1], [-9, 3, 9]);
+  const resumeUrl = `${import.meta.env.BASE_URL}${language === "pt" ? "Henrique Azevedo - Currículo - Desenvolvedor - (Português).pdf" : "Henrique Azevedo - Resume - Developer - (English).pdf"}`;
+
+  return <section className="about-story" id="info" ref={sectionRef}>
+    <div className="about-story-grid">
+      <div className="about-story-visual">
+        <div className="about-story-backdrop"><img src={profilePhoto} alt="" /></div>
+        <motion.div className="about-story-card" style={{ y: cardY, rotate: cardRotate }}><div><img src={profilePhoto} alt="Henrique Azevedo" /></div><span>Henrique Azevedo</span><small>Full-stack developer — 2026</small></motion.div>
+      </div>
+      <div className="about-story-content">
+        <motion.div className="about-story-intro" {...reveal}>
+          <span className="about-story-tag">&#123; {t.aboutLabel} &#125;</span>
+          <h2>{t.aboutTitle}</h2>
+          <div className="about-story-copy">{t.aboutParagraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>
+          <a className="about-story-resume" href={resumeUrl} target="_blank" rel="noreferrer">{t.resume}<FiDownload /></a>
+        </motion.div>
+        <motion.div className="about-knowledge-head" {...reveal}><span className="about-story-tag">&#123; {t.knowledgeLabel} &#125;</span><h3>{t.knowledgeTitle}</h3></motion.div>
+        <div className="about-knowledge-list">{t.knowledgeTimeline.map((item, index) => <motion.article key={item.period} initial={{ opacity: 0, y: 55 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .7, delay: index * .05 }}><div><span className="about-story-tag">&#123; {item.period} &#125;</span><h3>{item.title}</h3></div><p>{item.text}</p></motion.article>)}</div>
+      </div>
+    </div>
+  </section>;
+}
+
 function ExperienceSection({ language }) {
   const t = content[language];
   const timelineRef = useRef(null);
@@ -259,19 +285,7 @@ export default function App() {
     <AnimatePresence>{menuOpen && <motion.div className="menu" initial={{ clipPath: "inset(0 0 100% 0)" }} animate={{ clipPath: "inset(0 0 0% 0)" }} exit={{ clipPath: "inset(0 0 100% 0)" }} transition={{ duration: .65, ease: [0.76, 0, .24, 1] }}><div><span>H/A — 2026</span><button onClick={() => setMenuOpen(false)}>{t.close}<FiX /></button></div><nav>{t.nav.map(([label, id], index) => <a href={navHref(id)} key={id} onClick={() => setMenuOpen(false)}><small>0{index + 1}</small><span>{label}</span><FiArrowUpRight /></a>)}</nav></motion.div>}</AnimatePresence>
     {isWorkArchive ? <main className="work-route"><a className="archive-back" href="/"><FiArrowLeft />{t.archiveBack}</a><ProjectArchive language={language} /></main> : <main>
       <section className="hero" id="home" ref={heroRef}><motion.div className="hero-image" style={{ scale: heroScale, opacity: heroOpacity }}><div /></motion.div><div className="hero-grid" aria-hidden="true" /><motion.div className="hero-monogram" style={{ rotateX: tiltX, rotateY: tiltY }} aria-hidden="true"><span>H</span><i>A</i><b>H</b><em>A</em></motion.div><motion.div className="hero-content" initial={{ opacity: 0, y: 40, filter: "blur(14px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1, delay: .15 }}><h1>Henrique<br /><span>Azevedo</span></h1></motion.div><motion.div className="hero-bottom" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .8, delay: .65 }}><span>{t.role}</span></motion.div><a className="hero-scroll" href="#info">{t.explore}<FiArrowDown /></a></section>
-      <section className="about-editorial" id="info">
-        <div className="about-top">
-          <motion.div className="about-roles" {...reveal}>{t.aboutRoles.map((role, index) => <h2 key={role} className={index === 0 ? "circled" : ""}>{role}</h2>)}</motion.div>
-          <motion.div className="about-portrait" {...reveal}><div><img src={profilePhoto} alt="Henrique Azevedo" /></div><p>Henrique Azevedo</p><p><span>PT / EN</span><span>{t.aboutMeta}</span></p><a href={`${import.meta.env.BASE_URL}${language === "pt" ? "Henrique Azevedo - Currículo - Desenvolvedor - (Português).pdf" : "Henrique Azevedo - Resume - Developer - (English).pdf"}`} target="_blank" rel="noreferrer">{t.resume}<FiDownload /></a></motion.div>
-        </div>
-        <div className="about-manifesto">
-          <motion.span {...reveal}>[ {t.aboutLabel} ]</motion.span><motion.p {...reveal}>{t.aboutStatement}</motion.p>
-        </div>
-        <motion.div className="about-spectrum" {...reveal}>
-          <div className="about-spectrum-copy"><span>{language === "pt" ? "Da ideia à entrega" : "From idea to delivery"}</span><p>{t.aboutSupport}</p></div>
-          <div className="about-marquee" aria-label={t.aboutCapabilities.join(", ")}><motion.div animate={{ x: ["0%", "-50%"] }} transition={{ duration: 24, repeat: Infinity, ease: "linear" }}>{[...t.aboutCapabilities, ...t.aboutCapabilities].map((item, index) => <span key={`${item}-${index}`}>{item}<i>↗</i></span>)}</motion.div></div>
-        </motion.div>
-      </section>
+      <AboutStory language={language} />
       <section className="selected-work" id="work"><div className="selected-interface"><p>Projetos Selecionados</p><span>{t.drag}</span></div><ProjectReel language={language} onOpen={setProjectOpen} /><a className="all-work-cta" href="/trabalhos">{t.viewAll}<FiArrowUpRight /></a><div className="selected-bottom"><span>{t.selected}</span></div></section>
       <ExperienceSection language={language} />
       <section className="contact" id="contact"><div className="contact-direct"><motion.div className="contact-copy" {...reveal}><p>{t.contactLabel}</p><h2>{t.contactQuestion}</h2><span>{t.contactBody}</span></motion.div><motion.div className="contact-side" {...reveal}><p>{t.choose}</p><ul className="contact-channels"><li><a href="https://wa.me/" target="_blank" rel="noreferrer"><span>01</span><span><strong><FaWhatsapp />WhatsApp</strong><small>{t.whatsapp}</small></span><FiArrowUpRight /></a></li><li><a href="mailto:henriquee.aze.dev@gmail.com"><span>02</span><span><strong><FiMail />{t.write}</strong><small>henriquee.aze.dev@gmail.com</small></span><FiArrowUpRight /></a></li><li><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer"><span>03</span><span><strong><FiLinkedin />LinkedIn</strong><small>/in/henrique-azevedo</small></span><FiArrowUpRight /></a></li><li><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer"><span>04</span><span><strong><FiGithub />GitHub</strong><small>@henriiqueaze</small></span><FiArrowUpRight /></a></li></ul></motion.div></div></section>

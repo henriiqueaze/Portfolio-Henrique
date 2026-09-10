@@ -718,3 +718,48 @@ footer { background:var(--surface); }
   .about-roles h2 { font-size:12vw; }
   .about-portrait { max-width:none; }
 }
+
+/* About story — mirrors the 60/40 sticky editorial composition of the reference. */
+.about-story { position:relative; z-index:6; color:var(--text); background:var(--surface); }
+.about-story-grid { display:grid; grid-template-columns:60svw 40svw; align-items:start; }
+.about-story-visual { position:sticky; top:0; height:100svh; max-height:100svh; display:flex; align-items:center; justify-content:center; padding:2rem; background:var(--surface); overflow:hidden; }
+.about-story-backdrop { position:absolute; inset:2rem; overflow:hidden; border-radius:18px; background:#0A0A0A; }
+.about-story-backdrop::after { content:""; position:absolute; inset:0; background:linear-gradient(135deg,rgba(10,10,10,.12),rgba(10,10,10,.78)),radial-gradient(circle at 65% 30%,rgba(20,129,184,.28),transparent 40%); }
+.about-story-backdrop img { width:100%; height:100%; object-fit:cover; object-position:center 34%; filter:grayscale(1) contrast(1.08); opacity:.46; transform:scale(1.08); }
+.about-story-card { position:relative; z-index:3; width:40%; perspective:200vw; padding:10px 10px 16px; border-radius:12px; color:#0A0A0A; background:#B5B5B5; box-shadow:0 35px 90px rgba(0,0,0,.48); transform-origin:center; }
+.about-story-card > div { position:relative; width:100%; padding-top:130%; overflow:hidden; border-radius:7px; background:#1A1A1A; }
+.about-story-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; filter:grayscale(1) contrast(1.05); }
+.about-story-card span,.about-story-card small { display:block; font-family:"DM Mono",monospace; text-transform:uppercase; }
+.about-story-card span { margin-top:14px; font-size:10px; }
+.about-story-card small { margin-top:5px; color:#4f4f4f; font-size:7px; }
+.about-story-content { width:100%; padding:20svh 2rem 1.5rem; }
+.about-story-intro { display:flex; flex-direction:column; align-items:flex-start; width:100%; }
+.about-story-tag { color:var(--blue); font:10px "DM Mono",monospace; letter-spacing:.05em; text-transform:uppercase; }
+.about-story-intro h2,.about-knowledge-head h3,.about-knowledge-list h3 { margin:18px 0 0; font-size:clamp(31px,2.7vw,52px); font-weight:500; line-height:1.08; letter-spacing:-.055em; }
+.about-story-copy { max-width:25rem; margin-top:clamp(50px,7vw,95px); }
+.about-story-copy p { margin:0 0 24px; color:var(--muted); font-size:15px; line-height:1.72; }
+.about-story-resume { display:flex; align-items:center; justify-content:space-between; width:100%; margin-top:28px; padding:17px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--blue); font:10px "DM Mono",monospace; text-transform:uppercase; transition:color .3s,padding .35s; }
+.about-story-resume:hover { padding-inline:12px; color:var(--text); }
+.about-knowledge-head { max-width:30rem; margin-top:clamp(110px,14vw,200px); padding-bottom:clamp(65px,8vw,110px); }
+.about-knowledge-list article { position:sticky; top:4.5rem; display:grid; grid-template-columns:1fr; align-content:end; min-height:42svh; padding:clamp(55px,7vw,96px) 0; border-top:1px solid var(--line); background:var(--surface); }
+.about-knowledge-list article > div { max-width:24rem; }
+.about-knowledge-list article > p { max-width:25rem; margin:28px 0 0; color:var(--muted); font-size:15px; line-height:1.7; }
+
+@media (max-width:900px) {
+  .about-story-grid { grid-template-columns:1fr; padding:1.5rem; }
+  .about-story-visual { position:relative; height:78svh; min-height:560px; padding:0; }
+  .about-story-backdrop { inset:0; }
+  .about-story-card { width:min(58%,320px); }
+  .about-story-content { padding:7rem 0 1.5rem; }
+  .about-story-copy { max-width:38rem; }
+  .about-knowledge-list article { position:relative; top:auto; min-height:0; padding:4rem 0; }
+  .about-knowledge-list article > p { max-width:38rem; }
+}
+
+@media (max-width:650px) {
+  .about-story-grid { padding:1rem; }
+  .about-story-visual { height:70svh; min-height:470px; }
+  .about-story-card { width:62%; }
+  .about-story-content { padding-top:5rem; }
+  .about-story-intro h2,.about-knowledge-head h3,.about-knowledge-list h3 { font-size:34px; }
+}
