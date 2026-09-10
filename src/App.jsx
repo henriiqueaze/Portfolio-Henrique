@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
-import { FiArrowDown, FiArrowLeft, FiArrowRight, FiArrowUpRight, FiCopy, FiDownload, FiGithub, FiLinkedin, FiMail, FiMenu, FiMinus, FiMoon, FiPlay, FiPlus, FiSun, FiX } from "react-icons/fi";
+import { FiArrowDown, FiArrowUpRight, FiDownload, FiGithub, FiLinkedin, FiMenu, FiMoon, FiPlay, FiSun, FiX } from "react-icons/fi";
 import profilePhoto from "./assets/images/henrique-picture.jpg";
 import cookIt from "./assets/images/projects/cook-it.jpg";
 import studentProgress from "./assets/images/projects/student-progress-logo.png";
@@ -74,26 +74,13 @@ function ProjectDialog({ project, language, onClose }) {
 }
 
 function ProjectReel({ language, onOpen }) {
-  const [active, setActive] = useState(0);
-  const [metrics, setMetrics] = useState({ width: 760, gap: 16, viewport: 1440 });
   const t = content[language];
-  const clampIndex = value => Math.max(0, Math.min(projects.length - 1, value));
-  useEffect(() => {
-    const measure = () => { const viewport = window.innerWidth; setMetrics({ viewport, width: Math.min(viewport * (viewport < 650 ? .86 : .72), 760), gap: viewport < 650 ? 10 : 16 }); };
-    measure(); window.addEventListener("resize", measure); return () => window.removeEventListener("resize", measure);
-  }, []);
-  useEffect(() => {
-    const key = event => { if (event.key === "ArrowRight") setActive(value => clampIndex(value + 1)); if (event.key === "ArrowLeft") setActive(value => clampIndex(value - 1)); };
-    window.addEventListener("keydown", key); return () => window.removeEventListener("keydown", key);
-  }, []);
-  const targetX = metrics.viewport / 2 - metrics.width / 2 - active * (metrics.width + metrics.gap);
   return <div className="project-reel">
-    <div className="reel-viewport"><motion.div className="reel-track" drag="x" dragConstraints={{ left: metrics.viewport - projects.length * (metrics.width + metrics.gap), right: metrics.viewport * .08 }} dragElastic={.08} dragMomentum={false} animate={{ x: targetX }} transition={{ type: "spring", stiffness: 115, damping: 23 }} onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 45 || Math.abs(info.velocity.x) > 350) setActive(value => clampIndex(value + (info.offset.x < 0 ? 1 : -1))); }}>
-      {projects.map((project, index) => <motion.button key={project.title} className={`reel-card ${active === index ? "active" : ""}`} style={{ width: metrics.width, "--project-accent": project.accent }} animate={{ scale: active === index ? 1 : .94, opacity: Math.abs(active - index) > 1 ? .28 : .62 }} transition={{ duration: .55, ease: [0.16, 1, .3, 1] }} onClick={() => active === index ? onOpen(project) : setActive(index)} aria-label={active === index ? `${t.openPresentation}: ${project.title}` : project.title}>
-        <motion.div className="reel-media" layoutId={active === index ? `project-${project.title}` : undefined}><img src={project.image} alt="" className={project.fit} /><div className="reel-shade" /><div className="reel-meta"><span>{project.title}</span><small>{project.category[language]}</small></div><div className="reel-play"><FiPlay /></div><div className="reel-time">00:{String(18 + index * 3).padStart(2, "0")}</div></motion.div>
+    <div className="reel-viewport"><motion.div className="reel-track" drag="x" dragConstraints={{ left: -3550, right: 0 }} dragElastic={.12} dragMomentum transition={{ type: "spring", stiffness: 90, damping: 24 }}>
+      {projects.map((project, index) => <motion.button key={project.title} className="reel-card" style={{ "--project-accent": project.accent, "--card-ratio": index % 3 === 2 ? "1.38" : index % 2 ? "1.66" : "1.75" }} whileHover={{ y: -6 }} onClick={() => onOpen(project)} aria-label={`${t.openPresentation}: ${project.title}`}>
+        <motion.div className="reel-media" layoutId={`project-${project.title}`}><img src={project.image} alt="" className={project.fit} /><div className="reel-shade" /><div className="reel-meta"><span>{project.title}</span><small>{project.category[language]}</small></div><div className="reel-play"><FiPlay /></div></motion.div>
       </motion.button>)}
     </motion.div></div>
-    <div className="reel-controls"><span>{t.drag}</span><div><button onClick={() => setActive(value => clampIndex(value - 1))} disabled={active === 0} aria-label="Previous"><FiArrowLeft /></button><strong>{String(active + 1).padStart(2, "0")} <i>/</i> {String(projects.length).padStart(2, "0")}</strong><button onClick={() => setActive(value => clampIndex(value + 1))} disabled={active === projects.length - 1} aria-label="Next"><FiArrowRight /></button></div><button className="reel-open" onClick={() => onOpen(projects[active])}>{t.openPresentation}<FiArrowUpRight /></button></div>
   </div>;
 }
 
@@ -106,14 +93,28 @@ function ProjectArchive({ language }) {
 }
 
 function ExperienceSection({ language }) {
-  const [expanded, setExpanded] = useState(0); const t = content[language];
-  return <section className="experience" id="experience"><div className="section-heading experience-heading"><p>[ {t.experienceLabel} ]</p><motion.h2 {...reveal}>{t.experienceTitle.split("\n").map(line => <span key={line}>{line}</span>)}</motion.h2><p className="experience-intro">{t.experienceIntro}</p></div><div className="experience-list">{experiences.map((item, index) => { const open = expanded === index; return <motion.article key={item.company} layout data-open={open}><button className="experience-row" onClick={() => setExpanded(open ? null : index)} aria-expanded={open}><span className="experience-number">0{index + 1}</span><span className="experience-brand"><img src={item.logo} alt="" /><span><strong>{item.company}</strong><small>{item.role}</small></span></span><span className="experience-period">{item.period[language]}<small>{item.location[language]}</small></span><span className="experience-toggle">{t.details}{open ? <FiMinus /> : <FiPlus />}</span></button><AnimatePresence initial={false}>{open && <motion.div className="experience-panel" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: .55, ease: [0.16, 1, .3, 1] }}><div><p>{item.summary[language]}</p><div className="experience-columns"><div><span>{t.responsibilities}</span>{item.items[language].map(entry => <p key={entry}>{entry}</p>)}</div><div><span>{t.projects}</span>{item.products.map(product => <p key={product}>{product}</p>)}</div></div><div className="experience-tech">{item.tech.map(tech => <i key={tech}>{tech}</i>)}</div></div></motion.div>}</AnimatePresence></motion.article>; })}</div></section>;
+  const t = content[language];
+  return <section className="experience" id="experience">
+    <motion.h2 {...reveal}>{t.experienceLabel}</motion.h2>
+    <div className="career-timeline">
+      {experiences.map((item, index) => <motion.article className={index % 2 === 0 ? "left" : "right"} key={item.company} initial={{ opacity: 0, x: index % 2 === 0 ? -90 : 90, rotate: index % 2 === 0 ? -2 : 2 }} whileInView={{ opacity: 1, x: 0, rotate: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .85, ease: [0.16, 1, .3, 1] }}>
+        <span className="timeline-dot" />
+        <motion.div className="career-card" whileHover={{ y: -10, rotate: index % 2 === 0 ? -.5 : .5 }} transition={{ type: "spring", stiffness: 220, damping: 18 }}>
+          <div className="career-header"><motion.img src={item.logo} alt="" whileHover={{ rotate: 8, scale: 1.08 }} /><p>{item.company}</p><div><span>{item.period[language]}</span><i>•</i><span>{item.location[language]}</span></div></div>
+          <h3>{item.role}</h3><p className="career-summary">{item.summary[language]}</p>
+          <h4>{t.responsibilities}</h4><ul>{item.items[language].map(entry => <li key={entry}>{entry}</li>)}</ul>
+          <h4>{t.technologies}</h4><div className="career-tech">{item.tech.map(tech => <span key={tech}>{tech}</span>)}</div>
+          <div className="career-projects"><span>{t.projects}</span>{item.products.map(product => <i key={product}>{product}</i>)}</div>
+        </motion.div>
+      </motion.article>)}
+    </div>
+  </section>;
 }
 
 export default function App() {
   const [language, setLanguage] = useState(() => localStorage.getItem("portfolio-language") || "pt");
   const [theme, setTheme] = useState(() => localStorage.getItem("portfolio-theme") || "dark");
-  const [menuOpen, setMenuOpen] = useState(false); const [projectOpen, setProjectOpen] = useState(null); const [copied, setCopied] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); const [projectOpen, setProjectOpen] = useState(null);
   const heroRef = useRef(null); const mouseX = useMotionValue(0); const mouseY = useMotionValue(0);
   const tiltX = useSpring(useTransform(mouseY, [-.5, .5], [10, -10]), { stiffness: 80, damping: 18 }); const tiltY = useSpring(useTransform(mouseX, [-.5, .5], [-13, 13]), { stiffness: 80, damping: 18 });
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] }); const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]); const heroOpacity = useTransform(scrollYProgress, [0, .9], [1, .18]); const t = content[language];
@@ -125,17 +126,25 @@ export default function App() {
     if (!window.location.hash) window.requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0 }));
   }, []);
   function pointerMove(event) { mouseX.set(event.clientX / window.innerWidth - .5); mouseY.set(event.clientY / window.innerHeight - .5); }
-  async function copyEmail() { await navigator.clipboard.writeText("henriquee.aze.dev@gmail.com"); setCopied(true); window.setTimeout(() => setCopied(false), 1800); }
   return <div className="site" onPointerMove={pointerMove}>
     <header className="header"><a href="#home" className="logo" aria-label="Henrique Azevedo">H<span>/</span>A</a><nav>{t.nav.map(([label, id], index) => <a href={`#${id}`} key={id}><small>0{index + 1}</small><span>{label}</span></a>)}</nav><div className="header-actions"><button onClick={() => setLanguage(language === "pt" ? "en" : "pt")} aria-label={t.language}>{language === "pt" ? "EN" : "PT"}</button><button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={t.theme}>{theme === "dark" ? <FiSun /> : <FiMoon />}</button><button className="menu-trigger" onClick={() => setMenuOpen(true)} aria-label={t.menu}><FiMenu /></button></div></header>
     <AnimatePresence>{menuOpen && <motion.div className="menu" initial={{ clipPath: "inset(0 0 100% 0)" }} animate={{ clipPath: "inset(0 0 0% 0)" }} exit={{ clipPath: "inset(0 0 100% 0)" }} transition={{ duration: .65, ease: [0.76, 0, .24, 1] }}><div><span>H/A — 2026</span><button onClick={() => setMenuOpen(false)}>{t.close}<FiX /></button></div><nav>{t.nav.map(([label, id], index) => <a href={`#${id}`} key={id} onClick={() => setMenuOpen(false)}><small>0{index + 1}</small><span>{label}</span><FiArrowUpRight /></a>)}</nav></motion.div>}</AnimatePresence>
     <main>
-      <section className="hero" id="home" ref={heroRef}><motion.div className="hero-image" style={{ scale: heroScale, opacity: heroOpacity }}><div /></motion.div><div className="hero-grid" aria-hidden="true" /><motion.div className="hero-monogram" style={{ rotateX: tiltX, rotateY: tiltY }} aria-hidden="true"><span>H</span><i>A</i><b>H</b><em>A</em></motion.div><motion.div className="hero-content" initial={{ opacity: 0, y: 40, filter: "blur(14px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1, delay: .15 }}><p>[ {t.folio} ]</p><h1>Henrique<br /><span>Azevedo</span></h1></motion.div><motion.div className="hero-bottom" initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8, delay: .65 }}><span>{t.role}<br />{t.location}</span><p>{t.hero}</p></motion.div><a className="hero-scroll" href="#info">{t.explore}<FiArrowDown /></a></section>
-      <section className="about-editorial" id="info"><div className="about-kicker"><span>[ {t.aboutLabel} ]</span><i /><span>{t.based}</span></div><motion.div className="about-roles" {...reveal}>{t.aboutRoles.map((role, index) => <h2 key={role} className={index === 1 ? "outline" : ""}>{role}</h2>)}</motion.div><div className="about-layout"><motion.div className="about-photo" {...reveal}><img src={profilePhoto} alt="Henrique Azevedo" /><span>HA / 26</span></motion.div><motion.div className="about-copy" {...reveal}><p className="about-lead">{t.aboutLead}</p><p>{t.aboutBody}</p><div className="about-actions"><a href={`${import.meta.env.BASE_URL}${language === "pt" ? "Henrique Azevedo - Currículo - Desenvolvedor - (Português).pdf" : "Henrique Azevedo - Resume - Developer - (English).pdf"}`} target="_blank" rel="noreferrer">{t.resume}<FiDownload /></a><span><i />{t.available}</span></div></motion.div></div></section>
-      <section className="selected-work" id="work"><div className="selected-interface"><p>[ {t.selected} ]</p><span>{t.selectedText}</span></div><ProjectReel language={language} onOpen={setProjectOpen} /></section>
+      <section className="hero" id="home" ref={heroRef}><motion.div className="hero-image" style={{ scale: heroScale, opacity: heroOpacity }}><div /></motion.div><div className="hero-grid" aria-hidden="true" /><motion.div className="hero-monogram" style={{ rotateX: tiltX, rotateY: tiltY }} aria-hidden="true"><span>H</span><i>A</i><b>H</b><em>A</em></motion.div><motion.div className="hero-content" initial={{ opacity: 0, y: 40, filter: "blur(14px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1, delay: .15 }}><h1>Henrique<br /><span>Azevedo</span></h1></motion.div><motion.div className="hero-bottom" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .8, delay: .65 }}><span>{t.role}</span></motion.div><a className="hero-scroll" href="#info">{t.explore}<FiArrowDown /></a></section>
+      <section className="about-editorial" id="info">
+        <div className="about-top">
+          <motion.div className="about-roles" {...reveal}>{t.aboutRoles.map((role, index) => <h2 key={role} className={index === 0 ? "circled" : ""}>{role}</h2>)}</motion.div>
+          <motion.div className="about-portrait" {...reveal}><div><img src={profilePhoto} alt="Henrique Azevedo" /></div><p>Henrique Azevedo</p><p><span>PT / EN</span><span>SÃO PAULO, BRASIL</span></p><a href={`${import.meta.env.BASE_URL}${language === "pt" ? "Henrique Azevedo - Currículo - Desenvolvedor - (Português).pdf" : "Henrique Azevedo - Resume - Developer - (English).pdf"}`} target="_blank" rel="noreferrer">{t.resume}<FiDownload /></a></motion.div>
+        </div>
+        <div className="about-details">
+          <motion.div {...reveal}><span>{t.aboutLabel}</span><p>{t.aboutLead}<br /><br />{t.aboutBody}</p></motion.div>
+          <motion.div className="about-practice" {...reveal}><span>{language === "pt" ? "Atuação" : "Practice"}</span><p><small>01</small>{language === "pt" ? "Produtos web completos" : "End-to-end web products"}</p><p><small>02</small>{language === "pt" ? "Sistemas empresariais" : "Enterprise systems"}</p><p><small>03</small>APIs, interfaces & dados</p><p><small>04</small>{t.available}</p></motion.div>
+        </div>
+      </section>
+      <section className="selected-work" id="work"><div className="selected-interface"><p>Henrique Azevedo</p><span>{t.drag}</span></div><ProjectReel language={language} onOpen={setProjectOpen} /><div className="selected-bottom"><span>{t.selected}</span><span>Featured / Full</span></div></section>
       <ProjectArchive language={language} />
       <ExperienceSection language={language} />
-      <section className="contact" id="contact"><div className="contact-grid" aria-hidden="true" /><div className="contact-watermark" aria-hidden="true">HA</div><motion.div className="contact-content" {...reveal}><p>[ {t.contactLabel} ]</p><h2>{t.contactQuestion}</h2><div className="contact-intro"><p>{t.contactBody}</p><span>{t.choose}</span></div><div className="contact-channels"><a href="mailto:henriquee.aze.dev@gmail.com"><span><FiMail />{t.write}</span><strong>henriquee.aze.dev@gmail.com</strong><FiArrowUpRight /></a><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer"><span><FiLinkedin />LinkedIn</span><strong>/in/henrique-azevedo</strong><FiArrowUpRight /></a><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer"><span><FiGithub />GitHub</span><strong>@henriiqueaze</strong><FiArrowUpRight /></a><button onClick={copyEmail}><span><FiCopy />{copied ? t.copied : t.copyEmail}</span><strong>{copied ? "✓" : "CTRL + C"}</strong><FiArrowUpRight /></button></div><h3>{t.create.split("\n").map(line => <span key={line}>{line}</span>)}</h3></motion.div></section>
+      <section className="contact" id="contact"><div className="contact-direct"><motion.div className="contact-copy" {...reveal}><p>{t.contactLabel}</p><h2>{t.contactQuestion}</h2><span>{t.contactBody}</span></motion.div><motion.div className="contact-side" {...reveal}><p>{t.choose}</p><ul className="contact-channels"><li><a href="mailto:henriquee.aze.dev@gmail.com"><span>01</span><span><strong>{t.write}</strong><small>henriquee.aze.dev@gmail.com</small></span><FiArrowUpRight /></a></li><li><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer"><span>02</span><span><strong>LinkedIn</strong><small>/in/henrique-azevedo</small></span><FiArrowUpRight /></a></li><li><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer"><span>03</span><span><strong>GitHub</strong><small>@henriiqueaze</small></span><FiArrowUpRight /></a></li></ul></motion.div></div><motion.div className="contact-statement" {...reveal}><p>{language === "pt" ? "Vamos criar" : "Let's make"}</p><strong>{language === "pt" ? "algo real." : "something real."}</strong></motion.div></section>
     </main>
     <footer><div><span>© 2026</span><p>{t.footer}</p></div><div><a href="https://github.com/henriiqueaze" target="_blank" rel="noreferrer"><FiGithub /> GitHub</a><a href="https://www.linkedin.com/in/henrique-azevedo-b2195b2b0/" target="_blank" rel="noreferrer"><FiLinkedin /> LinkedIn</a></div><a href="#home">{t.back}<FiArrowUpRight /></a></footer>
     <AnimatePresence>{projectOpen && <ProjectDialog project={projectOpen} language={language} onClose={() => setProjectOpen(null)} />}</AnimatePresence>
