@@ -305,12 +305,16 @@ footer > a { justify-self:end; }
 .about-actions > span i { flex:none; width:7px; height:7px; border-radius:50%; background:var(--blue); box-shadow:0 0 0 5px color-mix(in srgb,var(--blue) 18%,transparent); }
 
 /* Jesper Landberg-inspired horizontal film reel */
-.selected-work { min-height:auto; padding-bottom:clamp(100px,10vw,155px); }
-.project-reel { margin-top:clamp(65px,7vw,110px); overflow:hidden; }
+.selected-work { position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:center; padding:72px 0 0; color:#B5B5B5; background:#0A0A0A; overflow:hidden; }
+.selected-interface { position:absolute; z-index:4; left:clamp(24px,4vw,64px); right:clamp(24px,4vw,64px); top:105px; display:flex; justify-content:space-between; align-items:start; pointer-events:none; }
+.selected-interface p,.selected-interface span { margin:0; font:8px/1.5 "DM Mono",monospace; text-transform:uppercase; letter-spacing:.1em; }
+.selected-interface p { color:#1481B8; }
+.selected-interface span { max-width:360px; color:#777; text-align:right; }
+.project-reel { margin-top:0; overflow:hidden; }
 .reel-viewport { width:100%; overflow:hidden; cursor:grab; touch-action:pan-y; }
 .reel-viewport:active { cursor:grabbing; }
 .reel-track { display:flex; align-items:center; gap:16px; width:max-content; padding-block:18px; }
-.reel-card { flex:none; height:min(43.5svh,550px); min-height:330px; padding:0; border:0; border-radius:20px; overflow:hidden; color:#B5B5B5; background:var(--surface); text-align:left; box-shadow:0 35px 75px -38px var(--shadow); transform-origin:center; }
+.reel-card { flex:none; height:min(43.5svh,550px); min-height:330px; padding:0; border:0; border-radius:20px; overflow:hidden; color:#B5B5B5; background:#1A1A1A; text-align:left; box-shadow:0 35px 75px -38px rgba(0,0,0,.8); transform-origin:center; }
 .reel-media { position:relative; width:100%; height:100%; overflow:hidden; border-radius:inherit; background:var(--project-accent); }
 .reel-media::after { content:""; position:absolute; inset:0; border:1px solid rgba(181,181,181,.2); border-radius:inherit; pointer-events:none; }
 .reel-media img { width:100%; height:100%; background:var(--surface-2); transition:transform .8s cubic-bezier(.16,1,.3,1),filter .5s; }
@@ -326,7 +330,7 @@ footer > a { justify-self:end; }
 .reel-card.active .reel-play { opacity:1; transform:translate(-50%,-50%) scale(1); }
 .reel-card.active:hover .reel-play { background:var(--blue); transform:translate(-50%,-50%) scale(1.08); }
 .reel-time { position:absolute; z-index:2; top:20px; right:24px; padding:7px 9px; border-radius:99px; background:rgba(10,10,10,.52); }
-.reel-controls { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:25px; margin:22px clamp(24px,4vw,64px) 0; padding-top:20px; border-top:1px solid var(--line); }
+.reel-controls { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:25px; margin:22px clamp(24px,4vw,64px) 0; padding-top:20px; border-top:1px solid rgba(181,181,181,.19); }
 .reel-controls > span,.reel-controls strong,.reel-controls button { font:8px "DM Mono",monospace; text-transform:uppercase; }
 .reel-controls > span { color:var(--muted); }
 .reel-controls > div { display:flex; align-items:center; gap:18px; }
@@ -382,11 +386,15 @@ footer > a { justify-self:end; }
 .contact h3 { position:relative; z-index:2; margin:0; color:#B5B5B5; font-size:clamp(75px,14.2vw,215px); font-weight:500; line-height:.72; letter-spacing:-.095em; text-transform:uppercase; }
 .contact h3 span { display:block; }
 
-/* Keep every hero label inside the viewport at short and wide heights. */
-.hero { min-height:max(640px,100svh); }
-.hero-content { top:47%; transform:translateY(-43%); }
+/* Image-free hero with an independently anchored information row. */
+.hero { height:100svh; min-height:820px; background:#0A0A0A; }
+.hero-image { background:#0A0A0A; }
+.hero-image > div { background:radial-gradient(circle at 66% 42%,rgba(20,129,184,.13),transparent 28%),linear-gradient(120deg,#0A0A0A 20%,#111 62%,#0A0A0A); }
+.hero-content { top:45%; transform:translateY(-50%); }
 .hero-content h1 { font-size:clamp(68px,min(13vw,23svh),205px); }
-.hero-content > div { margin-top:clamp(32px,6svh,70px); }
+.hero-bottom { position:absolute; z-index:5; left:clamp(24px,6vw,95px); right:clamp(145px,15vw,240px); bottom:42px; display:grid; grid-template-columns:260px minmax(270px,500px); gap:7vw; align-items:end; }
+.hero-bottom > span { color:#B5B5B5; font:8px/1.6 "DM Mono",monospace; text-transform:uppercase; }
+.hero-bottom > p { margin:0; color:#B5B5B5; font-size:clamp(16px,1.7vw,25px); line-height:1.35; letter-spacing:-.025em; }
 
 @media (max-width:1000px) {
   .about-layout { margin-left:12%; }
@@ -413,6 +421,9 @@ footer > a { justify-self:end; }
   .about-photo { width:74%; height:105vw; }
   .about-lead { margin-bottom:60px; font-size:32px; }
   .about-actions { grid-template-columns:1fr; }
+  .selected-work { min-height:760px; padding-top:62px; }
+  .selected-interface { top:85px; left:20px; right:20px; }
+  .selected-interface span { max-width:210px; font-size:7px; }
   .reel-track { gap:10px; }
   .reel-card { height:42svh; min-height:300px; border-radius:14px; }
   .reel-meta { left:15px; right:15px; bottom:14px; }
@@ -438,13 +449,17 @@ footer > a { justify-self:end; }
   .contact-channels strong { grid-column:1; grid-row:2; padding-bottom:16px; font-size:18px; }
   .contact-channels > * > svg { grid-column:2; grid-row:1/3; }
   .contact h3 { font-size:19vw; }
+  .hero { min-height:720px; }
+  .hero-bottom { left:22px; right:80px; bottom:28px; grid-template-columns:1fr; gap:14px; }
+  .hero-bottom > span { display:none; }
+  .hero-bottom > p { width:100%; font-size:15px; }
 }
 
 @media (max-height:720px) and (min-width:651px) {
-  .hero { min-height:600px; }
-  .hero-content { top:45%; }
+  .hero { min-height:720px; }
+  .hero-content { top:42%; }
   .hero-content > p { margin-bottom:14px; }
   .hero-content h1 { font-size:min(12vw,145px); }
-  .hero-content > div { margin-top:25px; }
-  .hero-scroll { bottom:18px; }
+  .hero-bottom { bottom:38px; }
+  .hero-scroll { bottom:38px; }
 }
