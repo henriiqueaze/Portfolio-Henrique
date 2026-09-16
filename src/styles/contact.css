@@ -1,0 +1,113 @@
+/* Contact as a project invitation */
+.contact {
+  min-height: auto;
+  display: block;
+  padding: clamp(105px, 12vw, 180px) clamp(24px, 6vw, 95px) 55px;
+}
+.contact-watermark {
+  position: absolute;
+  right: -4vw;
+  top: 3vw;
+  color: transparent;
+  font-size: min(55vw, 820px);
+  font-weight: 600;
+  line-height: 0.75;
+  letter-spacing: -0.16em;
+  -webkit-text-stroke: 1px rgba(181, 181, 181, 0.18);
+  pointer-events: none;
+}
+.contact-content {
+  padding: 0;
+}
+.contact-content > p {
+  margin: 0 0 55px;
+}
+.contact h2 {
+  max-width: 1180px;
+  margin: 0 0 clamp(65px, 8vw, 120px);
+  font-size: clamp(58px, 9.3vw, 142px);
+  line-height: 0.88;
+}
+.contact-intro {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9vw;
+  padding: 25px 0;
+  border-block: 1px solid rgba(181, 181, 181, 0.36);
+}
+.contact-intro p {
+  max-width: 650px;
+  margin: 0;
+  font-size: clamp(17px, 1.6vw, 25px);
+  line-height: 1.5;
+  letter-spacing: -0.025em;
+}
+.contact-intro span {
+  align-self: end;
+  font:
+    9px "DM Mono",
+    monospace;
+  text-transform: uppercase;
+}
+.contact-channels {
+  position: relative;
+  z-index: 2;
+  margin: 55px 0 120px;
+  border-top: 1px solid rgba(181, 181, 181, 0.36);
+}
+.contact-channels a,
+.contact-channels button {
+  width: 100%;
+  min-height: 88px;
+  display: grid;
+  grid-template-columns: 25% 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(181, 181, 181, 0.36);
+  color: #b5b5b5;
+  background: transparent;
+  text-align: left;
+  transition:
+    padding 0.35s,
+    background 0.35s;
+}
+.contact-channels a:hover,
+.contact-channels button:hover {
+  padding-inline: 18px;
+  background: rgba(10, 10, 10, 0.16);
+}
+.contact-channels span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font:
+    9px "DM Mono",
+    monospace;
+  text-transform: uppercase;
+}
+.contact-channels strong {
+  font-size: clamp(19px, 2.6vw, 40px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+.contact-channels > * > svg {
+  font-size: 20px;
+}
+.contact h3 {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  color: #b5b5b5;
+  font-size: clamp(75px, 14.2vw, 215px);
+  font-weight: 500;
+  line-height: 0.72;
+  letter-spacing: -0.095em;
+  text-transform: uppercase;
+}
+.contact h3 span {
+  display: block;
+}

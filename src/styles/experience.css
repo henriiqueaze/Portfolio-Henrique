@@ -1,0 +1,157 @@
+/* Expandable experience */
+.experience {
+  position: relative;
+  overflow: hidden;
+}
+.experience-heading {
+  grid-template-columns: 0.28fr 1fr 0.38fr !important;
+}
+.experience-intro {
+  align-self: end;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.experience-list article {
+  display: block;
+  min-height: 0;
+  overflow: hidden;
+}
+.experience-list article > * {
+  padding: 0;
+  border: 0;
+}
+.experience-row {
+  width: 100%;
+  min-height: 155px;
+  display: grid;
+  grid-template-columns: 8% 1fr 23% 15%;
+  align-items: center;
+  gap: 25px;
+  padding: 24px 0 !important;
+  border: 0;
+  color: var(--text);
+  background: transparent;
+  text-align: left;
+  transition:
+    color 0.35s,
+    background 0.35s;
+}
+.experience-row:hover,
+.experience-list article[data-open="true"] .experience-row {
+  color: var(--blue);
+}
+.experience-number,
+.experience-period,
+.experience-toggle,
+.experience-brand small {
+  font:
+    8px/1.5 "DM Mono",
+    monospace;
+  text-transform: uppercase;
+}
+.experience-number {
+  color: var(--blue);
+}
+.experience-brand {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.experience-brand > img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition:
+    filter 0.35s,
+    transform 0.5s;
+}
+.experience-row:hover .experience-brand > img,
+.experience-list article[data-open="true"] .experience-brand > img {
+  filter: grayscale(0);
+  transform: rotate(-5deg) scale(1.05);
+}
+.experience-brand strong {
+  display: block;
+  margin-bottom: 7px;
+  font-size: clamp(25px, 3vw, 46px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+.experience-brand small,
+.experience-period small {
+  display: block;
+  color: var(--muted);
+}
+.experience-period small {
+  margin-top: 7px;
+}
+.experience-toggle {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+}
+.experience-toggle svg {
+  font-size: 18px;
+}
+.experience-panel {
+  overflow: hidden;
+  color: var(--text);
+  background: var(--bg);
+}
+.experience-panel > div {
+  display: grid;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: 9vw;
+  margin-left: 8%;
+  padding: clamp(45px, 6vw, 85px);
+}
+.experience-panel > div > p {
+  margin: 0;
+  font-size: clamp(23px, 2.5vw, 38px);
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+}
+.experience-columns {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr;
+  gap: 45px;
+}
+.experience-columns span {
+  color: var(--blue);
+  font:
+    8px "DM Mono",
+    monospace;
+  text-transform: uppercase;
+}
+.experience-columns p {
+  margin: 16px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.experience-tech {
+  grid-column: 1/3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 25px;
+  border-top: 1px solid var(--line);
+}
+.experience-tech i {
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font:
+    8px "DM Mono",
+    monospace;
+  font-style: normal;
+  text-transform: uppercase;
+}

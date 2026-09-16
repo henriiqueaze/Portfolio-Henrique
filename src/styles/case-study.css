@@ -1,0 +1,314 @@
+.case-study {
+  min-height: 100vh;
+  padding-top: 72px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.case-study-hero {
+  position: relative;
+  min-height: 76svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(110px, 13vw, 190px) clamp(24px, 5vw, 80px) clamp(55px, 7vw, 105px);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.case-study-hero::before {
+  content: "";
+  position: absolute;
+  inset: auto -12vw -42vw auto;
+  width: 70vw;
+  aspect-ratio: 1;
+  border: 1px solid var(--project-accent);
+  border-radius: 50%;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.case-study-back {
+  position: absolute;
+  top: clamp(35px, 5vw, 70px);
+  left: clamp(24px, 5vw, 80px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--blue);
+  font: 9px "DM Mono", monospace;
+  text-transform: uppercase;
+}
+
+.case-study-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin-bottom: 30px;
+  color: var(--blue);
+  font: 9px "DM Mono", monospace;
+  text-transform: uppercase;
+}
+
+.case-study-hero h1 {
+  position: relative;
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(74px, 14vw, 220px);
+  font-weight: 400;
+  line-height: 0.78;
+  letter-spacing: -0.085em;
+}
+
+.case-study-hero > p {
+  position: relative;
+  width: min(580px, 72%);
+  margin: clamp(42px, 6vw, 85px) 0 0 auto;
+  color: var(--muted);
+  font-size: clamp(18px, 2vw, 30px);
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+
+.case-study-media {
+  width: 100%;
+  min-height: 52vw;
+  max-height: 92svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.case-study-media video,
+.case-study-media img {
+  width: 100%;
+  height: 100%;
+  max-height: 92svh;
+  object-fit: cover;
+}
+
+.case-study-media.contain video,
+.case-study-media.contain img {
+  object-fit: contain !important;
+  padding: clamp(30px, 7vw, 120px) !important;
+}
+
+.case-study-media video[data-orientation="portrait"] {
+  width: min(74vw, 900px);
+  object-fit: contain !important;
+  padding: clamp(20px, 4vw, 70px) !important;
+  background: transparent;
+}
+
+.case-study-overview {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.7fr) 1.3fr;
+  gap: clamp(70px, 10vw, 170px);
+  padding: clamp(100px, 13vw, 200px) clamp(24px, 5vw, 80px);
+  background: var(--surface);
+}
+
+.case-study-introduction {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+  margin: 0;
+  font-size: clamp(26px, 3vw, 48px);
+  line-height: 1.16;
+  letter-spacing: -0.05em;
+}
+
+.case-study-facts article {
+  display: grid;
+  grid-template-columns: 44px 0.55fr 1fr;
+  gap: 25px;
+  padding: clamp(38px, 5vw, 68px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.case-study-facts article:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.case-study-facts span,
+.case-study-stack > span {
+  color: var(--blue);
+  font: 9px "DM Mono", monospace;
+}
+
+.case-study-facts h2 {
+  margin: 0;
+  font-size: clamp(20px, 2vw, 30px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.case-study-facts p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.case-study-stack {
+  display: grid;
+  grid-template-columns: 0.35fr 1fr auto;
+  align-items: center;
+  gap: 40px;
+  padding: clamp(70px, 9vw, 130px) clamp(24px, 5vw, 80px);
+  border-bottom: 1px solid var(--line);
+}
+
+.case-study-stack > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.case-study-stack i {
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font: 9px "DM Mono", monospace;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+.case-study-stack > a,
+.dialog-actions a,
+.not-found-page a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--blue);
+  font: 9px "DM Mono", monospace;
+  text-transform: uppercase;
+}
+
+.case-study-navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.case-study-navigation a {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(35px, 5vw, 75px);
+  background: var(--bg);
+  transition: color 0.3s, background 0.3s;
+}
+
+.case-study-navigation a + a {
+  align-items: flex-end;
+  border-left: 1px solid var(--line);
+}
+
+.case-study-navigation a:hover {
+  color: var(--bg);
+  background: var(--blue);
+}
+
+.case-study-navigation small {
+  font: 9px "DM Mono", monospace;
+  text-transform: uppercase;
+}
+
+.case-study-navigation span {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: clamp(28px, 4vw, 62px);
+  letter-spacing: -0.055em;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 36px;
+  margin-top: 35px;
+}
+
+.dialog-actions a {
+  padding-bottom: 8px;
+  border-bottom: 1px solid currentColor;
+}
+
+.not-found-page {
+  min-height: 80svh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 24px;
+  padding: 120px 24px;
+  text-align: center;
+}
+
+.not-found-page > span {
+  color: var(--blue);
+  font: 11px "DM Mono", monospace;
+}
+
+.not-found-page h1 {
+  margin: 0;
+  font-size: clamp(45px, 8vw, 120px);
+  font-weight: 400;
+  letter-spacing: -0.07em;
+}
+
+.technology-loop:hover .technology-loop-track,
+.technology-loop:focus-within .technology-loop-track {
+  animation-play-state: paused;
+}
+
+@media (max-width: 800px) {
+  .case-study-hero {
+    min-height: 68svh;
+  }
+  .case-study-hero > p {
+    width: 100%;
+    margin-left: 0;
+  }
+  .case-study-overview {
+    grid-template-columns: 1fr;
+  }
+  .case-study-introduction {
+    position: static;
+  }
+  .case-study-stack {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .case-study-hero h1 {
+    font-size: clamp(64px, 23vw, 110px);
+  }
+  .case-study-media {
+    min-height: 62svh;
+  }
+  .case-study-facts article {
+    grid-template-columns: 35px 1fr;
+  }
+  .case-study-facts p {
+    grid-column: 2;
+  }
+  .case-study-navigation {
+    grid-template-columns: 1fr;
+  }
+  .case-study-navigation a {
+    min-height: 190px;
+  }
+  .case-study-navigation a + a {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .technology-loop-track {
+    animation: none;
+  }
+}

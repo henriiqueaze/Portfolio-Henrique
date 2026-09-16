@@ -1,0 +1,248 @@
+/* Jesper Landberg-inspired horizontal film reel */
+.selected-work {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 72px 0 0;
+  color: #b5b5b5;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+.selected-interface {
+  position: absolute;
+  z-index: 4;
+  left: clamp(24px, 4vw, 64px);
+  right: clamp(24px, 4vw, 64px);
+  top: 105px;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  pointer-events: none;
+}
+.selected-interface p,
+.selected-interface span {
+  margin: 0;
+  font:
+    8px/1.5 "DM Mono",
+    monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.selected-interface p {
+  color: #1481b8;
+}
+.selected-interface span {
+  max-width: 360px;
+  color: #777;
+  text-align: right;
+}
+.project-reel {
+  margin-top: 0;
+  overflow: hidden;
+}
+.reel-viewport {
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+}
+.reel-viewport:active {
+  cursor: grabbing;
+}
+.reel-track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: max-content;
+  padding-block: 18px;
+}
+.reel-card {
+  flex: none;
+  height: min(43.5svh, 550px);
+  min-height: 330px;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  color: #b5b5b5;
+  background: #1a1a1a;
+  text-align: left;
+  box-shadow: 0 35px 75px -38px rgba(0, 0, 0, 0.8);
+  transform-origin: center;
+}
+.reel-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--project-accent);
+}
+.reel-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(181, 181, 181, 0.2);
+  border-radius: inherit;
+  pointer-events: none;
+}
+.reel-media img,
+.reel-media video {
+  width: 100%;
+  height: 100%;
+  background: var(--surface-2);
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.5s;
+}
+.reel-media img.cover,
+.reel-media video.cover {
+  object-fit: cover;
+}
+.reel-media img.contain,
+.reel-media video.contain {
+  object-fit: contain;
+  padding: 9%;
+}
+.reel-card:not(.active) img,
+.reel-card:not(.active) video {
+  filter: grayscale(1);
+}
+.reel-card.active:hover img,
+.reel-card.active:hover video {
+  transform: scale(1.025);
+}
+.reel-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.12),
+    transparent 45%,
+    rgba(10, 10, 10, 0.72)
+  );
+}
+.reel-meta {
+  position: absolute;
+  z-index: 2;
+  left: 24px;
+  right: 24px;
+  bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+.reel-meta span {
+  font-size: clamp(22px, 2.3vw, 36px);
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+.reel-meta small,
+.reel-time {
+  font:
+    8px "DM Mono",
+    monospace;
+  text-transform: uppercase;
+}
+.reel-play {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border: 1px solid rgba(181, 181, 181, 0.6);
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.38);
+  backdrop-filter: blur(10px);
+  transform: translate(-50%, -50%) scale(0.75);
+  opacity: 0;
+  transition:
+    opacity 0.4s,
+    transform 0.5s,
+    background 0.3s;
+}
+.reel-card.active .reel-play {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.reel-card.active:hover .reel-play {
+  background: var(--blue);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.reel-time {
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  right: 24px;
+  padding: 7px 9px;
+  border-radius: 99px;
+  background: rgba(10, 10, 10, 0.52);
+}
+.reel-controls {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 25px;
+  margin: 22px clamp(24px, 4vw, 64px) 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(181, 181, 181, 0.19);
+}
+.reel-controls > span,
+.reel-controls strong,
+.reel-controls button {
+  font:
+    8px "DM Mono",
+    monospace;
+  text-transform: uppercase;
+}
+.reel-controls > span {
+  color: var(--muted);
+}
+.reel-controls > div {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.reel-controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: transparent;
+}
+.reel-controls > div button {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+}
+.reel-controls button:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+.reel-controls strong i {
+  margin: 0 5px;
+  color: var(--blue);
+  font-style: normal;
+}
+.reel-open {
+  justify-self: end;
+  min-height: 43px;
+  padding: 0 16px;
+  border-radius: 99px;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    border-color 0.3s;
+}
+.reel-open:hover {
+  color: #b5b5b5;
+  border-color: var(--blue);
+  background: var(--blue);
+}
