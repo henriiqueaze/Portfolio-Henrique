@@ -1,0 +1,214 @@
+.experience-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 400;
+  padding: 1.6rem;
+}
+
+.experience-modal-content {
+  background: var(--secondary-color);
+  padding: 3.2rem 2.8rem;
+  border-radius: 1.2rem;
+  width: 95%;
+  max-width: 640px;
+  color: var(--headline);
+  position: relative;
+  box-shadow: 0 2rem 4rem var(--shadow);
+  max-height: 88vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-company-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 0.8rem;
+  background: var(--third-color);
+  padding: 0.5rem;
+  flex-shrink: 0;
+}
+
+.modal-header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.modal-header-info h3 {
+  font-size: 2.2rem;
+  color: var(--headline);
+}
+
+.modal-header-info .period {
+  font-size: 1.3rem;
+  color: var(--paragraph);
+  margin-top: 0.3rem;
+}
+
+.modal-divider {
+  border: none;
+  height: 1px;
+  background: var(--third-color);
+  margin: 2.2rem 0;
+}
+
+.role {
+  font-size: 1.55rem;
+  font-weight: 500;
+  color: var(--paragraph);
+  display: block;
+  margin-bottom: 2.4rem;
+}
+
+.experience-modal-content h4 {
+  margin-top: 2.6rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  color: var(--headline);
+}
+
+.modal-list {
+  margin-top: 0.8rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.modal-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 1.35rem;
+  color: var(--paragraph);
+  line-height: 1.7;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.modal-list a {
+  text-decoration: underline;
+}
+
+.bullet {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.tech-list {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.2rem;
+}
+
+.tech-list li {
+  background: var(--third-color);
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  font-size: 1.25rem;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1.6rem;
+  font-size: 2.8rem;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.project-link {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    text-decoration 0.2s ease;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+.project-description {
+  font-size: 13.5px;
+  color: var(--paragraph);
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .experience-modal-content {
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+    padding: 2.4rem 1.8rem;
+    border-radius: 1rem;
+    text-align: center;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .modal-header-info {
+    align-items: center;
+  }
+
+  .modal-company-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .modal-list li {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .modal-list a {
+    font-size: 16px;
+    text-decoration: underline;
+  }
+
+  .bullet {
+    display: none;
+  }
+
+  .project-link {
+    display: block;
+    width: 100%;
+  }
+
+  .project-description {
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  .tech-list {
+    justify-content: center;
+    gap: 0.8rem 0.8rem;
+  }
+
+  .close {
+    top: 0.8rem;
+    right: 1.2rem;
+  }
+}

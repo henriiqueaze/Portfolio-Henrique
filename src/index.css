@@ -1,11 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap");
-@import "./styles/base.css";
-@import "./styles/general-refinements.css";
-@import "./styles/about.css";
-@import "./styles/projects.css";
-@import "./styles/experience.css";
-@import "./styles/contact.css";
-@import "./styles/hero.css";
-@import "./styles/reference-overrides.css";
-@import "./styles/final-overrides.css";
-@import "./styles/case-study.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+@import "assets/styles/variables.css";
+@import "assets/styles/base.css";
+@import "assets/styles/animations.css";

@@ -10,22 +10,6 @@ node_modules
 dist
 dist-ssr
 *.local
-coverage
-.vite
-
-# Local configuration and credentials
-.env
-.env.*
-!.env.example
-.dev.vars*
-
-# Local tooling and deployment metadata
-.openai/
-.agents/
-.codex/
-.vercel/
-.netlify/
-.wrangler/
 
 .vscode/*
 !.vscode/extensions.json

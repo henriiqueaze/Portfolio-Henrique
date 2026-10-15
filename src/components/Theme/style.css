@@ -1,0 +1,59 @@
+#toggle {
+  display: flex;
+  position: fixed;
+  bottom: 2rem;
+  left: 2.5rem;
+  z-index: 101;
+}
+
+#toggle input {
+  position: absolute;
+  visibility: hidden;
+}
+
+#toggle label {
+  width: 8rem;
+  height: 4rem;
+  background-color: var(--secondary-color);
+  border: 0.1rem solid var(--primary-color);
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+#toggle label::before {
+  content: "";
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 0.4rem;
+  left: 0.5rem;
+  transition: 0.5s;
+  z-index: 2;
+}
+
+#toggle input:checked + label::before {
+  transform: translateX(3.8rem);
+}
+
+#toggle svg {
+  position: relative;
+  z-index: 1;
+  width: 2rem;
+  height: 2rem;
+}
+
+#toggle .sun {
+  order: 1;
+  fill: var(--headline);
+}
+#toggle .moon {
+  order: 0;
+  fill: var(--headline);
+}
