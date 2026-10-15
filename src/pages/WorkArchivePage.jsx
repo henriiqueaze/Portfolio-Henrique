@@ -1,6 +1,6 @@
 import { FiArrowLeft } from "react-icons/fi";
 import { ProjectArchive } from "../components/Projects/ProjectArchive";
-import { WORK_ROUTE } from "../config/routes";
+import { HOME_ROUTE, WORK_ROUTE } from "../config/routes";
 import { usePageMetadata } from "../hooks/usePageMetadata";
 
 export function WorkArchivePage({ copy, language }) {
@@ -15,7 +15,7 @@ export function WorkArchivePage({ copy, language }) {
 
   return (
     <main className="work-route">
-      <a className="archive-back" href="/"><FiArrowLeft />{copy.archiveBack}</a>
+      <a className="archive-back" href={HOME_ROUTE}><FiArrowLeft />{copy.archiveBack}</a>
       <ProjectArchive language={language} />
     </main>
   );

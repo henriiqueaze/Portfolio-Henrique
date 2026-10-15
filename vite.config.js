@@ -22,6 +22,8 @@ const homeRoute = {
   description: "Portfólio de Henrique Azevedo, desenvolvedor full-stack especializado em produtos digitais, sistemas e APIs.",
 };
 
+const githubPagesBase = "/Portfolio-Henrique/";
+
 function escapeXml(value) {
   const entities = { "<": "&lt;", ">": "&gt;", "&": "&amp;", "\"": "&quot;", "'": "&apos;" };
   return value.replace(/[<>&"']/g, (character) => entities[character]);
@@ -82,6 +84,6 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), svgr(), tailwindcss(), staticRoutePages(siteUrl)],
-    base: "/",
+    base: githubPagesBase,
   };
 });

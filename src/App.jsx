@@ -10,7 +10,7 @@ import { WorkArchivePage } from "./pages/WorkArchivePage";
 import { ProjectCaseStudyPage } from "./pages/ProjectCaseStudyPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { projects } from "./data/portfolioProjects";
-import { resolveAppRoute } from "./config/routes";
+import { HOME_ROUTE, resolveAppRoute } from "./config/routes";
 
 export default function App() {
   const { language, theme, toggleLanguage, toggleTheme } = usePortfolioPreferences();
@@ -23,7 +23,7 @@ export default function App() {
     ? projects.find((project) => project.slug === currentRoute.projectSlug)
     : null;
   const isHomePage = currentRoute.name === "home";
-  const navigationHref = (sectionId) => (isHomePage ? `#${sectionId}` : `/#${sectionId}`);
+  const navigationHref = (sectionId) => (isHomePage ? `#${sectionId}` : `${HOME_ROUTE}#${sectionId}`);
 
   useEffect(() => {
     document.body.classList.toggle("locked", isMenuOpen || Boolean(selectedProject));

@@ -21,7 +21,11 @@ function setMetaAttribute(selector, attribute, value) {
 export function usePageMetadata({ title, description, path = "/", image, structuredData }) {
   useEffect(() => {
     const siteUrl = import.meta.env.VITE_SITE_URL?.replace(/\/$/, "");
-    const canonicalUrl = siteUrl ? `${siteUrl}${path}` : null;
+    const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+    const relativePath = basePath && path.startsWith(basePath)
+      ? path.slice(basePath.length) || "/"
+      : path;
+    const canonicalUrl = siteUrl ? `${siteUrl}${relativePath}` : null;
     const imageUrl = image && siteUrl ? new URL(image, `${siteUrl}/`).href : null;
 
     document.title = title;
